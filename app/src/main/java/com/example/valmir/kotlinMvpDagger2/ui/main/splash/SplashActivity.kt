@@ -20,6 +20,5 @@ class SplashActivity : BaseActivity() {
             finish()
         }
         Handler().postDelayed(r, 1000)
-
     }
 }

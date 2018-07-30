@@ -3,6 +3,7 @@ package com.example.valmir.kotlinMvpDagger2.di.module
 import android.app.Application
 import android.content.Context
 import com.example.valmir.kotlinMvpDagger2.di.ForApplication
+import com.example.valmir.kotlinMvpDagger2.remote.ServiceApi
 import com.example.valmir.kotlinMvpDagger2.remote.ServiceImpl
 import dagger.Module
 import dagger.Provides
@@ -20,5 +21,5 @@ class AndroidModule(private val application: Application) {
     fun provideAppContext(): Context = application.applicationContext
 
     @Provides
-    fun provideServiceImpl(): ServiceImpl = ServiceImpl()
+    fun provideServiceImpl(): ServiceApi = ServiceImpl()
 }

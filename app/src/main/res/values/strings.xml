@@ -24,4 +24,11 @@
     <string name="genre_1_example">Action</string>
     <string name="genre_2_example">Adventure</string>
     <string name="genre_3_example">Comedy</string>
+    
+    <string name="error_connection">Internet connection failure</string>
+    <string name="error_404">Oops, a page you\'re looking for was not found! :(</string>
+    <string name="error_500">Internal Server Error</string>
+    <string name="error_501">Service not implemented</string>
+    <string name="error_503">Service Unavailable</string>
+    <string name="error_504">Gateway Time-Out</string>
 </resources>

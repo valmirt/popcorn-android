@@ -25,6 +25,7 @@ dependencies {
     def retrofit_version = '2.3.0'
     def dagger2_version = '2.14.1'
     def support_version = '27.1.1'
+    def picasso_version = "2.5.2"
 
     implementation fileTree(dir: 'libs', include: ['*.jar'])
     implementation "org.jetbrains.kotlin:kotlin-stdlib-jdk7:$kotlin_version"
@@ -54,4 +55,7 @@ dependencies {
     implementation "com.android.support:design:$support_version"
     implementation "com.android.support:appcompat-v7:$support_version"
     implementation "com.android.support:palette-v7:$support_version"
+
+    //Picasso
+    implementation "com.squareup.picasso:picasso:$picasso_version"
 }

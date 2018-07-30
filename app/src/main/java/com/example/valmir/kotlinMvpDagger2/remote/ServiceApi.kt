@@ -6,7 +6,7 @@ import com.example.valmir.kotlinMvpDagger2.model.Movie
 
 interface ServiceApi {
     interface ServiceCallback <T> {
-        fun onLoaded (resposta: T)
+        fun onLoaded (response: T)
     }
 
     fun getPopular(callback: ServiceCallback<ListMovies>, page: Int)
@@ -20,5 +20,4 @@ interface ServiceApi {
     fun getNowPlaying(callback: ServiceCallback<ListMovies>, page: Int)
 
     fun getMovieId(callback: ServiceCallback<Movie>, id: Int)
-
 }

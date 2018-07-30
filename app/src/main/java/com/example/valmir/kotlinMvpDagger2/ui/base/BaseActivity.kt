@@ -11,13 +11,20 @@ import com.example.valmir.kotlinMvpDagger2.util.Constants.Companion.TYPE_LIST
 open class BaseActivity: AppCompatActivity() {
 
     fun swapFragmentHome(fragment: Fragment, type: Int) {
-        val ft = supportFragmentManager.beginTransaction()
         val args = Bundle()
-
         args.putInt(TYPE_LIST, type)
-
         fragment.arguments = args
-        ft.replace(R.id.container_home, fragment)
-        ft.commit()
+
+        supportFragmentManager
+                .beginTransaction()
+                .replace(R.id.container_home, fragment)
+                .commit()
+    }
+
+    fun removeFragment(){
+        supportFragmentManager
+                .beginTransaction()
+                .remove(supportFragmentManager.findFragmentById(R.id.container_home))
+                .commit()
     }
 }

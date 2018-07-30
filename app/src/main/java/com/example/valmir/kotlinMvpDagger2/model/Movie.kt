@@ -1,6 +1,7 @@
 package com.example.valmir.kotlinMvpDagger2.model
 
 import com.google.gson.annotations.SerializedName
+import java.io.Serializable
 
 class Movie (var code: Int = 0,
              var id: Int = 0,
@@ -22,4 +23,4 @@ class Movie (var code: Int = 0,
              var runtime: Int = 0,
              @SerializedName("vote_average")
              var voteAverage: Double = 0.0,
-             var status: String = "")
+             var status: String = ""): Serializable

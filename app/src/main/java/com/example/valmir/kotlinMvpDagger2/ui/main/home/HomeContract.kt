@@ -1,6 +1,6 @@
 package com.example.valmir.kotlinMvpDagger2.ui.main.home
 
-
+import android.support.v7.app.AppCompatActivity
 import com.example.valmir.kotlinMvpDagger2.model.Movie
 import com.example.valmir.kotlinMvpDagger2.ui.base.BaseContract
 
@@ -8,7 +8,9 @@ interface HomeContract {
     interface View: BaseContract.View {
         fun setLoading(isLoading: Boolean)
 
-        fun responseSuccessful()
+        fun responseSuccessful(movieList: List<Movie>?)
+
+        fun responseSucessfulMorePages(movieList: List<Movie>?)
 
         fun errorResponse(error: String)
 
@@ -27,5 +29,7 @@ interface HomeContract {
         fun getMovie(query: String, page: Int)
 
         fun getDetails(id: Int)
+
+        fun swapActivity(activity: AppCompatActivity, movie: Movie)
     }
 }

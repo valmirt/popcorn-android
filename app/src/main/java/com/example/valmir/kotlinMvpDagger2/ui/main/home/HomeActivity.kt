@@ -8,13 +8,14 @@ import android.view.Menu
 import android.view.MenuItem
 import com.example.valmir.kotlinMvpDagger2.R
 import com.example.valmir.kotlinMvpDagger2.ui.base.BaseActivity
+import com.example.valmir.kotlinMvpDagger2.util.Constants.Companion.NOW_PLAYING
 import com.example.valmir.kotlinMvpDagger2.util.Constants.Companion.POPULAR
+import com.example.valmir.kotlinMvpDagger2.util.Constants.Companion.TOP_RATED
+import com.example.valmir.kotlinMvpDagger2.util.Constants.Companion.UP_COMING
 import kotlinx.android.synthetic.main.activity_home.*
 import kotlinx.android.synthetic.main.app_bar_home.*
 
 class HomeActivity : BaseActivity(), NavigationView.OnNavigationItemSelectedListener {
-    private val fragment = HomeFragment()
-
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -27,7 +28,7 @@ class HomeActivity : BaseActivity(), NavigationView.OnNavigationItemSelectedList
         toggle.syncState()
 
         supportActionBar?.title = getString(R.string.popular)
-        swapFragmentHome(fragment, POPULAR)
+        swapFragmentHome(HomeFragment(), POPULAR)
 
         nav_view.setNavigationItemSelectedListener(this)
     }
@@ -38,31 +39,29 @@ class HomeActivity : BaseActivity(), NavigationView.OnNavigationItemSelectedList
     }
 
     override fun onOptionsItemSelected(item: MenuItem): Boolean {
-        when (item.itemId) {
-            R.id.action_settings -> return true
-            else -> return super.onOptionsItemSelected(item)
+        return when (item.itemId) {
+            R.id.action_search -> true
+            else -> super.onOptionsItemSelected(item)
         }
     }
 
     override fun onNavigationItemSelected(item: MenuItem): Boolean {
         when (item.itemId) {
-            R.id.nav_camera -> {
-                // Handle the camera action
+            R.id.nav_popular -> {
+                supportActionBar?.title = getString(R.string.popular)
+                swapFragmentHome(HomeFragment(), POPULAR)
             }
-            R.id.nav_gallery -> {
-
+            R.id.nav_top_rated -> {
+                supportActionBar?.title = getString(R.string.top_rated)
+                swapFragmentHome(HomeFragment(), TOP_RATED)
             }
-            R.id.nav_slideshow -> {
-
+            R.id.nav_now_playing -> {
+                supportActionBar?.title = getString(R.string.now_playing)
+                swapFragmentHome(HomeFragment(), NOW_PLAYING)
             }
-            R.id.nav_manage -> {
-
-            }
-            R.id.nav_share -> {
-
-            }
-            R.id.nav_send -> {
-
+            R.id.nav_up_coming -> {
+                supportActionBar?.title = getString(R.string.up_coming)
+                swapFragmentHome(HomeFragment(), UP_COMING)
             }
         }
 
