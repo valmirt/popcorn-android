@@ -10,7 +10,7 @@ import android.widget.ImageView
 import android.widget.TextView
 import com.example.valmir.kotlinMvpDagger2.R
 import com.example.valmir.kotlinMvpDagger2.model.Movie
-import com.example.valmir.kotlinMvpDagger2.util.Constants.Companion.BASE_URL_IMAGE
+import com.example.valmir.kotlinMvpDagger2.util.Constants.Companion.BASE_URL_IMAGE_W185
 import com.squareup.picasso.Picasso
 import com.squareup.picasso.Target
 import java.math.RoundingMode
@@ -33,7 +33,7 @@ class MovieViewHolder (noteView: View): RecyclerView.ViewHolder(noteView) {
 
         movie.posterUrl?.let {
             Picasso.with(imageItem.context)
-                    .load(BASE_URL_IMAGE+it)
+                    .load(BASE_URL_IMAGE_W185+it)
                     .placeholder(R.drawable.ic_image_default_poster)
                     .into(object : Target{
                         override fun onPrepareLoad(placeHolderDrawable: Drawable?) {}

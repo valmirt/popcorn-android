@@ -109,13 +109,25 @@
                         android:textSize="14sp" />
                 </LinearLayout>
             </LinearLayout>
-
-            <ImageView
-                android:id="@+id/image_item_movie"
+            <RelativeLayout
                 android:layout_width="133dp"
-                android:layout_height="200dp"
-                android:src="@drawable/ic_image_default_poster"
-                tools:ignore="ContentDescription" />
+                android:layout_height="200dp">
+                <ImageView
+                    android:id="@+id/image_item_movie"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:src="@drawable/ic_image_default_poster"
+                    tools:ignore="ContentDescription" />
+                <ImageView
+                    android:layout_width="59dp"
+                    android:layout_height="23dp"
+                    android:layout_alignParentBottom="true"
+                    android:layout_alignParentRight="true"
+                    android:layout_alignParentEnd="true"
+                    android:src="@drawable/icon_image"
+                    android:scaleType="centerCrop"
+                    tools:ignore="ContentDescription" />
+            </RelativeLayout>
         </LinearLayout>
     </android.support.v7.widget.CardView>
 
