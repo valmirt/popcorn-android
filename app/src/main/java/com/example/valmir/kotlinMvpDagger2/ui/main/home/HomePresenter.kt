@@ -6,9 +6,8 @@ import android.support.v7.app.AppCompatActivity
 import com.example.valmir.kotlinMvpDagger2.R
 import com.example.valmir.kotlinMvpDagger2.TMDBApplication
 import com.example.valmir.kotlinMvpDagger2.model.ListMovies
-import com.example.valmir.kotlinMvpDagger2.model.Movie
 import com.example.valmir.kotlinMvpDagger2.remote.ServiceApi
-import com.example.valmir.kotlinMvpDagger2.util.Constants.Companion.MOVIE_OBJECT
+import com.example.valmir.kotlinMvpDagger2.util.Constants.Companion.MOVIE_ID
 import javax.inject.Inject
 
 class HomePresenter: HomeContract.Presenter {
@@ -129,26 +128,9 @@ class HomePresenter: HomeContract.Presenter {
         }, query, page)
     }
 
-    override fun getDetails(id: Int) {
-        view.setLoading(true)
-        api.getMovieId(object : ServiceApi.ServiceCallback<Movie>{
-            override fun onLoaded(response: Movie) {
-                view.setLoading(false)
-                when(response.code){
-                    200 -> view.movieDetails(response)
-                    404 -> view.errorResponse(context.getString(R.string.error_404))
-                    500 -> view.errorResponse(context.getString(R.string.error_500))
-                    503 -> view.errorResponse(context.getString(R.string.error_503))
-                    504 -> view.errorResponse(context.getString(R.string.error_504))
-                    else -> view.errorResponse(context.getString(R.string.error_connection))
-                }
-            }
-        }, id)
-    }
-
-    override fun swapActivity(activity: AppCompatActivity, movie: Movie) {
+    override fun swapActivity(activity: AppCompatActivity, id: Int) {
         val intent = Intent(context, activity::class.java)
-        intent.putExtra(MOVIE_OBJECT, movie)
+        intent.putExtra(MOVIE_ID, id)
         context.startActivity(intent)
     }
 }

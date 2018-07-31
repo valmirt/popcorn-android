@@ -13,8 +13,6 @@ interface HomeContract {
         fun responseSucessfulMorePages(movieList: List<Movie>?)
 
         fun errorResponse(error: String)
-
-        fun movieDetails(movie: Movie)
     }
 
     interface Presenter: BaseContract.Presenter<HomeContract.View>{
@@ -28,8 +26,6 @@ interface HomeContract {
 
         fun getMovie(query: String, page: Int)
 
-        fun getDetails(id: Int)
-
-        fun swapActivity(activity: AppCompatActivity, movie: Movie)
+        fun swapActivity(activity: AppCompatActivity, id: Int)
     }
 }

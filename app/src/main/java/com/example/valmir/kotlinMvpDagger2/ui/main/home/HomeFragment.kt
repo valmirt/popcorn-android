@@ -33,7 +33,7 @@ class HomeFragment: Fragment(), HomeContract.View {
 
     private val itemListener = object : ItemListener<Movie>{
         override fun onClick(item: Movie) {
-           // mPresenter.getDetails(item.id)
+            mPresenter.swapActivity(DetailActivity(), item.id)
         }
     }
 
@@ -124,10 +124,4 @@ class HomeFragment: Fragment(), HomeContract.View {
     override fun errorResponse(error: String) {
         Snackbar.make(view!!, error, Snackbar.LENGTH_LONG).show()
     }
-
-    override fun movieDetails(movie: Movie) {
-        mPresenter.swapActivity(DetailActivity(), movie)
-    }
-
-
 }

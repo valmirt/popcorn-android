@@ -3,7 +3,8 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    xmlns:app="http://schemas.android.com/apk/res-auto">
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    tools:context=".ui.main.detail.DetailActivity">
 
     <android.support.v4.widget.NestedScrollView
         android:layout_width="match_parent"
@@ -272,7 +273,8 @@
                     android:textColor="@color/colorText"
                     android:layout_marginLeft="32dp"
                     android:layout_marginStart="32dp"
-                    android:layout_marginBottom="4dp"/>
+                    android:layout_marginBottom="4dp"
+                    android:id="@+id/overview_detail"/>
             </LinearLayout>
             <View
                 android:layout_width="match_parent"
