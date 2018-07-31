@@ -122,7 +122,7 @@ class HomeFragment: Fragment(), HomeContract.View {
     }
 
     override fun errorResponse(error: String) {
-        Snackbar.make(view!!, error, Snackbar.LENGTH_LONG)
+        Snackbar.make(view!!, error, Snackbar.LENGTH_LONG).show()
     }
 
     override fun movieDetails(movie: Movie) {
