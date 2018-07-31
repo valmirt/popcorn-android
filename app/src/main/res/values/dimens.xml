@@ -9,6 +9,6 @@
     <dimen name="width_poster_path">185dp</dimen>
     <dimen name="height_poster_path">278dp</dimen>
 
-    <dimen name="width_poster_backdrop">185dp</dimen>
-    <dimen name="height_poster_backdrop">104dp</dimen>
+    <dimen name="app_bar_height">180dp</dimen>
+    <dimen name="text_margin">16dp</dimen>
 </resources>

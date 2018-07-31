@@ -14,7 +14,7 @@ import com.example.valmir.kotlinMvpDagger2.R
 import com.example.valmir.kotlinMvpDagger2.TMDBApplication
 import com.example.valmir.kotlinMvpDagger2.adapter.MovieAdapter
 import com.example.valmir.kotlinMvpDagger2.model.Movie
-import com.example.valmir.kotlinMvpDagger2.ui.main.detail.MovieDetailActivity
+import com.example.valmir.kotlinMvpDagger2.ui.main.detail.DetailActivity
 import com.example.valmir.kotlinMvpDagger2.util.Constants.Companion.TYPE_LIST
 import com.example.valmir.kotlinMvpDagger2.util.EndlessRecyclerViewScrollListener
 import kotlinx.android.synthetic.main.fragment_home.*
@@ -126,7 +126,7 @@ class HomeFragment: Fragment(), HomeContract.View {
     }
 
     override fun movieDetails(movie: Movie) {
-        mPresenter.swapActivity(MovieDetailActivity(), movie)
+        mPresenter.swapActivity(DetailActivity(), movie)
     }
 
 

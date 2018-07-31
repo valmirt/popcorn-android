@@ -18,17 +18,27 @@
     <string name="date_example">2017</string>
     <string name="popularity">Popularity:</string>
     <string name="popularity_example">48.2</string>
-    <string name="vote_average">Vote Average:</string>
+    <string name="vote_average">Average rating:</string>
     <string name="vote_average_example">5.91</string>
     <string name="genres">Genres:</string>
     <string name="genre_1_example">Action</string>
     <string name="genre_2_example">Adventure</string>
     <string name="genre_3_example">Comedy</string>
-    
+
     <string name="error_connection">Internet connection failure</string>
     <string name="error_404">Oops, a page you\'re looking for was not found! :(</string>
     <string name="error_500">Internal Server Error</string>
     <string name="error_501">Service not implemented</string>
     <string name="error_503">Service Unavailable</string>
     <string name="error_504">Gateway Time-Out</string>
+    <string name="title_activity_detail">DetailActivity</string>
+    <string name="title_tab_one">Info</string>
+    <string name="title_tab_two">Casting</string>
+    <string name="time_example">139</string>
+    <string name="minutes_example">minutes</string>
+    <string name="production">Production:</string>
+    <string name="production_example">Marvel Studios</string>
+    <string name="overview">Overview:</string>
+    <string name="similar_movies">Similar movies:</string>
+    <string name="large_text">Join us in congratulating the latest apps and games entering the Android Excellence program on Google Play. This diverse group of apps and games is recognized for their high quality, great user experience, and strong technical performance. Whether you\'re interested in learning meditation or a new language, or are looking for a game about butterflies or warships, we\'re excited to dive in to these new collections.</string>
 </resources>

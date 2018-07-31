@@ -4,7 +4,7 @@ class Constants{
     companion object {
         const val BASE_URL = "https://api.themoviedb.org/3/"
         const val BASE_URL_IMAGE_W185 = "http://image.tmdb.org/t/p/w185/"
-        const val BASE_URL_IMAGE_W342 = "http://image.tmdb.org/t/p/w342/"
+        const val BASE_URL_IMAGE_W500 = "http://image.tmdb.org/t/p/w500/"
         const val TYPE_LIST = "type_list"
         const val POPULAR = 1
         const val TOP_RATED = 2
