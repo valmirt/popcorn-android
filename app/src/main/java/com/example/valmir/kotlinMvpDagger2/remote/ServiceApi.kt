@@ -1,6 +1,7 @@
 package com.example.valmir.kotlinMvpDagger2.remote
 
 
+import com.example.valmir.kotlinMvpDagger2.model.ListCastCrew
 import com.example.valmir.kotlinMvpDagger2.model.ListMovies
 import com.example.valmir.kotlinMvpDagger2.model.Movie
 
@@ -22,4 +23,6 @@ interface ServiceApi {
     fun getMovieId(callback: ServiceCallback<Movie>, id: Int)
 
     fun getSimilarMovies(callback: ServiceCallback<ListMovies>, id: Int, page: Int)
+
+    fun getCastCrew(callback: ServiceCallback<ListCastCrew>, id: Int)
 }

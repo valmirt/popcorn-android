@@ -45,7 +45,7 @@ class InfoFragment: Fragment(), InfoContract.View {
         mListAdapter = SimilarMoviesAdapter(ArrayList(0), itemListener)
 
         args?.let {
-            movie = args.getSerializable(MOVIE_OBJECT) as Movie
+            movie = it.getSerializable(MOVIE_OBJECT) as Movie
             mPresenter.getSimilarMovies(movie!!.id, 1)
         }
     }

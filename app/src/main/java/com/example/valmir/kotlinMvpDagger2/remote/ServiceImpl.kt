@@ -1,6 +1,7 @@
 package com.example.valmir.kotlinMvpDagger2.remote
 
 import com.example.valmir.kotlinMvpDagger2.TMDBApplication
+import com.example.valmir.kotlinMvpDagger2.model.ListCastCrew
 import com.example.valmir.kotlinMvpDagger2.model.ListMovies
 import com.example.valmir.kotlinMvpDagger2.model.Movie
 import retrofit2.Call
@@ -23,22 +24,7 @@ class ServiceImpl: ServiceApi {
                 .create(EndPoint::class.java)
                 .search(query = query,page = page)
 
-        callMovie.enqueue(object: Callback<ListMovies>{
-            override fun onFailure(call: Call<ListMovies>?, t: Throwable?) {
-                callback.onLoaded(ListMovies())
-            }
-
-            override fun onResponse(call: Call<ListMovies>?, response: Response<ListMovies>?) {
-                var result = ListMovies()
-                response?.body()?.let {
-                    result = it
-                }
-                response?.code()?.let {
-                    result.code = it
-                }
-                callback.onLoaded(result)
-            }
-        })
+        returningCall(callMovie, callback)
     }
 
     override fun getPopular(callback: ServiceApi.ServiceCallback<ListMovies>, page: Int) {
@@ -46,22 +32,7 @@ class ServiceImpl: ServiceApi {
                 .create(EndPoint::class.java)
                 .popular(page = page)
 
-        callMovie.enqueue(object: Callback<ListMovies>{
-            override fun onFailure(call: Call<ListMovies>?, t: Throwable?) {
-                callback.onLoaded(ListMovies())
-            }
-
-            override fun onResponse(call: Call<ListMovies>?, response: Response<ListMovies>?) {
-                var result = ListMovies()
-                response?.body()?.let {
-                    result = it
-                }
-                response?.code()?.let {
-                    result.code = it
-                }
-                callback.onLoaded(result)
-            }
-        })
+        returningCall(callMovie, callback)
     }
 
     override fun getTopRated(callback: ServiceApi.ServiceCallback<ListMovies>, page: Int) {
@@ -69,22 +40,7 @@ class ServiceImpl: ServiceApi {
                 .create(EndPoint::class.java)
                 .topRated(page = page)
 
-        callMovie.enqueue(object: Callback<ListMovies>{
-            override fun onFailure(call: Call<ListMovies>?, t: Throwable?) {
-                callback.onLoaded(ListMovies())
-            }
-
-            override fun onResponse(call: Call<ListMovies>?, response: Response<ListMovies>?) {
-                var result = ListMovies()
-                response?.body()?.let {
-                    result = it
-                }
-                response?.code()?.let {
-                    result.code = it
-                }
-                callback.onLoaded(result)
-            }
-        })
+        returningCall(callMovie, callback)
     }
 
     override fun getUpComming(callback: ServiceApi.ServiceCallback<ListMovies>, page: Int) {
@@ -92,22 +48,7 @@ class ServiceImpl: ServiceApi {
                 .create(EndPoint::class.java)
                 .upComing(page = page)
 
-        callMovie.enqueue(object: Callback<ListMovies>{
-            override fun onFailure(call: Call<ListMovies>?, t: Throwable?) {
-                callback.onLoaded(ListMovies())
-            }
-
-            override fun onResponse(call: Call<ListMovies>?, response: Response<ListMovies>?) {
-                var result = ListMovies()
-                response?.body()?.let {
-                    result = it
-                }
-                response?.code()?.let {
-                    result.code = it
-                }
-                callback.onLoaded(result)
-            }
-        })
+        returningCall(callMovie, callback)
     }
 
     override fun getNowPlaying(callback: ServiceApi.ServiceCallback<ListMovies>, page: Int) {
@@ -115,22 +56,7 @@ class ServiceImpl: ServiceApi {
                 .create(EndPoint::class.java)
                 .nowPlaying(page = page)
 
-        callMovie.enqueue(object: Callback<ListMovies>{
-            override fun onFailure(call: Call<ListMovies>?, t: Throwable?) {
-                callback.onLoaded(ListMovies())
-            }
-
-            override fun onResponse(call: Call<ListMovies>?, response: Response<ListMovies>?) {
-                var result = ListMovies()
-                response?.body()?.let {
-                    result = it
-                }
-                response?.code()?.let {
-                    result.code = it
-                }
-                callback.onLoaded(result)
-            }
-        })
+        returningCall(callMovie, callback)
     }
 
     override fun getMovieId(callback: ServiceApi.ServiceCallback<Movie>, id: Int) {
@@ -161,7 +87,34 @@ class ServiceImpl: ServiceApi {
                 .create(EndPoint::class.java)
                 .getSimilarMovies(id = id, page = page)
 
-        callMovie.enqueue(object: Callback<ListMovies>{
+        returningCall(callMovie, callback)
+    }
+
+    override fun getCastCrew(callback: ServiceApi.ServiceCallback<ListCastCrew>, id: Int) {
+        val call = retrofit
+                .create(EndPoint::class.java)
+                .getCastandCrew(id = id)
+
+        call.enqueue(object : Callback<ListCastCrew>{
+            override fun onFailure(call: Call<ListCastCrew>?, t: Throwable?) {
+                callback.onLoaded(ListCastCrew())
+            }
+
+            override fun onResponse(call: Call<ListCastCrew>?, response: Response<ListCastCrew>?) {
+                var result = ListCastCrew()
+                response?.body()?.let {
+                    result = it
+                }
+                response?.code()?.let {
+                    result.code = it
+                }
+                callback.onLoaded(result)
+            }
+        })
+    }
+
+    private fun returningCall(call: Call<ListMovies>, callback: ServiceApi.ServiceCallback<ListMovies>){
+        call.enqueue(object: Callback<ListMovies>{
             override fun onFailure(call: Call<ListMovies>?, t: Throwable?) {
                 callback.onLoaded(ListMovies())
             }
