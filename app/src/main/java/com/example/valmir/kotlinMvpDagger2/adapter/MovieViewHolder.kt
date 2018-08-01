@@ -28,7 +28,7 @@ class MovieViewHolder (noteView: View): RecyclerView.ViewHolder(noteView) {
     private val headerPopularity = noteView.findViewById<TextView>(R.id.header_popularity_item)
     private val headerVoteAverage = noteView.findViewById<TextView>(R.id.header_vote_average_item)
 
-    fun populatingData(movie: Movie){
+    fun fillData(movie: Movie){
         val df = DecimalFormat("#.##")
         var bitmap: Bitmap
         df.roundingMode = RoundingMode.CEILING

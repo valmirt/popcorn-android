@@ -155,4 +155,27 @@ class ServiceImpl: ServiceApi {
             }
         })
     }
+
+    override fun getSimilarMovies(callback: ServiceApi.ServiceCallback<ListMovies>, id: Int, page: Int) {
+        val callMovie = retrofit
+                .create(EndPoint::class.java)
+                .getSimilarMovies(id = id, page = page)
+
+        callMovie.enqueue(object: Callback<ListMovies>{
+            override fun onFailure(call: Call<ListMovies>?, t: Throwable?) {
+                callback.onLoaded(ListMovies())
+            }
+
+            override fun onResponse(call: Call<ListMovies>?, response: Response<ListMovies>?) {
+                var result = ListMovies()
+                response?.body()?.let {
+                    result = it
+                }
+                response?.code()?.let {
+                    result.code = it
+                }
+                callback.onLoaded(result)
+            }
+        })
+    }
 }

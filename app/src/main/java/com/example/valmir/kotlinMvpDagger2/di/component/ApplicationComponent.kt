@@ -6,8 +6,8 @@ import com.example.valmir.kotlinMvpDagger2.di.module.AndroidModule
 import com.example.valmir.kotlinMvpDagger2.di.module.FragmentModule
 import com.example.valmir.kotlinMvpDagger2.di.module.NetModule
 import com.example.valmir.kotlinMvpDagger2.remote.ServiceImpl
-import com.example.valmir.kotlinMvpDagger2.ui.main.detail.DetailActivity
-import com.example.valmir.kotlinMvpDagger2.ui.main.detail.DetailPresenter
+import com.example.valmir.kotlinMvpDagger2.ui.main.detail.info.InfoFragment
+import com.example.valmir.kotlinMvpDagger2.ui.main.detail.info.InfoPresenter
 import com.example.valmir.kotlinMvpDagger2.ui.main.home.HomePresenter
 import com.example.valmir.kotlinMvpDagger2.ui.main.home.HomeFragment
 import dagger.Component
@@ -25,7 +25,7 @@ interface ApplicationComponent {
 
     fun inject(homeFragment: HomeFragment)
 
-    fun inject(detailActivity: DetailActivity)
+    fun inject(infoPresenter: InfoPresenter)
 
-    fun inject(detailPresenter: DetailPresenter)
+    fun inject(infoFragment: InfoFragment)
 }

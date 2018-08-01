@@ -20,4 +20,6 @@ interface ServiceApi {
     fun getNowPlaying(callback: ServiceCallback<ListMovies>, page: Int)
 
     fun getMovieId(callback: ServiceCallback<Movie>, id: Int)
+
+    fun getSimilarMovies(callback: ServiceCallback<ListMovies>, id: Int, page: Int)
 }

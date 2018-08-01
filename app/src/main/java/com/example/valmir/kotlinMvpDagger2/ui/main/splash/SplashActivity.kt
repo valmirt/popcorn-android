@@ -1,8 +1,11 @@
 package com.example.valmir.kotlinMvpDagger2.ui.main.splash
 
 import android.content.Intent
+import android.os.Build
 import android.os.Bundle
 import android.os.Handler
+import android.support.v4.content.ContextCompat
+import android.support.v4.content.ContextCompat.getColor
 import com.example.valmir.kotlinMvpDagger2.R
 import com.example.valmir.kotlinMvpDagger2.ui.base.BaseActivity
 import com.example.valmir.kotlinMvpDagger2.ui.main.home.HomeActivity
@@ -12,6 +15,10 @@ class SplashActivity : BaseActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_splash)
+        val w = window
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
+            w.statusBarColor = ContextCompat.getColor(this, R.color.colorPrimaryDark)
+        }
 
         val r = Runnable {
             val intent = Intent(this, HomeActivity::class.java)

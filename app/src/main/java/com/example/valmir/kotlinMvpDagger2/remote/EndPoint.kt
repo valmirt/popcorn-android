@@ -19,8 +19,8 @@ interface EndPoint {
                      @Query("language") language: String = "en_US",
                      @Query("page") page: Int) : Call<ListMovies>
 
-    @GET("movie/{id_movie}")
-    fun searchMovieId(@Path("id_movie") id: Int,
+    @GET("movie/{movie_id}")
+    fun searchMovieId(@Path("movie_id") id: Int,
                       @Query("api_key") key: String = "ebf3f29bcec9455240223a565fb2a81d",
                       @Query("language") language: String = "en-US") : Call<Movie>
 
@@ -38,4 +38,10 @@ interface EndPoint {
     fun upComing(@Query("api_key") key: String = "ebf3f29bcec9455240223a565fb2a81d",
                  @Query("language") language: String = "en-US",
                  @Query("page") page: Int) : Call<ListMovies>
+
+    @GET("movie/{movie_id}/similar")
+    fun getSimilarMovies(@Path("movie_id") id: Int,
+                         @Query("api_key") key: String = "ebf3f29bcec9455240223a565fb2a81d",
+                         @Query("language") language: String = "en-US",
+                         @Query("page") page: Int) : Call<ListMovies>
 }

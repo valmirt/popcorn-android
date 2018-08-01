@@ -2,32 +2,26 @@ package com.example.valmir.kotlinMvpDagger2.ui.main.detail
 
 import android.graphics.Bitmap
 import android.os.Bundle
-import android.support.design.widget.Snackbar
 import android.support.design.widget.TabLayout
 import android.support.v4.app.Fragment
-import android.support.v7.graphics.Palette
+import android.view.MenuItem
 import com.bumptech.glide.Glide
 import com.bumptech.glide.load.DataSource
 import com.bumptech.glide.load.engine.GlideException
 import com.bumptech.glide.request.RequestListener
 import com.example.valmir.kotlinMvpDagger2.R
-import com.example.valmir.kotlinMvpDagger2.TMDBApplication
 import com.example.valmir.kotlinMvpDagger2.adapter.SectionsPagerAdapter
 import com.example.valmir.kotlinMvpDagger2.model.Movie
 import com.example.valmir.kotlinMvpDagger2.ui.base.BaseActivity
 import com.example.valmir.kotlinMvpDagger2.ui.main.detail.casting.CastingFragment
 import com.example.valmir.kotlinMvpDagger2.ui.main.detail.info.InfoFragment
 import com.example.valmir.kotlinMvpDagger2.util.Constants
-import com.example.valmir.kotlinMvpDagger2.util.Constants.Companion.MOVIE_ID
+import com.example.valmir.kotlinMvpDagger2.util.Constants.Companion.MOVIE_OBJECT
 import kotlinx.android.synthetic.main.activity_detail.*
-import kotlinx.android.synthetic.main.content_detail.*
-import javax.inject.Inject
 
-class DetailActivity : BaseActivity(), DetailContract.View {
-    lateinit var mSectionPagesAdapter : SectionsPagerAdapter
-
-    @Inject
-    lateinit var mPresenter: DetailContract.Presenter
+class DetailActivity : BaseActivity(){
+    private lateinit var mSectionPagesAdapter : SectionsPagerAdapter
+    private var movie: Movie? = null
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -36,15 +30,11 @@ class DetailActivity : BaseActivity(), DetailContract.View {
         supportActionBar?.title = ""
         supportActionBar?.setDisplayHomeAsUpEnabled(true)
 
-        TMDBApplication.graph.inject(this)
-        mPresenter.attach(this)
-
         val bundle = intent.extras
+        bundle?.let {
+            movie = it.getSerializable(MOVIE_OBJECT) as? Movie
+        }
 
-        mPresenter.getDetails(bundle.getInt(MOVIE_ID))
-    }
-
-    override fun successResponse(movie: Movie) {
         mSectionPagesAdapter = SectionsPagerAdapter(supportFragmentManager)
         fillPages(movie)
 
@@ -54,24 +44,23 @@ class DetailActivity : BaseActivity(), DetailContract.View {
         tab_detail.addOnTabSelectedListener(TabLayout.ViewPagerOnTabSelectedListener(viewpager_container))
     }
 
-    override fun errorResponse(error: String) {
-        Snackbar.make(coordinator_detail, error, Snackbar.LENGTH_LONG).show()
-    }
+    private fun fillPages(arg: Movie?) {
 
-    private fun fillPages(arg: Movie) {
-        fillBackDropImage(arg.posterDetail)
+        arg?.let { temp ->
+            fillBackDropImage(temp.posterDetail)
 
-        val fragment1: Fragment
-        val arg1 = Bundle()
-        arg1.putSerializable(MOVIE_ID, arg)
-        fragment1 = InfoFragment()
-        fragment1.arguments = arg1
-        mSectionPagesAdapter.addPages(fragment1, getString(R.string.title_tab_one))
+            val fragment1: Fragment
+            val arg1 = Bundle()
+            arg1.putSerializable(MOVIE_OBJECT, temp)
+            fragment1 = InfoFragment()
+            fragment1.arguments = arg1
+            mSectionPagesAdapter.addPages(fragment1, getString(R.string.title_tab_one))
 
-        val fragment2: Fragment
-        fragment2 = CastingFragment()
-        fragment2.arguments = arg1
-        mSectionPagesAdapter.addPages(fragment2, getString(R.string.title_tab_two))
+            val fragment2: Fragment
+            fragment2 = CastingFragment()
+            fragment2.arguments = arg1
+            mSectionPagesAdapter.addPages(fragment2, getString(R.string.title_tab_two))
+        }
     }
 
     private fun fillBackDropImage(backdropImage: String?) {
@@ -89,19 +78,18 @@ class DetailActivity : BaseActivity(), DetailContract.View {
                             resource?.let {
                                 bitmap = it
                                 backdrop_image_detail.setImageBitmap(bitmap)
-                                val palette = Palette.from(bitmap).generate()
-                                val vibrant = palette.vibrantSwatch
-                                vibrant?.let {
-                                    app_bar.setBackgroundColor(it.rgb)
-                                    toolbar.setBackgroundColor(it.rgb)
-                                    tab_detail.setBackgroundColor(it.rgb)
-                                    tab_detail.setTabTextColors(it.bodyTextColor, it.titleTextColor)
-                                }
                             }
                             return true
                         }
                     })
                     .submit()
         }
+    }
+
+    override fun onOptionsItemSelected(item: MenuItem?): Boolean {
+        when(item?.itemId){
+            android.R.id.home -> onBackPressed()
+        }
+        return true
     }
 }

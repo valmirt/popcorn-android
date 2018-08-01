@@ -64,6 +64,7 @@
                             android:textSize="14sp"
                             android:layout_marginLeft="2dp"
                             android:textColor="@color/colorText"
+                            android:text="@string/minutes_example"
                             android:layout_marginStart="2dp" />
 
                     </LinearLayout>
@@ -81,8 +82,8 @@
                         android:orientation="horizontal"
                         tools:ignore="UseCompoundDrawables">
                         <ImageView
-                            android:layout_width="18dp"
-                            android:layout_height="18dp"
+                            android:layout_width="19dp"
+                            android:layout_height="19dp"
                             android:src="@drawable/ic_star_rated"
                             tools:ignore="ContentDescription" />
                         <TextView
@@ -149,43 +150,7 @@
                         android:layout_marginBottom="4dp"
                         android:layout_marginLeft="32dp"
                         android:textColor="@color/colorText"
-                        android:id="@+id/genre_one_movie_detail"
-                        android:layout_marginStart="32dp" />
-                    <TextView
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:textSize="14sp"
-                        android:layout_marginBottom="4dp"
-                        android:layout_marginLeft="32dp"
-                        android:textColor="@color/colorText"
-                        android:id="@+id/genre_two_movie_detail"
-                        android:layout_marginStart="32dp" />
-                    <TextView
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:textSize="14sp"
-                        android:layout_marginBottom="4dp"
-                        android:layout_marginLeft="32dp"
-                        android:textColor="@color/colorText"
-                        android:id="@+id/genre_three_movie_detail"
-                        android:layout_marginStart="32dp" />
-                    <TextView
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:textSize="14sp"
-                        android:layout_marginBottom="4dp"
-                        android:layout_marginLeft="32dp"
-                        android:textColor="@color/colorText"
-                        android:id="@+id/genre_four_movie_detail"
-                        android:layout_marginStart="32dp" />
-                    <TextView
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:textSize="14sp"
-                        android:layout_marginBottom="4dp"
-                        android:layout_marginLeft="32dp"
-                        android:textColor="@color/colorText"
-                        android:id="@+id/genre_five_movie_detail"
+                        android:id="@+id/genre_movie_detail"
                         android:layout_marginStart="32dp" />
                 </LinearLayout>
                 <LinearLayout
@@ -207,43 +172,7 @@
                         android:layout_marginBottom="4dp"
                         android:layout_marginLeft="32dp"
                         android:textColor="@color/colorText"
-                        android:id="@+id/production_one_movie_detail"
-                        android:layout_marginStart="32dp" />
-                    <TextView
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:textSize="14sp"
-                        android:layout_marginBottom="4dp"
-                        android:layout_marginLeft="32dp"
-                        android:textColor="@color/colorText"
-                        android:id="@+id/production_two_movie_detail"
-                        android:layout_marginStart="32dp" />
-                    <TextView
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:textSize="14sp"
-                        android:layout_marginBottom="4dp"
-                        android:layout_marginLeft="32dp"
-                        android:textColor="@color/colorText"
-                        android:id="@+id/production_three_movie_detail"
-                        android:layout_marginStart="32dp" />
-                    <TextView
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:textSize="14sp"
-                        android:layout_marginBottom="4dp"
-                        android:layout_marginLeft="32dp"
-                        android:textColor="@color/colorText"
-                        android:id="@+id/production_four_movie_detail"
-                        android:layout_marginStart="32dp" />
-                    <TextView
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:textSize="14sp"
-                        android:layout_marginBottom="4dp"
-                        android:layout_marginLeft="32dp"
-                        android:textColor="@color/colorText"
-                        android:id="@+id/production_five_movie_detail"
+                        android:id="@+id/production_movie_detail"
                         android:layout_marginStart="32dp" />
                 </LinearLayout>
             </LinearLayout>

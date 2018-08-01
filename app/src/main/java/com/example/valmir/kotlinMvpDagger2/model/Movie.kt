@@ -23,4 +23,6 @@ class Movie (var code: Int = 0,
              var runtime: Int = 0,
              @SerializedName("vote_average")
              var voteAverage: Double = 0.0,
+             @SerializedName("production_companies")
+             var production: List<Production>? = null,
              var status: String = ""): Serializable
