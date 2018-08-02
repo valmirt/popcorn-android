@@ -89,26 +89,6 @@ class HomePresenter: HomeContract.Presenter {
         }, page)
     }
 
-    override fun getUpComing(page: Int) {
-        view.setLoading(true)
-        api.getUpComming(object : ServiceApi.ServiceCallback<ListMovies>{
-            override fun onLoaded(response: ListMovies) {
-                view.setLoading(false)
-                when(response.code){
-                    200 -> {
-                        if (page == 1) view.responseSuccessful(response.movieList)
-                        else view.responseSucessfulMorePages(response.movieList)
-                    }
-                    404 -> view.errorResponse(context.getString(R.string.error_404))
-                    500 -> view.errorResponse(context.getString(R.string.error_500))
-                    503 -> view.errorResponse(context.getString(R.string.error_503))
-                    504 -> view.errorResponse(context.getString(R.string.error_504))
-                    else -> view.errorResponse(context.getString(R.string.error_connection))
-                }
-            }
-        }, page)
-    }
-
     override fun getMovie(query: String, page: Int) {
         view.setLoading(true)
         api.getMovie(object : ServiceApi.ServiceCallback<ListMovies>{

@@ -16,8 +16,6 @@ interface ServiceApi {
 
     fun getTopRated(callback: ServiceCallback<ListMovies>, page: Int)
 
-    fun getUpComming(callback: ServiceCallback<ListMovies>, page: Int)
-
     fun getNowPlaying(callback: ServiceCallback<ListMovies>, page: Int)
 
     fun getMovieId(callback: ServiceCallback<Movie>, id: Int)

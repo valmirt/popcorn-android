@@ -2,6 +2,7 @@ package com.example.valmir.kotlinMvpDagger2.ui.main.home
 
 import android.os.Bundle
 import android.support.design.widget.NavigationView
+import android.support.design.widget.Snackbar
 import android.support.v4.view.GravityCompat
 import android.support.v7.app.ActionBarDrawerToggle
 import android.view.Menu
@@ -11,7 +12,6 @@ import com.example.valmir.kotlinMvpDagger2.ui.base.BaseActivity
 import com.example.valmir.kotlinMvpDagger2.util.Constants.Companion.NOW_PLAYING
 import com.example.valmir.kotlinMvpDagger2.util.Constants.Companion.POPULAR
 import com.example.valmir.kotlinMvpDagger2.util.Constants.Companion.TOP_RATED
-import com.example.valmir.kotlinMvpDagger2.util.Constants.Companion.UP_COMING
 import kotlinx.android.synthetic.main.activity_home.*
 import kotlinx.android.synthetic.main.app_bar_home.*
 
@@ -47,6 +47,7 @@ class HomeActivity : BaseActivity(), NavigationView.OnNavigationItemSelectedList
 
     override fun onNavigationItemSelected(item: MenuItem): Boolean {
         when (item.itemId) {
+            //Movies
             R.id.nav_popular -> {
                 supportActionBar?.title = getString(R.string.popular)
                 swapFragmentHome(HomeFragment(), POPULAR)
@@ -59,9 +60,22 @@ class HomeActivity : BaseActivity(), NavigationView.OnNavigationItemSelectedList
                 supportActionBar?.title = getString(R.string.now_playing)
                 swapFragmentHome(HomeFragment(), NOW_PLAYING)
             }
-            R.id.nav_up_coming -> {
-                supportActionBar?.title = getString(R.string.up_coming)
-                swapFragmentHome(HomeFragment(), UP_COMING)
+            //TV Shows
+            R.id.nav_popular_tv -> {
+                Snackbar.make(coordinator_home, getString(R.string.alert_1), Snackbar.LENGTH_LONG).show()
+            }
+            R.id.nav_top_rated_tv -> {
+                Snackbar.make(coordinator_home, getString(R.string.alert_1), Snackbar.LENGTH_LONG).show()
+            }
+            R.id.nav_now_playing_tv -> {
+                Snackbar.make(coordinator_home, getString(R.string.alert_1), Snackbar.LENGTH_LONG).show()
+            }
+            //Others
+            R.id.nav_settings -> {
+                Snackbar.make(coordinator_home, getString(R.string.alert_1), Snackbar.LENGTH_LONG).show()
+            }
+            R.id.nav_about -> {
+                Snackbar.make(coordinator_home, getString(R.string.alert_1), Snackbar.LENGTH_LONG).show()
             }
         }
 

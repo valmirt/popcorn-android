@@ -43,14 +43,6 @@ class ServiceImpl: ServiceApi {
         returningCall(callMovie, callback)
     }
 
-    override fun getUpComming(callback: ServiceApi.ServiceCallback<ListMovies>, page: Int) {
-        val callMovie = retrofit
-                .create(EndPoint::class.java)
-                .upComing(page = page)
-
-        returningCall(callMovie, callback)
-    }
-
     override fun getNowPlaying(callback: ServiceApi.ServiceCallback<ListMovies>, page: Int) {
         val callMovie = retrofit
                 .create(EndPoint::class.java)

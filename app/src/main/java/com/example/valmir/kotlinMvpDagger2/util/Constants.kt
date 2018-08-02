@@ -9,7 +9,6 @@ class Constants{
         const val POPULAR = 1
         const val TOP_RATED = 2
         const val NOW_PLAYING = 3
-        const val UP_COMING = 4
         const val MOVIE_OBJECT = "movie"
         const val ENGLISH_LANGUAGE = "en-US"
         const val PORTUGUESE_LANGUAGE = "pt-BR"

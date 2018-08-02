@@ -24,8 +24,6 @@ interface HomeContract {
 
         fun getTopRated(page: Int)
 
-        fun getUpComing(page: Int)
-
         fun getMovie(query: String, page: Int)
 
         fun getDetails(id: Int)

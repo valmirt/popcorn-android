@@ -70,7 +70,6 @@ class HomeFragment: Fragment(), HomeContract.View {
                         1 -> mPresenter.getPopular(pagelist)
                         2 -> mPresenter.getTopRated(pagelist)
                         3 -> mPresenter.getNowPlaying(pagelist)
-                        4 -> mPresenter.getUpComing(pagelist)
                     }
                 }
                 else {
@@ -90,7 +89,6 @@ class HomeFragment: Fragment(), HomeContract.View {
                 1 -> mPresenter.getPopular(1)
                 2 -> mPresenter.getTopRated(1)
                 3 -> mPresenter.getNowPlaying(1)
-                4 -> mPresenter.getUpComing(1)
             }
         }
     }
@@ -101,7 +99,6 @@ class HomeFragment: Fragment(), HomeContract.View {
             1 -> mPresenter.getPopular(1)
             2 -> mPresenter.getTopRated(1)
             3 -> mPresenter.getNowPlaying(1)
-            4 -> mPresenter.getUpComing(1)
         }
     }
 

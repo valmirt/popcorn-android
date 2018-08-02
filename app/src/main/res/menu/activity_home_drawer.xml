@@ -4,21 +4,52 @@
     tools:showIn="navigation_view">
 
     <group android:checkableBehavior="single">
-        <item
-            android:id="@+id/nav_popular"
-            android:icon="@drawable/ic_popular"
-            android:title="@string/popular" />
-        <item
-            android:id="@+id/nav_top_rated"
-            android:icon="@drawable/ic_top_rated"
-            android:title="@string/top_rated" />
-        <item
-            android:id="@+id/nav_now_playing"
-            android:icon="@drawable/ic_now_playing"
-            android:title="@string/now_playing" />
-        <item
-            android:id="@+id/nav_up_coming"
-            android:icon="@drawable/ic_upcoming"
-            android:title="@string/up_coming" />
+        <item android:title="@string/header_movie">
+            <menu>
+                <item
+                    android:id="@+id/nav_popular"
+                    android:icon="@drawable/ic_popular"
+                    android:title="@string/popular" />
+                <item
+                    android:id="@+id/nav_top_rated"
+                    android:icon="@drawable/ic_top_rated"
+                    android:title="@string/top_rated" />
+                <item
+                    android:id="@+id/nav_now_playing"
+                    android:icon="@drawable/ic_now_playing"
+                    android:title="@string/now_playing" />
+            </menu>
+        </item>
+
+        <item android:title="@string/header_tv_shows">
+            <menu>
+                <item
+                    android:id="@+id/nav_popular_tv"
+                    android:icon="@drawable/ic_popular"
+                    android:title="@string/popular" />
+                <item
+                    android:id="@+id/nav_top_rated_tv"
+                    android:icon="@drawable/ic_top_rated"
+                    android:title="@string/top_rated" />
+                <item
+                    android:id="@+id/nav_now_playing_tv"
+                    android:icon="@drawable/ic_now_playing"
+                    android:title="@string/now_playing" />
+            </menu>
+        </item>
+
+        <item android:title="@string/header_others">
+            <menu>
+                <item
+                    android:id="@+id/nav_settings"
+                    android:icon="@drawable/ic_settings"
+                    android:title="@string/settings" />
+                <item
+                    android:id="@+id/nav_about"
+                    android:icon="@drawable/ic_about_us"
+                    android:title="@string/about_us" />
+            </menu>
+        </item>
+
     </group>
 </menu>
