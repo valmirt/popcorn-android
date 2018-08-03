@@ -30,6 +30,7 @@ class MovieViewHolder (noteView: View): RecyclerView.ViewHolder(noteView) {
 
     fun fillData(movie: Movie){
         val df = DecimalFormat("#.##")
+        val df2 = DecimalFormat("#.#")
         var bitmap: Bitmap
         df.roundingMode = RoundingMode.CEILING
 
@@ -68,7 +69,7 @@ class MovieViewHolder (noteView: View): RecyclerView.ViewHolder(noteView) {
         originalTitle.text = movie.originalTitle
         title.text = movie.title
         date.text = movie.releaseDate.subSequence(0, 4)
-        popularity.text = df.format(movie.popularity)
+        popularity.text = df2.format(movie.popularity)
         voteAverage.text = df.format(movie.voteAverage)
     }
 }

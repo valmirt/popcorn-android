@@ -2,6 +2,7 @@ package com.example.valmir.kotlinMvpDagger2.ui.main.home
 
 import android.content.Context
 import android.content.Intent
+import android.support.v4.app.FragmentActivity
 import android.support.v7.app.AppCompatActivity
 import com.example.valmir.kotlinMvpDagger2.R
 import com.example.valmir.kotlinMvpDagger2.TMDBApplication
@@ -125,9 +126,9 @@ class HomePresenter: HomeContract.Presenter {
         }, id)
     }
 
-    override fun swapActivity(activity: AppCompatActivity, movie: Movie) {
-        val intent = Intent(context, activity::class.java)
+    override fun swapActivity(origin: FragmentActivity?, activity: AppCompatActivity, movie: Movie) {
+        val intent = Intent(origin, activity::class.java)
         intent.putExtra(MOVIE_OBJECT, movie)
-        context.startActivity(intent)
+        origin?.startActivity(intent)
     }
 }

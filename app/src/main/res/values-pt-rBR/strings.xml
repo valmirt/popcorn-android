@@ -1,3 +1,4 @@
+<?xml version="1.0" encoding="utf-8"?>
 <resources>
     <string name="app_name">PopCorn</string>
     <string name="title_activity_home">HomeActivity</string>
@@ -7,43 +8,42 @@
     <string name="nav_header_subtitle">android.studio@android.com</string>
     <string name="nav_header_desc">Navigation header</string>
 
-    <string name="popular">Popular</string>
-    <string name="top_rated">Top Rated</string>
-    <string name="now_playing">Now Playing</string>
-
+    <string name="popular">Populares</string>
+    <string name="top_rated">Melhores avaliados</string>
+    <string name="now_playing">Lançamentos</string>
+    <string name="popularity">Popularidade:</string>
+    <string name="genres">Gênero:</string>
+    <string name="vote_average">Avaliação média:</string>
 
     <string name="title_example">The Avengers</string>
     <string name="date_example">2017</string>
-    <string name="popularity">Popularity:</string>
     <string name="popularity_example">48.2</string>
-    <string name="vote_average">Average rating:</string>
     <string name="vote_average_example">5.91</string>
-    <string name="genres">Genres:</string>
     <string name="genre_1_example">Action</string>
     <string name="genre_2_example">Adventure</string>
     <string name="genre_3_example">Comedy</string>
 
-    <string name="alert_1">Not yet implemented</string>
-    <string name="error_connection">Internet connection failure</string>
-    <string name="error_404">Oops, a page you\'re looking for was not found! :(</string>
-    <string name="error_500">Internal Server Error</string>
-    <string name="error_501">Service not implemented</string>
-    <string name="error_503">Service Unavailable</string>
+    <string name="alert_1">Recurso ainda não implementado</string>
+    <string name="error_connection">Falha na conexão de internet</string>
+    <string name="error_404">Oops, a página que está procurando não foi encontrada:(</string>
+    <string name="error_500">Erro interno do servidor</string>
+    <string name="error_501">Serviço não implementado</string>
+    <string name="error_503">Serviço indisponível</string>
     <string name="error_504">Gateway Time-Out</string>
     <string name="title_activity_detail">DetailActivity</string>
     <string name="title_tab_one">Info</string>
-    <string name="title_tab_two">Casting</string>
+    <string name="title_tab_two">Elenco</string>
     <string name="time_example">139</string>
-    <string name="minutes_example">minutes</string>
-    <string name="production">Production:</string>
+    <string name="minutes_example">minutos</string>
+    <string name="production">Produção:</string>
     <string name="production_example">Marvel Studios</string>
-    <string name="overview">Overview:</string>
-    <string name="similar_movies">Similar movies:</string>
+    <string name="overview">Sinopse:</string>
+    <string name="similar_movies">Filmes relacionados:</string>
     <string name="large_text">Join us in congratulating the latest apps and games entering the Android Excellence program on Google Play. This diverse group of apps and games is recognized for their high quality, great user experience, and strong technical performance. Whether you\'re interested in learning meditation or a new language, or are looking for a game about butterflies or warships, we\'re excited to dive in to these new collections.</string>
-    <string name="header_movie">Movies</string>
-    <string name="header_tv_shows">TV Shows</string>
-    <string name="header_others">Others</string>
-    <string name="settings">Settings</string>
-    <string name="about_us">About</string>
-    <string name="action_search">Search</string>
+    <string name="header_movie">Filmes</string>
+    <string name="header_tv_shows">Séries de TV</string>
+    <string name="header_others">Outros</string>
+    <string name="settings">Configurações</string>
+    <string name="about_us">Sobre</string>
+    <string name="action_search">Pesquisa</string>
 </resources>

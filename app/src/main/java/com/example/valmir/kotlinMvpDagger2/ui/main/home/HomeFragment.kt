@@ -123,6 +123,6 @@ class HomeFragment: Fragment(), HomeContract.View {
     }
 
     override fun responseDetail(movie: Movie) {
-        mPresenter.swapActivity(DetailActivity(), movie)
+        mPresenter.swapActivity(activity, DetailActivity(), movie)
     }
 }

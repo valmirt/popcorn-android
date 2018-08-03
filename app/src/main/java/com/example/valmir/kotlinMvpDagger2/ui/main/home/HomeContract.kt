@@ -1,5 +1,6 @@
 package com.example.valmir.kotlinMvpDagger2.ui.main.home
 
+import android.support.v4.app.FragmentActivity
 import android.support.v7.app.AppCompatActivity
 import com.example.valmir.kotlinMvpDagger2.model.Movie
 import com.example.valmir.kotlinMvpDagger2.ui.base.BaseContract
@@ -28,6 +29,6 @@ interface HomeContract {
 
         fun getDetails(id: Int)
 
-        fun swapActivity(activity: AppCompatActivity, movie: Movie)
+        fun swapActivity(origin: FragmentActivity?, activity: AppCompatActivity, movie: Movie)
     }
 }
