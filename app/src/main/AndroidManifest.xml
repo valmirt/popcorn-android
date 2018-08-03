@@ -28,8 +28,12 @@
         <activity
             android:name=".ui.main.detail.DetailActivity"
             android:label="@string/title_activity_detail"
-            android:theme="@style/AppTheme.NoActionBar"
-            android:parentActivityName=".ui.main.home.HomeActivity"/>
+            android:parentActivityName=".ui.main.home.HomeActivity"
+            android:theme="@style/AppTheme.NoActionBar" />
+        <activity
+            android:name=".ui.main.settings.SettingsActivity"
+            android:label="@string/settings"
+            android:parentActivityName=".ui.main.home.HomeActivity" />
     </application>
 
 </manifest>

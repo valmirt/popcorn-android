@@ -13,7 +13,6 @@ import com.example.valmir.kotlinMvpDagger2.util.Constants.Companion.MOVIE_OBJECT
 import javax.inject.Inject
 
 class HomePresenter: HomeContract.Presenter {
-
     private lateinit var view: HomeContract.View
 
     @Inject
@@ -30,7 +29,7 @@ class HomePresenter: HomeContract.Presenter {
         this.view = view
     }
 
-    override fun getPopular(page: Int) {
+    override fun getPopular(page: Int, language: String) {
         view.setLoading(true)
         api.getPopular(object : ServiceApi.ServiceCallback<ListMovies>{
             override fun onLoaded(response: ListMovies) {
@@ -47,10 +46,10 @@ class HomePresenter: HomeContract.Presenter {
                     else -> view.errorResponse(context.getString(R.string.error_connection))
                 }
             }
-        }, page)
+        }, page, language)
     }
 
-    override fun getNowPlaying(page: Int) {
+    override fun getNowPlaying(page: Int, language: String) {
         view.setLoading(true)
         api.getNowPlaying(object : ServiceApi.ServiceCallback<ListMovies>{
             override fun onLoaded(response: ListMovies) {
@@ -67,10 +66,10 @@ class HomePresenter: HomeContract.Presenter {
                     else -> view.errorResponse(context.getString(R.string.error_connection))
                 }
             }
-        }, page)
+        }, page, language)
     }
 
-    override fun getTopRated(page: Int) {
+    override fun getTopRated(page: Int, language: String) {
         view.setLoading(true)
         api.getTopRated(object : ServiceApi.ServiceCallback<ListMovies>{
             override fun onLoaded(response: ListMovies) {
@@ -87,10 +86,10 @@ class HomePresenter: HomeContract.Presenter {
                     else -> view.errorResponse(context.getString(R.string.error_connection))
                 }
             }
-        }, page)
+        }, page, language)
     }
 
-    override fun getMovie(query: String, page: Int) {
+    override fun getMovie(query: String, page: Int, language: String) {
         view.setLoading(true)
         api.getMovie(object : ServiceApi.ServiceCallback<ListMovies>{
             override fun onLoaded(response: ListMovies) {
@@ -107,10 +106,10 @@ class HomePresenter: HomeContract.Presenter {
                     else -> view.errorResponse(context.getString(R.string.error_connection))
                 }
             }
-        }, query, page)
+        }, query, page, language)
     }
 
-    override fun getDetails(id: Int) {
+    override fun getDetails(id: Int, language: String) {
         view.setLoading(true)
         api.getMovieId(object : ServiceApi.ServiceCallback<Movie>{
             override fun onLoaded(response: Movie) {
@@ -123,7 +122,7 @@ class HomePresenter: HomeContract.Presenter {
                     else -> view.errorResponse(context.getString(R.string.error_connection))
                 }
             }
-        }, id)
+        }, id, language)
     }
 
     override fun swapActivity(origin: FragmentActivity?, activity: AppCompatActivity, movie: Movie) {

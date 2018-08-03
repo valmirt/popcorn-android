@@ -16,9 +16,9 @@ interface InfoContract {
     }
 
     interface Presenter: BaseContract.Presenter<InfoContract.View>{
-        fun getSimilarMovies (id: Int, page: Int)
+        fun getSimilarMovies (id: Int, page: Int, language: String)
 
-        fun getDetails(id: Int)
+        fun getDetails(id: Int, language: String)
 
         fun swapActivity(activity: AppCompatActivity, movie: Movie)
     }

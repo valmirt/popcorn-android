@@ -1,5 +1,7 @@
 package com.example.valmir.kotlinMvpDagger2.ui.main.home
 
+import android.content.Context
+import android.content.SharedPreferences
 import android.os.Bundle
 import android.support.design.widget.Snackbar
 import android.support.v4.app.Fragment
@@ -15,6 +17,7 @@ import com.example.valmir.kotlinMvpDagger2.TMDBApplication
 import com.example.valmir.kotlinMvpDagger2.adapter.MovieAdapter
 import com.example.valmir.kotlinMvpDagger2.model.Movie
 import com.example.valmir.kotlinMvpDagger2.ui.main.detail.DetailActivity
+import com.example.valmir.kotlinMvpDagger2.util.Constants
 import com.example.valmir.kotlinMvpDagger2.util.Constants.Companion.TYPE_LIST
 import com.example.valmir.kotlinMvpDagger2.util.EndlessRecyclerViewScrollListener
 import kotlinx.android.synthetic.main.fragment_home.*
@@ -27,13 +30,15 @@ class HomeFragment: Fragment(), HomeContract.View {
     private var pagelist = 1
     private var query = ""
     private var pagelistQuery = 1
+    private var language = ""
+    private lateinit var preferences: SharedPreferences
 
     @Inject
     lateinit var mPresenter: HomeContract.Presenter
 
     private val itemListener = object : ItemListener<Movie>{
         override fun onClick(item: Movie) {
-            mPresenter.getDetails(item.id)
+            mPresenter.getDetails(item.id, language)
         }
     }
 
@@ -43,6 +48,11 @@ class HomeFragment: Fragment(), HomeContract.View {
 
         TMDBApplication.graph.inject(this)
         mPresenter.attach(this)
+
+        activity?.let {
+            preferences = it.getSharedPreferences(Constants.LANGUAGE_TYPES, Context.MODE_PRIVATE)
+            language = preferences.getString(Constants.LANGUAGE, Constants.ENGLISH_LANGUAGE)
+        }
 
         val args = arguments
         args?.let {
@@ -67,14 +77,14 @@ class HomeFragment: Fragment(), HomeContract.View {
                 if (query.isEmpty()){
                     pagelist++
                     when(typeList){
-                        1 -> mPresenter.getPopular(pagelist)
-                        2 -> mPresenter.getTopRated(pagelist)
-                        3 -> mPresenter.getNowPlaying(pagelist)
+                        1 -> mPresenter.getPopular(pagelist, language)
+                        2 -> mPresenter.getTopRated(pagelist, language)
+                        3 -> mPresenter.getNowPlaying(pagelist, language)
                     }
                 }
                 else {
                     pagelistQuery++
-                    mPresenter.getMovie(query, pagelistQuery)
+                    mPresenter.getMovie(query, pagelistQuery, language)
                 }
             }
         })
@@ -86,19 +96,23 @@ class HomeFragment: Fragment(), HomeContract.View {
 
         refresh_layout.setOnRefreshListener {
             when(typeList){
-                1 -> mPresenter.getPopular(1)
-                2 -> mPresenter.getTopRated(1)
-                3 -> mPresenter.getNowPlaying(1)
+                1 -> mPresenter.getPopular(1, language)
+                2 -> mPresenter.getTopRated(1, language)
+                3 -> mPresenter.getNowPlaying(1, language)
             }
         }
     }
 
     override fun onResume() {
         super.onResume()
+        activity?.let {
+            preferences = it.getSharedPreferences(Constants.LANGUAGE_TYPES, Context.MODE_PRIVATE)
+            language = preferences.getString(Constants.LANGUAGE, Constants.ENGLISH_LANGUAGE)
+        }
         when(typeList){
-            1 -> mPresenter.getPopular(1)
-            2 -> mPresenter.getTopRated(1)
-            3 -> mPresenter.getNowPlaying(1)
+            1 -> mPresenter.getPopular(1, language)
+            2 -> mPresenter.getTopRated(1, language)
+            3 -> mPresenter.getNowPlaying(1, language)
         }
     }
 

@@ -11,6 +11,10 @@ class Constants{
         const val NOW_PLAYING = 3
         const val MOVIE_OBJECT = "movie"
         const val ENGLISH_LANGUAGE = "en-US"
-        const val PORTUGUESE_LANGUAGE = "pt-BR"
+        const val PORTUGUESE_BR_LANGUAGE = "pt-BR"
+        const val PORTUGUESE_PT_LANGUAGE = "pt-PT"
+        const val LANGUAGE_TYPES = "lt"
+        const val LANGUAGE = "language"
+        const val VISIBLE_LANGUAGE = "vl"
     }
 }

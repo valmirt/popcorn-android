@@ -1,6 +1,8 @@
 package com.example.valmir.kotlinMvpDagger2.ui.main.detail.info
 
 import android.annotation.SuppressLint
+import android.content.Context
+import android.content.SharedPreferences
 import android.os.Bundle
 import android.support.design.widget.Snackbar
 import android.support.v4.app.Fragment
@@ -15,6 +17,7 @@ import com.example.valmir.kotlinMvpDagger2.adapter.ItemListener
 import com.example.valmir.kotlinMvpDagger2.adapter.SimilarMoviesAdapter
 import com.example.valmir.kotlinMvpDagger2.model.Movie
 import com.example.valmir.kotlinMvpDagger2.ui.main.detail.DetailActivity
+import com.example.valmir.kotlinMvpDagger2.util.Constants
 import com.example.valmir.kotlinMvpDagger2.util.Constants.Companion.MOVIE_OBJECT
 import com.example.valmir.kotlinMvpDagger2.util.EndlessRecyclerViewScrollListener
 import kotlinx.android.synthetic.main.fragment_info_detail.*
@@ -26,13 +29,15 @@ class InfoFragment: Fragment(), InfoContract.View {
     private var movie: Movie? = null
     private lateinit var mListAdapter: SimilarMoviesAdapter
     private var pagelist = 1
+    private var language = ""
+    private lateinit var preferences: SharedPreferences
 
     @Inject
     lateinit var mPresenter: InfoContract.Presenter
 
     private val itemListener = object : ItemListener<Movie> {
         override fun onClick(item: Movie) {
-            mPresenter.getDetails(item.id)
+            mPresenter.getDetails(item.id, language)
         }
     }
 
@@ -44,9 +49,14 @@ class InfoFragment: Fragment(), InfoContract.View {
 
         mListAdapter = SimilarMoviesAdapter(ArrayList(0), itemListener)
 
+        activity?.let {
+            preferences = it.getSharedPreferences(Constants.LANGUAGE_TYPES, Context.MODE_PRIVATE)
+            language = preferences.getString(Constants.LANGUAGE, Constants.ENGLISH_LANGUAGE)
+        }
+
         args?.let {
             movie = it.getSerializable(MOVIE_OBJECT) as Movie
-            mPresenter.getSimilarMovies(movie!!.id, 1)
+            mPresenter.getSimilarMovies(movie!!.id, 1, language)
         }
     }
 
@@ -66,7 +76,7 @@ class InfoFragment: Fragment(), InfoContract.View {
             override fun onLoadMore(page: Int, totalItemsCount: Int, view: RecyclerView?) {
                 movie?.let {
                     pagelist++
-                    mPresenter.getSimilarMovies(it.id, pagelist)
+                    mPresenter.getSimilarMovies(it.id, pagelist, language)
                 }
             }
         })
@@ -74,8 +84,12 @@ class InfoFragment: Fragment(), InfoContract.View {
 
     override fun onResume() {
         super.onResume()
+        activity?.let {
+            preferences = it.getSharedPreferences(Constants.LANGUAGE_TYPES, Context.MODE_PRIVATE)
+            language = preferences.getString(Constants.LANGUAGE, Constants.ENGLISH_LANGUAGE)
+        }
         movie?.let {
-            mPresenter.getSimilarMovies(it.id, 1)
+            mPresenter.getSimilarMovies(it.id, 1, language)
         }
     }
 

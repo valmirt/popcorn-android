@@ -19,15 +19,15 @@ interface HomeContract {
     }
 
     interface Presenter: BaseContract.Presenter<HomeContract.View>{
-        fun getPopular(page: Int)
+        fun getPopular(page: Int, language: String)
 
-        fun getNowPlaying(page: Int)
+        fun getNowPlaying(page: Int, language: String)
 
-        fun getTopRated(page: Int)
+        fun getTopRated(page: Int, language: String)
 
-        fun getMovie(query: String, page: Int)
+        fun getMovie(query: String, page: Int, language: String)
 
-        fun getDetails(id: Int)
+        fun getDetails(id: Int, language: String)
 
         fun swapActivity(origin: FragmentActivity?, activity: AppCompatActivity, movie: Movie)
     }

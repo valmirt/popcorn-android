@@ -46,4 +46,6 @@
     <string name="settings">Settings</string>
     <string name="about_us">About</string>
     <string name="action_search">Search</string>
+    <string name="general_settings">General</string>
+    <string name="language_settings">Language</string>
 </resources>

@@ -1,5 +1,6 @@
 package com.example.valmir.kotlinMvpDagger2.ui.main.home
 
+import android.content.Intent
 import android.os.Bundle
 import android.support.design.widget.NavigationView
 import android.support.design.widget.Snackbar
@@ -9,6 +10,7 @@ import android.view.Menu
 import android.view.MenuItem
 import com.example.valmir.kotlinMvpDagger2.R
 import com.example.valmir.kotlinMvpDagger2.ui.base.BaseActivity
+import com.example.valmir.kotlinMvpDagger2.ui.main.settings.SettingsActivity
 import com.example.valmir.kotlinMvpDagger2.util.Constants.Companion.NOW_PLAYING
 import com.example.valmir.kotlinMvpDagger2.util.Constants.Companion.POPULAR
 import com.example.valmir.kotlinMvpDagger2.util.Constants.Companion.TOP_RATED
@@ -72,7 +74,7 @@ class HomeActivity : BaseActivity(), NavigationView.OnNavigationItemSelectedList
             }
             //Others
             R.id.nav_settings -> {
-                Snackbar.make(coordinator_home, getString(R.string.alert_1), Snackbar.LENGTH_LONG).show()
+                startActivity(Intent(this, SettingsActivity::class.java))
             }
             R.id.nav_about -> {
                 Snackbar.make(coordinator_home, getString(R.string.alert_1), Snackbar.LENGTH_LONG).show()

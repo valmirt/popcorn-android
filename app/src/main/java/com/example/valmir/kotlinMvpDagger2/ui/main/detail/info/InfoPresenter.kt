@@ -8,7 +8,7 @@ import com.example.valmir.kotlinMvpDagger2.TMDBApplication
 import com.example.valmir.kotlinMvpDagger2.model.ListMovies
 import com.example.valmir.kotlinMvpDagger2.model.Movie
 import com.example.valmir.kotlinMvpDagger2.remote.ServiceApi
-import com.example.valmir.kotlinMvpDagger2.util.Constants
+import com.example.valmir.kotlinMvpDagger2.util.Constants.Companion.MOVIE_OBJECT
 import javax.inject.Inject
 
 class InfoPresenter: InfoContract.Presenter {
@@ -28,7 +28,7 @@ class InfoPresenter: InfoContract.Presenter {
         this.view = view
     }
 
-    override fun getSimilarMovies(id: Int, page: Int) {
+    override fun getSimilarMovies(id: Int, page: Int, language: String) {
         api.getSimilarMovies(object : ServiceApi.ServiceCallback<ListMovies>{
             override fun onLoaded(response: ListMovies) {
                 when(response.code){
@@ -43,10 +43,10 @@ class InfoPresenter: InfoContract.Presenter {
                     else -> view.errorResponse(context.getString(R.string.error_connection))
                 }
             }
-        }, id, page)
+        }, id, page, language)
     }
 
-    override fun getDetails(id: Int) {
+    override fun getDetails(id: Int, language: String) {
         api.getMovieId(object : ServiceApi.ServiceCallback<Movie>{
             override fun onLoaded(response: Movie) {
                 when(response.code){
@@ -58,12 +58,12 @@ class InfoPresenter: InfoContract.Presenter {
                     else -> view.errorResponse(context.getString(R.string.error_connection))
                 }
             }
-        }, id)
+        }, id, language)
     }
 
     override fun swapActivity(activity: AppCompatActivity, movie: Movie) {
         val intent = Intent(context, activity::class.java)
-        intent.putExtra(Constants.MOVIE_OBJECT, movie)
+        intent.putExtra(MOVIE_OBJECT, movie)
         context.startActivity(intent)
     }
 }
