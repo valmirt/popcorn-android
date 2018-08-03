@@ -8,7 +8,10 @@ import android.support.v4.app.Fragment
 import android.support.v4.content.ContextCompat
 import android.support.v7.widget.LinearLayoutManager
 import android.support.v7.widget.RecyclerView
+import android.support.v7.widget.SearchView
+import android.util.Log
 import android.view.LayoutInflater
+import android.view.Menu
 import android.view.View
 import android.view.ViewGroup
 import com.torres.valmir.kotlinMvpDagger2.adapter.ItemListener
@@ -120,13 +123,13 @@ class HomeFragment: Fragment(), HomeContract.View {
         refresh_layout.isRefreshing = isLoading
     }
 
-    override fun responseSuccessful(movieList: List<Movie>?) {
+    override fun successResponse(movieList: List<Movie>?) {
         movieList?.let { list ->
             mListAdapter.replaceData(list)
         }
     }
 
-    override fun responseSucessfulMorePages(movieList: List<Movie>?) {
+    override fun successResponseMorePages(movieList: List<Movie>?) {
         movieList?.let { list ->
             mListAdapter.addMoreItem(list)
         }
@@ -136,7 +139,33 @@ class HomeFragment: Fragment(), HomeContract.View {
         Snackbar.make(view!!, error, Snackbar.LENGTH_LONG).show()
     }
 
-    override fun responseDetail(movie: Movie) {
+    override fun successResponseDetail(movie: Movie) {
         mPresenter.swapActivity(activity, DetailActivity(), movie)
+    }
+
+    override fun onPrepareOptionsMenu(menu: Menu?) {
+        val mSearchMenuItem = menu?.findItem(R.id.action_search)
+        val searchView = mSearchMenuItem?.actionView as SearchView
+
+        searchView.setOnQueryTextListener(object : SearchView.OnQueryTextListener{
+            override fun onQueryTextSubmit(query: String?): Boolean {
+                query?.let {
+                    this@HomeFragment.query = it
+                    mPresenter.getMovie(it, 1, language)
+                }
+                return false
+            }
+
+            override fun onQueryTextChange(newText: String?): Boolean {
+                return false
+            }
+        })
+
+        searchView.setOnCloseListener {
+            this@HomeFragment.query = ""
+            this@HomeFragment.pagelistQuery = 1
+            false
+        }
+
     }
 }

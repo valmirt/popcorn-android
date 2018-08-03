@@ -22,7 +22,7 @@ class ServiceImpl: ServiceApi {
     override fun getMovie(callback: ServiceApi.ServiceCallback<ListMovies>, query: String, page: Int, language: String) {
         val callMovie = retrofit
                 .create(EndPoint::class.java)
-                .search(query = query,page = page, language = language)
+                .searchMovie(query = query,page = page, language = language)
 
         returningCall(callMovie, callback)
     }

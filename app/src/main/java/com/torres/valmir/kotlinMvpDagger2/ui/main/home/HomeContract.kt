@@ -9,11 +9,11 @@ interface HomeContract {
     interface View: BaseContract.View {
         fun setLoading(isLoading: Boolean)
 
-        fun responseSuccessful(movieList: List<Movie>?)
+        fun successResponse(movieList: List<Movie>?)
 
-        fun responseSucessfulMorePages(movieList: List<Movie>?)
+        fun successResponseMorePages(movieList: List<Movie>?)
 
-        fun responseDetail(movie: Movie)
+        fun successResponseDetail(movie: Movie)
 
         fun errorResponse(error: String)
     }

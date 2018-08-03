@@ -36,8 +36,8 @@ class HomePresenter: HomeContract.Presenter {
                 view.setLoading(false)
                 when(response.code){
                     200 -> {
-                        if (page == 1) view.responseSuccessful(response.movieList)
-                        else view.responseSucessfulMorePages(response.movieList)
+                        if (page == 1) view.successResponse(response.movieList)
+                        else view.successResponseMorePages(response.movieList)
                     }
                     404 -> view.errorResponse(context.getString(R.string.error_404))
                     500 -> view.errorResponse(context.getString(R.string.error_500))
@@ -56,8 +56,8 @@ class HomePresenter: HomeContract.Presenter {
                 view.setLoading(false)
                 when(response.code){
                     200 -> {
-                        if (page == 1) view.responseSuccessful(response.movieList)
-                        else view.responseSucessfulMorePages(response.movieList)
+                        if (page == 1) view.successResponse(response.movieList)
+                        else view.successResponseMorePages(response.movieList)
                     }
                     404 -> view.errorResponse(context.getString(R.string.error_404))
                     500 -> view.errorResponse(context.getString(R.string.error_500))
@@ -76,8 +76,8 @@ class HomePresenter: HomeContract.Presenter {
                 view.setLoading(false)
                 when(response.code){
                     200 -> {
-                        if (page == 1) view.responseSuccessful(response.movieList)
-                        else view.responseSucessfulMorePages(response.movieList)
+                        if (page == 1) view.successResponse(response.movieList)
+                        else view.successResponseMorePages(response.movieList)
                     }
                     404 -> view.errorResponse(context.getString(R.string.error_404))
                     500 -> view.errorResponse(context.getString(R.string.error_500))
@@ -96,8 +96,8 @@ class HomePresenter: HomeContract.Presenter {
                 view.setLoading(false)
                 when(response.code){
                     200 -> {
-                        if (page == 1) view.responseSuccessful(response.movieList)
-                        else view.responseSucessfulMorePages(response.movieList)
+                        if (page == 1) view.successResponse(response.movieList)
+                        else view.successResponseMorePages(response.movieList)
                     }
                     404 -> view.errorResponse(context.getString(R.string.error_404))
                     500 -> view.errorResponse(context.getString(R.string.error_500))
@@ -113,8 +113,9 @@ class HomePresenter: HomeContract.Presenter {
         view.setLoading(true)
         api.getMovieId(object : ServiceApi.ServiceCallback<Movie>{
             override fun onLoaded(response: Movie) {
+                view.setLoading(false)
                 when(response.code){
-                    200 -> view.responseDetail(response)
+                    200 -> view.successResponseDetail(response)
                     404 -> view.errorResponse(context.getString(R.string.error_404))
                     500 -> view.errorResponse(context.getString(R.string.error_500))
                     503 -> view.errorResponse(context.getString(R.string.error_503))
