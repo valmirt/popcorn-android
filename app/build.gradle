@@ -6,7 +6,7 @@ apply plugin: 'kotlin-kapt'
 android {
     compileSdkVersion 27
     defaultConfig {
-        applicationId "com.example.valmir.kotlin_mvp_dagger2"
+        applicationId "com.torres.valmir.kotlinMvpDagger2"
         minSdkVersion 16
         targetSdkVersion 27
         versionCode 1

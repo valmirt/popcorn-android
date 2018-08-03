@@ -7,7 +7,7 @@
     android:layout_height="match_parent"
     android:fitsSystemWindows="true"
     android:id="@+id/coordinator_detail"
-    tools:context="com.example.valmir.kotlinMvpDagger2.ui.main.detail.DetailActivity">
+    tools:context="com.torres.valmir.kotlinMvpDagger2.ui.main.detail.DetailActivity">
 
     <android.support.design.widget.AppBarLayout
         android:id="@+id/app_bar"
