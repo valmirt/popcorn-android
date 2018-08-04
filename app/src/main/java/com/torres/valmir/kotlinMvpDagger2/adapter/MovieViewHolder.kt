@@ -66,10 +66,12 @@ class MovieViewHolder (noteView: View): RecyclerView.ViewHolder(noteView) {
                     .submit()
         }
 
-        originalTitle.text = movie.originalTitle
-        title.text = movie.title
-        date.text = movie.releaseDate.subSequence(0, 4)
-        popularity.text = df2.format(movie.popularity)
-        voteAverage.text = df.format(movie.voteAverage)
+        try{
+            originalTitle.text = movie.originalTitle
+            title.text = movie.title
+            date.text = movie.releaseDate.subSequence(0, 4)
+            popularity.text = df2.format(movie.popularity)
+            voteAverage.text = df.format(movie.voteAverage)
+        } catch (e: Exception){}
     }
 }

@@ -9,11 +9,6 @@ import android.support.v4.content.ContextCompat
 import android.support.v7.widget.LinearLayoutManager
 import android.support.v7.widget.RecyclerView
 import android.support.v7.widget.SearchView
-import android.util.Log
-import android.view.LayoutInflater
-import android.view.Menu
-import android.view.View
-import android.view.ViewGroup
 import com.torres.valmir.kotlinMvpDagger2.adapter.ItemListener
 import com.torres.valmir.kotlinMvpDagger2.R
 import com.torres.valmir.kotlinMvpDagger2.TMDBApplication
@@ -25,6 +20,8 @@ import com.torres.valmir.kotlinMvpDagger2.util.Constants.Companion.TYPE_LIST
 import com.torres.valmir.kotlinMvpDagger2.util.EndlessRecyclerViewScrollListener
 import kotlinx.android.synthetic.main.fragment_home.*
 import javax.inject.Inject
+import android.view.*
+
 
 class HomeFragment: Fragment(), HomeContract.View {
 
@@ -98,11 +95,7 @@ class HomeFragment: Fragment(), HomeContract.View {
                 ContextCompat.getColor(activity!!, R.color.colorPrimaryDark))
 
         refresh_layout.setOnRefreshListener {
-            when(typeList){
-                1 -> mPresenter.getPopular(1, language)
-                2 -> mPresenter.getTopRated(1, language)
-                3 -> mPresenter.getNowPlaying(1, language)
-            }
+            updateList()
         }
     }
 
@@ -112,11 +105,7 @@ class HomeFragment: Fragment(), HomeContract.View {
             preferences = it.getSharedPreferences(Constants.LANGUAGE_TYPES, Context.MODE_PRIVATE)
             language = preferences.getString(Constants.LANGUAGE, Constants.ENGLISH_LANGUAGE)
         }
-        when(typeList){
-            1 -> mPresenter.getPopular(1, language)
-            2 -> mPresenter.getTopRated(1, language)
-            3 -> mPresenter.getNowPlaying(1, language)
-        }
+        updateList()
     }
 
     override fun setLoading(isLoading: Boolean) {
@@ -161,11 +150,30 @@ class HomeFragment: Fragment(), HomeContract.View {
             }
         })
 
-        searchView.setOnCloseListener {
-            this@HomeFragment.query = ""
-            this@HomeFragment.pagelistQuery = 1
-            false
-        }
+        mSearchMenuItem.setOnActionExpandListener(object : MenuItem.OnActionExpandListener{
+            override fun onMenuItemActionExpand(p0: MenuItem?): Boolean {
+                return true
+            }
 
+            override fun onMenuItemActionCollapse(p0: MenuItem?): Boolean {
+                this@HomeFragment.query = ""
+                this@HomeFragment.pagelistQuery = 1
+                return true
+            }
+        })
+
+    }
+
+    private fun updateList(){
+        if (query.isEmpty()){
+            when(typeList){
+                1 -> mPresenter.getPopular(1, language)
+                2 -> mPresenter.getTopRated(1, language)
+                3 -> mPresenter.getNowPlaying(1, language)
+            }
+        }
+        else {
+            mPresenter.getMovie(query, 1, language)
+        }
     }
 }
