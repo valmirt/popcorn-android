@@ -101,7 +101,11 @@ class InfoFragment: Fragment(), InfoContract.View {
         movie?.let { movie ->
             title_movie_detail.text = movie.title
             original_title_movie_detail.text = movie.originalTitle
-            date_movie_detail.text = "("+movie.releaseDate.subSequence(0, 4)+")"
+
+            try {
+                date_movie_detail.text = "("+movie.releaseDate.subSequence(0, 4)+")"
+            } catch (e: Exception){}
+
             time_movie_detail.text = movie.runtime.toString()
             vote_average_detail.text = df.format(movie.voteAverage)
             popularity_detail.text = df.format(movie.popularity)
