@@ -85,7 +85,7 @@ class ServiceImpl: ServiceApi {
     override fun getCastCrew(callback: ServiceApi.ServiceCallback<ListCastCrew>, id: Int) {
         val call = retrofit
                 .create(EndPoint::class.java)
-                .getCastandCrew(id = id)
+                .getCastandCrewMovie(id = id)
 
         call.enqueue(object : Callback<ListCastCrew>{
             override fun onFailure(call: Call<ListCastCrew>?, t: Throwable?) {
