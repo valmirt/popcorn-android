@@ -6,6 +6,7 @@ import com.torres.valmir.kotlinMvpDagger2.di.module.AndroidModule
 import com.torres.valmir.kotlinMvpDagger2.di.module.FragmentModule
 import com.torres.valmir.kotlinMvpDagger2.di.module.NetModule
 import com.torres.valmir.kotlinMvpDagger2.remote.movie.MovieServiceImpl
+import com.torres.valmir.kotlinMvpDagger2.remote.tvShow.TvServiceImpl
 import com.torres.valmir.kotlinMvpDagger2.ui.main.detail.casting.CastingFragment
 import com.torres.valmir.kotlinMvpDagger2.ui.main.detail.casting.CastingPresenter
 import com.torres.valmir.kotlinMvpDagger2.ui.main.detail.info.InfoFragment
@@ -21,7 +22,7 @@ interface ApplicationComponent {
 
     fun inject(application: Application)
 
-    fun inject(serviceImpl: MovieServiceImpl)
+    fun inject(movieServiceImpl: MovieServiceImpl)
 
     fun inject(homePresenter: HomePresenter)
 
@@ -34,4 +35,6 @@ interface ApplicationComponent {
     fun inject(castingFragment: CastingFragment)
 
     fun inject(castingPresenter: CastingPresenter)
+
+    fun inject(tvServiceImpl: TvServiceImpl)
 }
