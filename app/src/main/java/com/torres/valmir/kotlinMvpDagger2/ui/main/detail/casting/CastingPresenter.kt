@@ -4,7 +4,7 @@ import android.content.Context
 import com.torres.valmir.kotlinMvpDagger2.R
 import com.torres.valmir.kotlinMvpDagger2.TMDBApplication
 import com.torres.valmir.kotlinMvpDagger2.model.ListCastCrew
-import com.torres.valmir.kotlinMvpDagger2.remote.ServiceApi
+import com.torres.valmir.kotlinMvpDagger2.remote.movie.MovieServiceApi
 import javax.inject.Inject
 
 class CastingPresenter: CastingContract.Presenter {
@@ -14,7 +14,7 @@ class CastingPresenter: CastingContract.Presenter {
     lateinit var context: Context
 
     @Inject
-    lateinit var api: ServiceApi
+    lateinit var apiMovie: MovieServiceApi
 
     init {
         TMDBApplication.graph.inject(this)
@@ -25,7 +25,7 @@ class CastingPresenter: CastingContract.Presenter {
     }
 
     override fun getCastCrew(id: Int) {
-        api.getCastCrew(object : ServiceApi.ServiceCallback<ListCastCrew>{
+        apiMovie.getCastCrew(object : MovieServiceApi.ServiceCallback<ListCastCrew>{
             override fun onLoaded(response: ListCastCrew) {
                 when(response.code){
                     200 -> view.successResponse(response.castList)

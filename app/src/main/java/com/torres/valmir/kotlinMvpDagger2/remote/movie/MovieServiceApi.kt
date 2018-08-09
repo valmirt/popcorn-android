@@ -1,11 +1,11 @@
-package com.torres.valmir.kotlinMvpDagger2.remote
-
+package com.torres.valmir.kotlinMvpDagger2.remote.movie
 
 import com.torres.valmir.kotlinMvpDagger2.model.ListCastCrew
 import com.torres.valmir.kotlinMvpDagger2.model.ListMovies
 import com.torres.valmir.kotlinMvpDagger2.model.Movie
 
-interface ServiceApi {
+
+interface MovieServiceApi {
     interface ServiceCallback <T> {
         fun onLoaded (response: T)
     }

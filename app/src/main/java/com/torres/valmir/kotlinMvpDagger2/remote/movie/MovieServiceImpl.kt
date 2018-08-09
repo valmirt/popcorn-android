@@ -1,4 +1,4 @@
-package com.torres.valmir.kotlinMvpDagger2.remote
+package com.torres.valmir.kotlinMvpDagger2.remote.movie
 
 import com.torres.valmir.kotlinMvpDagger2.TMDBApplication
 import com.torres.valmir.kotlinMvpDagger2.model.ListCastCrew
@@ -10,7 +10,7 @@ import retrofit2.Response
 import retrofit2.Retrofit
 import javax.inject.Inject
 
-class ServiceImpl: ServiceApi {
+class MovieServiceImpl: MovieServiceApi {
 
     @Inject
     lateinit var retrofit: Retrofit
@@ -19,41 +19,41 @@ class ServiceImpl: ServiceApi {
         TMDBApplication.graph.inject(this)
     }
 
-    override fun getMovie(callback: ServiceApi.ServiceCallback<ListMovies>, query: String, page: Int, language: String) {
+    override fun getMovie(callback: MovieServiceApi.ServiceCallback<ListMovies>, query: String, page: Int, language: String) {
         val callMovie = retrofit
-                .create(EndPoint::class.java)
+                .create(MovieEndPoint::class.java)
                 .searchMovie(query = query,page = page, language = language)
 
         returningCall(callMovie, callback)
     }
 
-    override fun getPopular(callback: ServiceApi.ServiceCallback<ListMovies>, page: Int, language: String) {
+    override fun getPopular(callback: MovieServiceApi.ServiceCallback<ListMovies>, page: Int, language: String) {
         val callMovie = retrofit
-                .create(EndPoint::class.java)
+                .create(MovieEndPoint::class.java)
                 .popular(page = page, language = language)
 
         returningCall(callMovie, callback)
     }
 
-    override fun getTopRated(callback: ServiceApi.ServiceCallback<ListMovies>, page: Int, language: String) {
+    override fun getTopRated(callback: MovieServiceApi.ServiceCallback<ListMovies>, page: Int, language: String) {
         val callMovie = retrofit
-                .create(EndPoint::class.java)
+                .create(MovieEndPoint::class.java)
                 .topRated(page = page, language = language)
 
         returningCall(callMovie, callback)
     }
 
-    override fun getNowPlaying(callback: ServiceApi.ServiceCallback<ListMovies>, page: Int, language: String) {
+    override fun getNowPlaying(callback: MovieServiceApi.ServiceCallback<ListMovies>, page: Int, language: String) {
         val callMovie = retrofit
-                .create(EndPoint::class.java)
+                .create(MovieEndPoint::class.java)
                 .nowPlaying(page = page, language = language)
 
         returningCall(callMovie, callback)
     }
 
-    override fun getMovieId(callback: ServiceApi.ServiceCallback<Movie>, id: Int, language: String) {
+    override fun getMovieId(callback: MovieServiceApi.ServiceCallback<Movie>, id: Int, language: String) {
         val callMovie = retrofit
-                .create(EndPoint::class.java)
+                .create(MovieEndPoint::class.java)
                 .searchMovieId(id = id, language = language)
 
         callMovie.enqueue(object: Callback<Movie>{
@@ -74,17 +74,17 @@ class ServiceImpl: ServiceApi {
         })
     }
 
-    override fun getSimilarMovies(callback: ServiceApi.ServiceCallback<ListMovies>, id: Int, page: Int, language: String) {
+    override fun getSimilarMovies(callback: MovieServiceApi.ServiceCallback<ListMovies>, id: Int, page: Int, language: String) {
         val callMovie = retrofit
-                .create(EndPoint::class.java)
+                .create(MovieEndPoint::class.java)
                 .getSimilarMovies(id = id, page = page, language = language)
 
         returningCall(callMovie, callback)
     }
 
-    override fun getCastCrew(callback: ServiceApi.ServiceCallback<ListCastCrew>, id: Int) {
+    override fun getCastCrew(callback: MovieServiceApi.ServiceCallback<ListCastCrew>, id: Int) {
         val call = retrofit
-                .create(EndPoint::class.java)
+                .create(MovieEndPoint::class.java)
                 .getCastandCrewMovie(id = id)
 
         call.enqueue(object : Callback<ListCastCrew>{
@@ -105,7 +105,7 @@ class ServiceImpl: ServiceApi {
         })
     }
 
-    private fun returningCall(call: Call<ListMovies>, callback: ServiceApi.ServiceCallback<ListMovies>){
+    private fun returningCall(call: Call<ListMovies>, callback: MovieServiceApi.ServiceCallback<ListMovies>){
         call.enqueue(object: Callback<ListMovies>{
             override fun onFailure(call: Call<ListMovies>?, t: Throwable?) {
                 callback.onLoaded(ListMovies())

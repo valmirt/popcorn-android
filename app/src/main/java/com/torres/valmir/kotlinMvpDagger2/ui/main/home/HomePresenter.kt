@@ -8,7 +8,7 @@ import com.torres.valmir.kotlinMvpDagger2.R
 import com.torres.valmir.kotlinMvpDagger2.TMDBApplication
 import com.torres.valmir.kotlinMvpDagger2.model.ListMovies
 import com.torres.valmir.kotlinMvpDagger2.model.Movie
-import com.torres.valmir.kotlinMvpDagger2.remote.ServiceApi
+import com.torres.valmir.kotlinMvpDagger2.remote.movie.MovieServiceApi
 import com.torres.valmir.kotlinMvpDagger2.util.Constants.Companion.MOVIE_OBJECT
 import javax.inject.Inject
 
@@ -19,7 +19,7 @@ class HomePresenter: HomeContract.Presenter {
     lateinit var context: Context
 
     @Inject
-    lateinit var api: ServiceApi
+    lateinit var apiMovie: MovieServiceApi
 
     init {
         TMDBApplication.graph.inject(this)
@@ -31,7 +31,7 @@ class HomePresenter: HomeContract.Presenter {
 
     override fun getPopular(page: Int, language: String) {
         view.setLoading(true)
-        api.getPopular(object : ServiceApi.ServiceCallback<ListMovies>{
+        apiMovie.getPopular(object : MovieServiceApi.ServiceCallback<ListMovies>{
             override fun onLoaded(response: ListMovies) {
                 view.setLoading(false)
                 when(response.code){
@@ -51,7 +51,7 @@ class HomePresenter: HomeContract.Presenter {
 
     override fun getNowPlaying(page: Int, language: String) {
         view.setLoading(true)
-        api.getNowPlaying(object : ServiceApi.ServiceCallback<ListMovies>{
+        apiMovie.getNowPlaying(object : MovieServiceApi.ServiceCallback<ListMovies>{
             override fun onLoaded(response: ListMovies) {
                 view.setLoading(false)
                 when(response.code){
@@ -71,7 +71,7 @@ class HomePresenter: HomeContract.Presenter {
 
     override fun getTopRated(page: Int, language: String) {
         view.setLoading(true)
-        api.getTopRated(object : ServiceApi.ServiceCallback<ListMovies>{
+        apiMovie.getTopRated(object : MovieServiceApi.ServiceCallback<ListMovies>{
             override fun onLoaded(response: ListMovies) {
                 view.setLoading(false)
                 when(response.code){
@@ -91,7 +91,7 @@ class HomePresenter: HomeContract.Presenter {
 
     override fun getMovie(query: String, page: Int, language: String) {
         view.setLoading(true)
-        api.getMovie(object : ServiceApi.ServiceCallback<ListMovies>{
+        apiMovie.getMovie(object : MovieServiceApi.ServiceCallback<ListMovies>{
             override fun onLoaded(response: ListMovies) {
                 view.setLoading(false)
                 when(response.code){
@@ -111,7 +111,7 @@ class HomePresenter: HomeContract.Presenter {
 
     override fun getDetails(id: Int, language: String) {
         view.setLoading(true)
-        api.getMovieId(object : ServiceApi.ServiceCallback<Movie>{
+        apiMovie.getMovieId(object : MovieServiceApi.ServiceCallback<Movie>{
             override fun onLoaded(response: Movie) {
                 view.setLoading(false)
                 when(response.code){

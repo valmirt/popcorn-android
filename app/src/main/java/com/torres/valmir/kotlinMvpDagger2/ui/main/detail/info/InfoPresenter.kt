@@ -7,7 +7,7 @@ import com.torres.valmir.kotlinMvpDagger2.R
 import com.torres.valmir.kotlinMvpDagger2.TMDBApplication
 import com.torres.valmir.kotlinMvpDagger2.model.ListMovies
 import com.torres.valmir.kotlinMvpDagger2.model.Movie
-import com.torres.valmir.kotlinMvpDagger2.remote.ServiceApi
+import com.torres.valmir.kotlinMvpDagger2.remote.movie.MovieServiceApi
 import com.torres.valmir.kotlinMvpDagger2.util.Constants.Companion.MOVIE_OBJECT
 import javax.inject.Inject
 
@@ -18,7 +18,7 @@ class InfoPresenter: InfoContract.Presenter {
     lateinit var context: Context
 
     @Inject
-    lateinit var api: ServiceApi
+    lateinit var apiMovie: MovieServiceApi
 
     init {
         TMDBApplication.graph.inject(this)
@@ -29,7 +29,7 @@ class InfoPresenter: InfoContract.Presenter {
     }
 
     override fun getSimilarMovies(id: Int, page: Int, language: String) {
-        api.getSimilarMovies(object : ServiceApi.ServiceCallback<ListMovies>{
+        apiMovie.getSimilarMovies(object : MovieServiceApi.ServiceCallback<ListMovies>{
             override fun onLoaded(response: ListMovies) {
                 when(response.code){
                     200 -> {
@@ -47,7 +47,7 @@ class InfoPresenter: InfoContract.Presenter {
     }
 
     override fun getDetails(id: Int, language: String) {
-        api.getMovieId(object : ServiceApi.ServiceCallback<Movie>{
+        apiMovie.getMovieId(object : MovieServiceApi.ServiceCallback<Movie>{
             override fun onLoaded(response: Movie) {
                 when(response.code){
                     200 -> view.responseDetail(response)

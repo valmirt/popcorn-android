@@ -3,8 +3,8 @@ package com.torres.valmir.kotlinMvpDagger2.di.module
 import android.app.Application
 import android.content.Context
 import com.torres.valmir.kotlinMvpDagger2.di.ForApplication
-import com.torres.valmir.kotlinMvpDagger2.remote.ServiceApi
-import com.torres.valmir.kotlinMvpDagger2.remote.ServiceImpl
+import com.torres.valmir.kotlinMvpDagger2.remote.movie.MovieServiceApi
+import com.torres.valmir.kotlinMvpDagger2.remote.movie.MovieServiceImpl
 import dagger.Module
 import dagger.Provides
 import javax.inject.Singleton
@@ -21,5 +21,5 @@ class AndroidModule(private val application: Application) {
     fun provideAppContext(): Context = application.applicationContext
 
     @Provides
-    fun provideServiceImpl(): ServiceApi = ServiceImpl()
+    fun provideServiceImpl(): MovieServiceApi = MovieServiceImpl()
 }

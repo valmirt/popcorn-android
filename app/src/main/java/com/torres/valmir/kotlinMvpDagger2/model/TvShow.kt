@@ -5,8 +5,8 @@ import com.google.gson.annotations.SerializedName
 class TvShow (var name: String = "",
               @SerializedName("original_name")
               var originalName: String = "",
-//              @SerializedName("episode_run_time")
-//              var runtime: ,
+              @SerializedName("episode_run_time")
+              var runtime: List<Int>? = null,
               @SerializedName("first_air_date")
               var firstAirDate: String = "",
               var homepage: String? = "",
