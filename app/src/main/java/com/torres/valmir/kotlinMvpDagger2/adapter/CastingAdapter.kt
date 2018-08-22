@@ -6,7 +6,7 @@ import android.view.ViewGroup
 import com.torres.valmir.kotlinMvpDagger2.R
 import com.torres.valmir.kotlinMvpDagger2.model.Cast
 
-class CastingAdapter (private var casting: List<Cast>) : RecyclerView.Adapter<CastingViewHolder>(){
+class CastingAdapter (private var casting: ArrayList<Cast>) : RecyclerView.Adapter<CastingViewHolder>(){
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): CastingViewHolder {
         val context = parent.context
@@ -22,8 +22,14 @@ class CastingAdapter (private var casting: List<Cast>) : RecyclerView.Adapter<Ca
         holder.fillData(cast)
     }
 
+    fun clear(){
+        this.casting.clear()
+        notifyDataSetChanged()
+    }
+
     fun replaceData(data: List<Cast>){
-        this.casting = data
+        clear()
+        this.casting.addAll(data)
         notifyDataSetChanged()
     }
 }

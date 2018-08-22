@@ -6,7 +6,7 @@ import android.view.ViewGroup
 import com.torres.valmir.kotlinMvpDagger2.R
 import com.torres.valmir.kotlinMvpDagger2.model.Movie
 
-class SimilarMoviesAdapter (private var movies: List<Movie>, private var itemListener: ItemListener<Movie>)
+class SimilarMoviesAdapter (private var movies: ArrayList<Movie>, private var itemListener: ItemListener<Movie>)
     : RecyclerView.Adapter<SimilarMoviesViewHolder>() {
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): SimilarMoviesViewHolder {
@@ -27,13 +27,21 @@ class SimilarMoviesAdapter (private var movies: List<Movie>, private var itemLis
         }
     }
 
+    fun clear(){
+        this.movies.clear()
+    }
+
     fun replaceData(data: List<Movie>) {
-        this.movies = data
+        clear()
+        this.movies.addAll(data)
         notifyDataSetChanged()
     }
 
     fun addMoreItem(data: List<Movie>) {
-        this.movies += data
+        var temp = this.movies.toList()
+        clear()
+        temp += data
+        this.movies.addAll(temp)
         notifyDataSetChanged()
     }
 }
