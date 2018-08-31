@@ -10,6 +10,7 @@
     <string name="popular">Popular</string>
     <string name="top_rated">Top Rated</string>
     <string name="now_playing">Now Playing</string>
+    <string name="today">Today\'s Show</string>
 
 
     <string name="title_example">The Avengers</string>
@@ -33,6 +34,7 @@
     <string name="title_activity_detail">DetailActivity</string>
     <string name="title_tab_one">Info</string>
     <string name="title_tab_two">Casting</string>
+    <string name="title_tab_three">Seasons</string>
     <string name="time_example">139</string>
     <string name="minutes_example">minutes</string>
     <string name="production">Production:</string>

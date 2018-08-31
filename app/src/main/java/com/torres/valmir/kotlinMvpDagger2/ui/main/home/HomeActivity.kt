@@ -69,7 +69,7 @@ class HomeActivity : BaseActivity(), NavigationView.OnNavigationItemSelectedList
             R.id.nav_top_rated_tv -> {
                 Snackbar.make(coordinator_home, getString(R.string.alert_1), Snackbar.LENGTH_LONG).show()
             }
-            R.id.nav_now_playing_tv -> {
+            R.id.nav_todays_show -> {
                 Snackbar.make(coordinator_home, getString(R.string.alert_1), Snackbar.LENGTH_LONG).show()
             }
             //Others

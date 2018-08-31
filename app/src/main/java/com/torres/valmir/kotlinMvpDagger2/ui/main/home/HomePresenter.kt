@@ -8,8 +8,10 @@ import com.torres.valmir.kotlinMvpDagger2.R
 import com.torres.valmir.kotlinMvpDagger2.TMDBApplication
 import com.torres.valmir.kotlinMvpDagger2.model.ListMovies
 import com.torres.valmir.kotlinMvpDagger2.model.Movie
+import com.torres.valmir.kotlinMvpDagger2.model.TvShow
 import com.torres.valmir.kotlinMvpDagger2.remote.movie.MovieServiceApi
 import com.torres.valmir.kotlinMvpDagger2.util.Constants.Companion.MOVIE_OBJECT
+import com.torres.valmir.kotlinMvpDagger2.util.Constants.Companion.TVSHOW_OBJECT
 import javax.inject.Inject
 
 class HomePresenter: HomeContract.Presenter {
@@ -29,15 +31,15 @@ class HomePresenter: HomeContract.Presenter {
         this.view = view
     }
 
-    override fun getPopular(page: Int, language: String) {
+    override fun getPopularMovie(page: Int, language: String) {
         view.setLoading(true)
         apiMovie.getPopular(object : MovieServiceApi.ServiceCallback<ListMovies>{
             override fun onLoaded(response: ListMovies) {
                 view.setLoading(false)
                 when(response.code){
                     200 -> {
-                        if (page == 1) view.successResponse(response.movieList)
-                        else view.successResponseMorePages(response.movieList)
+                        if (page == 1) view.successResponseMovie(response.movieList)
+                        else view.successResponseMorePagesMovie(response.movieList)
                     }
                     404 -> view.errorResponse(context.getString(R.string.error_404))
                     500 -> view.errorResponse(context.getString(R.string.error_500))
@@ -49,15 +51,19 @@ class HomePresenter: HomeContract.Presenter {
         }, page, language)
     }
 
-    override fun getNowPlaying(page: Int, language: String) {
+    override fun getPopularTvShow(page: Int, language: String) {
+        TODO("not implemented") //To change body of created functions use File | Settings | File Templates.
+    }
+
+    override fun getNowPlayingMovie(page: Int, language: String) {
         view.setLoading(true)
         apiMovie.getNowPlaying(object : MovieServiceApi.ServiceCallback<ListMovies>{
             override fun onLoaded(response: ListMovies) {
                 view.setLoading(false)
                 when(response.code){
                     200 -> {
-                        if (page == 1) view.successResponse(response.movieList)
-                        else view.successResponseMorePages(response.movieList)
+                        if (page == 1) view.successResponseMovie(response.movieList)
+                        else view.successResponseMorePagesMovie(response.movieList)
                     }
                     404 -> view.errorResponse(context.getString(R.string.error_404))
                     500 -> view.errorResponse(context.getString(R.string.error_500))
@@ -69,15 +75,19 @@ class HomePresenter: HomeContract.Presenter {
         }, page, language)
     }
 
-    override fun getTopRated(page: Int, language: String) {
+    override fun getTodaysTvShow(page: Int, language: String) {
+        TODO("not implemented") //To change body of created functions use File | Settings | File Templates.
+    }
+
+    override fun getTopRatedMovie(page: Int, language: String) {
         view.setLoading(true)
         apiMovie.getTopRated(object : MovieServiceApi.ServiceCallback<ListMovies>{
             override fun onLoaded(response: ListMovies) {
                 view.setLoading(false)
                 when(response.code){
                     200 -> {
-                        if (page == 1) view.successResponse(response.movieList)
-                        else view.successResponseMorePages(response.movieList)
+                        if (page == 1) view.successResponseMovie(response.movieList)
+                        else view.successResponseMorePagesMovie(response.movieList)
                     }
                     404 -> view.errorResponse(context.getString(R.string.error_404))
                     500 -> view.errorResponse(context.getString(R.string.error_500))
@@ -87,6 +97,10 @@ class HomePresenter: HomeContract.Presenter {
                 }
             }
         }, page, language)
+    }
+
+    override fun getTopRatedTvShow(page: Int, language: String) {
+        TODO("not implemented") //To change body of created functions use File | Settings | File Templates.
     }
 
     override fun getMovie(query: String, page: Int, language: String) {
@@ -96,8 +110,8 @@ class HomePresenter: HomeContract.Presenter {
                 view.setLoading(false)
                 when(response.code){
                     200 -> {
-                        if (page == 1) view.successResponse(response.movieList)
-                        else view.successResponseMorePages(response.movieList)
+                        if (page == 1) view.successResponseMovie(response.movieList)
+                        else view.successResponseMorePagesMovie(response.movieList)
                     }
                     404 -> view.errorResponse(context.getString(R.string.error_404))
                     500 -> view.errorResponse(context.getString(R.string.error_500))
@@ -109,13 +123,17 @@ class HomePresenter: HomeContract.Presenter {
         }, query, page, language)
     }
 
+    override fun getTvShow(query: String, page: Int, language: String) {
+        TODO("not implemented") //To change body of created functions use File | Settings | File Templates.
+    }
+
     override fun getDetails(id: Int, language: String) {
         view.setLoading(true)
         apiMovie.getMovieId(object : MovieServiceApi.ServiceCallback<Movie>{
             override fun onLoaded(response: Movie) {
                 view.setLoading(false)
                 when(response.code){
-                    200 -> view.successResponseDetail(response)
+                    200 -> view.successResponseDetailMovie(response)
                     404 -> view.errorResponse(context.getString(R.string.error_404))
                     500 -> view.errorResponse(context.getString(R.string.error_500))
                     503 -> view.errorResponse(context.getString(R.string.error_503))
@@ -126,9 +144,14 @@ class HomePresenter: HomeContract.Presenter {
         }, id, language)
     }
 
-    override fun swapActivity(origin: FragmentActivity?, activity: AppCompatActivity, movie: Movie) {
+    override fun swapActivity(origin: FragmentActivity?, activity: AppCompatActivity, movie: Movie?, tv: TvShow?) {
         val intent = Intent(origin, activity::class.java)
-        intent.putExtra(MOVIE_OBJECT, movie)
+        movie?.let {
+            intent.putExtra(MOVIE_OBJECT, it)
+        }
+        tv?.let {
+            intent.putExtra(TVSHOW_OBJECT, it)
+        }
         origin?.startActivity(intent)
     }
 }
