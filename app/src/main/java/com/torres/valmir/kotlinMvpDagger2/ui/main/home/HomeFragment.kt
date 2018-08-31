@@ -44,7 +44,7 @@ class HomeFragment: Fragment(), HomeContract.View {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        mListAdapter = MovieAdapter(ArrayList(0), itemListener)
+        mListAdapter = MovieAdapter(ArrayList(0), itemListener, context!!)
 
         TMDBApplication.graph.inject(this)
         mPresenter.attach(this)

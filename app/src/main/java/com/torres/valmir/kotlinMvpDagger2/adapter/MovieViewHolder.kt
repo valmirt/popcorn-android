@@ -1,6 +1,8 @@
 package com.torres.valmir.kotlinMvpDagger2.adapter
 
+import android.content.Context
 import android.graphics.Bitmap
+import android.support.v4.content.ContextCompat
 import android.support.v7.graphics.Palette
 import android.support.v7.widget.CardView
 import android.support.v7.widget.RecyclerView
@@ -28,24 +30,40 @@ class MovieViewHolder (noteView: View): RecyclerView.ViewHolder(noteView) {
     private val headerPopularity = noteView.findViewById<TextView>(R.id.header_popularity_item)
     private val headerVoteAverage = noteView.findViewById<TextView>(R.id.header_vote_average_item)
 
-    fun fillData(movie: Movie){
+    fun fillData(movie: Movie, context: Context){
         val df = DecimalFormat("#.##")
         val df2 = DecimalFormat("#.#")
         var bitmap: Bitmap
+
+        imageItem.setImageDrawable(ContextCompat.getDrawable(context, R.drawable.ic_image_default_poster))
+        title.text = ""
+        title.setTextColor(ContextCompat.getColor(context, R.color.colorText))
+        originalTitle.text = ""
+        originalTitle.setTextColor(ContextCompat.getColor(context, R.color.colorText))
+        date.text = ""
+        date.setTextColor(ContextCompat.getColor(context, R.color.colorText))
+        popularity.text = ""
+        popularity.setTextColor(ContextCompat.getColor(context, R.color.colorText))
+        voteAverage.text = ""
+        voteAverage.setTextColor(ContextCompat.getColor(context, R.color.colorText))
+        card.setCardBackgroundColor(ContextCompat.getColor(context, R.color.defaultCardView))
+        headerPopularity.setTextColor(ContextCompat.getColor(context, R.color.colorText))
+        headerVoteAverage.setTextColor(ContextCompat.getColor(context, R.color.colorText))
+
         df.roundingMode = RoundingMode.CEILING
 
-        movie.posterUrl?.let {
+        movie.posterUrl?.let { poster->
             Glide.with(imageItem.context)
                     .asBitmap()
-                    .load(BASE_URL_IMAGE_W185+it)
+                    .load(BASE_URL_IMAGE_W185+poster)
                     .listener(object: RequestListener<Bitmap>{
                         override fun onLoadFailed(e: GlideException?, model: Any?, target: com.bumptech.glide.request.target.Target<Bitmap>?, isFirstResource: Boolean): Boolean {
                             return false
                         }
 
                         override fun onResourceReady(resource: Bitmap?, model: Any?, target: com.bumptech.glide.request.target.Target<Bitmap>?, dataSource: DataSource?, isFirstResource: Boolean): Boolean {
-                            resource?.let {
-                                bitmap = it
+                            resource?.let { bp ->
+                                bitmap = bp
                                 imageItem.setImageBitmap(bitmap)
                                 val palette = Palette.from(bitmap).generate()
                                 val vibrant = palette.vibrantSwatch

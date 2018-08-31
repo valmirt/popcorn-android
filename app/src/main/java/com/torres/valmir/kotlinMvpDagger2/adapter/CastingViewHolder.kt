@@ -1,6 +1,8 @@
 package com.torres.valmir.kotlinMvpDagger2.adapter
 
+import android.content.Context
 import android.graphics.Bitmap
+import android.support.v4.content.ContextCompat
 import android.support.v7.widget.RecyclerView
 import android.view.View
 import android.widget.TextView
@@ -18,12 +20,15 @@ class CastingViewHolder(noteView: View): RecyclerView.ViewHolder(noteView) {
     private val character = noteView.findViewById<TextView>(R.id.character_name_casting)
     private val name = noteView.findViewById<TextView>(R.id.actor_name_casting)
 
-    fun fillData(cast: Cast){
+    fun fillData(cast: Cast, context: Context){
         var bitmap: Bitmap
-        cast.profilePath?.let {
+        avatar.setImageDrawable(ContextCompat.getDrawable(context, R.drawable.ic_account_circle_default))
+        character.text = ""
+        name.text = ""
+        cast.profilePath?.let { poster->
             Glide.with(avatar.context)
                     .asBitmap()
-                    .load(Constants.BASE_URL_IMAGE_W185+it)
+                    .load(Constants.BASE_URL_IMAGE_W185+poster)
                     .listener(object: RequestListener<Bitmap> {
                         override fun onLoadFailed(e: GlideException?, model: Any?, target: com.bumptech.glide.request.target.Target<Bitmap>?, isFirstResource: Boolean): Boolean {
                             return false

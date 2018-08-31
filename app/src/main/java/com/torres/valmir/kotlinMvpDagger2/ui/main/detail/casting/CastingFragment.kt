@@ -28,7 +28,7 @@ class CastingFragment: Fragment(), CastingContract.View {
         TMDBApplication.graph.inject(this)
         mPresenter.attach(this)
         val args = arguments
-        mListAdapter = CastingAdapter(ArrayList(0))
+        mListAdapter = CastingAdapter(ArrayList(0), context!!)
 
         args?.let {
             movie = it.getSerializable(Constants.MOVIE_OBJECT) as Movie

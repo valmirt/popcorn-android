@@ -7,5 +7,6 @@
     <color name="colorText">#616161</color>
     <color name="colorTitle">#222430</color>
     <color name="colorTag">#E4E4E4</color>
+    <color name="defaultCardView">#fafafa</color>
 
 </resources>

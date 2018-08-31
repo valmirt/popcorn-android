@@ -47,7 +47,7 @@ class InfoFragment: Fragment(), InfoContract.View {
         mPresenter.attach(this)
         val args = arguments
 
-        mListAdapter = SimilarMoviesAdapter(ArrayList(0), itemListener)
+        mListAdapter = SimilarMoviesAdapter(ArrayList(0), itemListener, context!!)
 
         activity?.let {
             preferences = it.getSharedPreferences(Constants.LANGUAGE_TYPES, Context.MODE_PRIVATE)

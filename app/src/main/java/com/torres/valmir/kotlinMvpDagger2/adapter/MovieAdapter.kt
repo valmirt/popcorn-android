@@ -1,12 +1,15 @@
 package com.torres.valmir.kotlinMvpDagger2.adapter
 
+import android.content.Context
 import android.support.v7.widget.RecyclerView
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import com.torres.valmir.kotlinMvpDagger2.R
 import com.torres.valmir.kotlinMvpDagger2.model.Movie
 
-class MovieAdapter (private var movies: ArrayList<Movie>, private var itemListener: ItemListener<Movie>)
+class MovieAdapter (private var movies: ArrayList<Movie>,
+                    private var itemListener: ItemListener<Movie>,
+                    private var context: Context)
     : RecyclerView.Adapter<MovieViewHolder>() {
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): MovieViewHolder {
@@ -21,7 +24,7 @@ class MovieAdapter (private var movies: ArrayList<Movie>, private var itemListen
     override fun onBindViewHolder(holder: MovieViewHolder, position: Int) {
         val movie = movies[position]
 
-        holder.fillData(movie)
+        holder.fillData(movie, context)
         holder.itemView.setOnClickListener {
             itemListener.onClick(movie)
         }
