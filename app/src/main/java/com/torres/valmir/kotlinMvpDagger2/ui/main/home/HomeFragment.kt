@@ -9,10 +9,8 @@ import android.support.v4.content.ContextCompat
 import android.support.v7.widget.LinearLayoutManager
 import android.support.v7.widget.RecyclerView
 import android.support.v7.widget.SearchView
-import com.torres.valmir.kotlinMvpDagger2.adapter.ItemListener
 import com.torres.valmir.kotlinMvpDagger2.R
 import com.torres.valmir.kotlinMvpDagger2.TMDBApplication
-import com.torres.valmir.kotlinMvpDagger2.adapter.EntityAdapter
 import com.torres.valmir.kotlinMvpDagger2.model.Movie
 import com.torres.valmir.kotlinMvpDagger2.ui.main.detail.DetailActivity
 import com.torres.valmir.kotlinMvpDagger2.util.Constants
@@ -21,12 +19,14 @@ import com.torres.valmir.kotlinMvpDagger2.util.EndlessRecyclerViewScrollListener
 import kotlinx.android.synthetic.main.fragment_home.*
 import javax.inject.Inject
 import android.view.*
+import com.torres.valmir.kotlinMvpDagger2.adapter.*
 import com.torres.valmir.kotlinMvpDagger2.model.TvShow
 
 
 class HomeFragment: Fragment(), HomeContract.View {
 
-    private lateinit var mListAdapter: EntityAdapter
+    private lateinit var mListAdapter: MovieAdapter
+    private lateinit var mListAdapterTv: TvShowAdapter
     private var typeList = 0
     private var pagelist = 1
     private var query = ""
@@ -43,12 +43,17 @@ class HomeFragment: Fragment(), HomeContract.View {
         }
     }
 
+    private val itemListenerTv = object : ItemListener<TvShow> {
+        override fun onClick(item: TvShow) {
+
+        }
+    }
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        var type = false
-        if (typeList < 4) type = true
 
-        mListAdapter = EntityAdapter(type, ArrayList(0), itemListenerMovie, context!!)
+        if (typeList < 4) mListAdapter = MovieAdapter(ArrayList(0), itemListenerMovie, context!!)
+        else mListAdapterTv = TvShowAdapter(ArrayList(0), itemListenerTv, context!!)
 
         TMDBApplication.graph.inject(this)
         mPresenter.attach(this)
@@ -74,7 +79,8 @@ class HomeFragment: Fragment(), HomeContract.View {
         super.onActivityCreated(savedInstanceState)
         list_movie.setHasFixedSize(true)
         list_movie.layoutManager = LinearLayoutManager(context)
-        list_movie.adapter = mListAdapter
+        if (typeList < 4) list_movie.adapter = mListAdapter
+        else list_movie.adapter = mListAdapterTv
 
         list_movie.addOnScrollListener(object : EndlessRecyclerViewScrollListener(list_movie.layoutManager as LinearLayoutManager) {
             override fun onLoadMore(page: Int, totalItemsCount: Int, view: RecyclerView?) {
