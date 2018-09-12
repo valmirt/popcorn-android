@@ -13,7 +13,10 @@ import com.torres.valmir.kotlinMvpDagger2.ui.base.BaseActivity
 import com.torres.valmir.kotlinMvpDagger2.ui.main.settings.SettingsActivity
 import com.torres.valmir.kotlinMvpDagger2.util.Constants.Companion.NOW_PLAYING
 import com.torres.valmir.kotlinMvpDagger2.util.Constants.Companion.POPULAR
+import com.torres.valmir.kotlinMvpDagger2.util.Constants.Companion.POPULAR_TV
+import com.torres.valmir.kotlinMvpDagger2.util.Constants.Companion.TODAYS_TV
 import com.torres.valmir.kotlinMvpDagger2.util.Constants.Companion.TOP_RATED
+import com.torres.valmir.kotlinMvpDagger2.util.Constants.Companion.TOP_RATED_TV
 import kotlinx.android.synthetic.main.activity_home.*
 import kotlinx.android.synthetic.main.app_bar_home.*
 
@@ -64,13 +67,16 @@ class HomeActivity : BaseActivity(), NavigationView.OnNavigationItemSelectedList
             }
             //TV Shows
             R.id.nav_popular_tv -> {
-                Snackbar.make(coordinator_home, getString(R.string.alert_1), Snackbar.LENGTH_LONG).show()
+                supportActionBar?.title = getString(R.string.popular)
+                swapFragmentHome(HomeFragment(), POPULAR_TV)
             }
             R.id.nav_top_rated_tv -> {
-                Snackbar.make(coordinator_home, getString(R.string.alert_1), Snackbar.LENGTH_LONG).show()
+                supportActionBar?.title = getString(R.string.top_rated)
+                swapFragmentHome(HomeFragment(), TOP_RATED_TV)
             }
             R.id.nav_todays_show -> {
-                Snackbar.make(coordinator_home, getString(R.string.alert_1), Snackbar.LENGTH_LONG).show()
+                supportActionBar?.title = getString(R.string.today)
+                swapFragmentHome(HomeFragment(), TODAYS_TV)
             }
             //Others
             R.id.nav_settings -> {

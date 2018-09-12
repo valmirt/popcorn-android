@@ -7,9 +7,11 @@ import android.support.v7.app.AppCompatActivity
 import com.torres.valmir.kotlinMvpDagger2.R
 import com.torres.valmir.kotlinMvpDagger2.TMDBApplication
 import com.torres.valmir.kotlinMvpDagger2.model.ListMovies
+import com.torres.valmir.kotlinMvpDagger2.model.ListTV
 import com.torres.valmir.kotlinMvpDagger2.model.Movie
 import com.torres.valmir.kotlinMvpDagger2.model.TvShow
 import com.torres.valmir.kotlinMvpDagger2.remote.movie.MovieServiceApi
+import com.torres.valmir.kotlinMvpDagger2.remote.tvShow.TvServiceApi
 import com.torres.valmir.kotlinMvpDagger2.util.Constants.Companion.MOVIE_OBJECT
 import com.torres.valmir.kotlinMvpDagger2.util.Constants.Companion.TVSHOW_OBJECT
 import javax.inject.Inject
@@ -22,6 +24,9 @@ class HomePresenter: HomeContract.Presenter {
 
     @Inject
     lateinit var apiMovie: MovieServiceApi
+
+    @Inject
+    lateinit var apiTv: TvServiceApi
 
     init {
         TMDBApplication.graph.inject(this)
@@ -52,7 +57,23 @@ class HomePresenter: HomeContract.Presenter {
     }
 
     override fun getPopularTvShow(page: Int, language: String) {
-        TODO("not implemented") //To change body of created functions use File | Settings | File Templates.
+        view.setLoading(true)
+        apiTv.getPopularTV(object : TvServiceApi.ServiceCallback<ListTV>{
+            override fun onLoaded(response: ListTV) {
+                view.setLoading(false)
+                when(response.code){
+                    200 -> {
+                        if (page == 1) view.successResponseTvShow(response.tvList)
+                        else view.successResponseMorePagesTvShow(response.tvList)
+                    }
+                    404 -> view.errorResponse(context.getString(R.string.error_404))
+                    500 -> view.errorResponse(context.getString(R.string.error_500))
+                    503 -> view.errorResponse(context.getString(R.string.error_503))
+                    504 -> view.errorResponse(context.getString(R.string.error_504))
+                    else -> view.errorResponse(context.getString(R.string.error_connection))
+                }
+            }
+        }, page, language)
     }
 
     override fun getNowPlayingMovie(page: Int, language: String) {
@@ -76,7 +97,23 @@ class HomePresenter: HomeContract.Presenter {
     }
 
     override fun getTodaysTvShow(page: Int, language: String) {
-        TODO("not implemented") //To change body of created functions use File | Settings | File Templates.
+        view.setLoading(true)
+        apiTv.getTodaysTV(object : TvServiceApi.ServiceCallback<ListTV>{
+            override fun onLoaded(response: ListTV) {
+                view.setLoading(false)
+                when(response.code){
+                    200 -> {
+                        if (page == 1) view.successResponseTvShow(response.tvList)
+                        else view.successResponseMorePagesTvShow(response.tvList)
+                    }
+                    404 -> view.errorResponse(context.getString(R.string.error_404))
+                    500 -> view.errorResponse(context.getString(R.string.error_500))
+                    503 -> view.errorResponse(context.getString(R.string.error_503))
+                    504 -> view.errorResponse(context.getString(R.string.error_504))
+                    else -> view.errorResponse(context.getString(R.string.error_connection))
+                }
+            }
+        }, page, language)
     }
 
     override fun getTopRatedMovie(page: Int, language: String) {
@@ -100,7 +137,23 @@ class HomePresenter: HomeContract.Presenter {
     }
 
     override fun getTopRatedTvShow(page: Int, language: String) {
-        TODO("not implemented") //To change body of created functions use File | Settings | File Templates.
+        view.setLoading(true)
+        apiTv.getTopRatedTV(object : TvServiceApi.ServiceCallback<ListTV>{
+            override fun onLoaded(response: ListTV) {
+                view.setLoading(false)
+                when(response.code){
+                    200 -> {
+                        if (page == 1) view.successResponseTvShow(response.tvList)
+                        else view.successResponseMorePagesTvShow(response.tvList)
+                    }
+                    404 -> view.errorResponse(context.getString(R.string.error_404))
+                    500 -> view.errorResponse(context.getString(R.string.error_500))
+                    503 -> view.errorResponse(context.getString(R.string.error_503))
+                    504 -> view.errorResponse(context.getString(R.string.error_504))
+                    else -> view.errorResponse(context.getString(R.string.error_connection))
+                }
+            }
+        }, page, language)
     }
 
     override fun getMovie(query: String, page: Int, language: String) {
@@ -124,16 +177,49 @@ class HomePresenter: HomeContract.Presenter {
     }
 
     override fun getTvShow(query: String, page: Int, language: String) {
-        TODO("not implemented") //To change body of created functions use File | Settings | File Templates.
+        view.setLoading(true)
+        apiTv.getTvShow(object : TvServiceApi.ServiceCallback<ListTV>{
+            override fun onLoaded(response: ListTV) {
+                view.setLoading(false)
+                when(response.code){
+                    200 -> {
+                        if (page == 1) view.successResponseTvShow(response.tvList)
+                        else view.successResponseMorePagesTvShow(response.tvList)
+                    }
+                    404 -> view.errorResponse(context.getString(R.string.error_404))
+                    500 -> view.errorResponse(context.getString(R.string.error_500))
+                    503 -> view.errorResponse(context.getString(R.string.error_503))
+                    504 -> view.errorResponse(context.getString(R.string.error_504))
+                    else -> view.errorResponse(context.getString(R.string.error_connection))
+                }
+            }
+        }, query, page, language)
     }
 
-    override fun getDetails(id: Int, language: String) {
+    override fun getDetailsMovie(id: Int, language: String) {
         view.setLoading(true)
         apiMovie.getMovieId(object : MovieServiceApi.ServiceCallback<Movie>{
             override fun onLoaded(response: Movie) {
                 view.setLoading(false)
                 when(response.code){
                     200 -> view.successResponseDetailMovie(response)
+                    404 -> view.errorResponse(context.getString(R.string.error_404))
+                    500 -> view.errorResponse(context.getString(R.string.error_500))
+                    503 -> view.errorResponse(context.getString(R.string.error_503))
+                    504 -> view.errorResponse(context.getString(R.string.error_504))
+                    else -> view.errorResponse(context.getString(R.string.error_connection))
+                }
+            }
+        }, id, language)
+    }
+
+    override fun getDetailsTvShow(id: Int, language: String) {
+        view.setLoading(true)
+        apiTv.getTvShowId(object : TvServiceApi.ServiceCallback<TvShow>{
+            override fun onLoaded(response: TvShow) {
+                view.setLoading(false)
+                when(response.code){
+                    200 -> view.successResponseDetailTvShow(response)
                     404 -> view.errorResponse(context.getString(R.string.error_404))
                     500 -> view.errorResponse(context.getString(R.string.error_500))
                     503 -> view.errorResponse(context.getString(R.string.error_503))

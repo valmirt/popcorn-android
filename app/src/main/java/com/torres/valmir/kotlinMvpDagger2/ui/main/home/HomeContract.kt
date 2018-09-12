@@ -42,7 +42,9 @@ interface HomeContract {
 
         fun getTvShow(query: String, page: Int, language: String)
 
-        fun getDetails(id: Int, language: String)
+        fun getDetailsMovie(id: Int, language: String)
+
+        fun getDetailsTvShow(id: Int, language: String)
 
         fun swapActivity(origin: FragmentActivity?, activity: AppCompatActivity, movie: Movie?, tv: TvShow?)
     }

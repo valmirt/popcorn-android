@@ -9,6 +9,9 @@ class Constants{
         const val POPULAR = 1
         const val TOP_RATED = 2
         const val NOW_PLAYING = 3
+        const val POPULAR_TV = 4
+        const val TOP_RATED_TV = 5
+        const val TODAYS_TV = 6
         const val MOVIE_OBJECT = "movie"
         const val TVSHOW_OBJECT = "tv"
         const val ENGLISH_LANGUAGE = "en-US"

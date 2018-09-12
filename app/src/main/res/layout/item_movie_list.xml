@@ -118,8 +118,8 @@
                 </LinearLayout>
             </LinearLayout>
             <RelativeLayout
-                android:layout_width="133dp"
-                android:layout_height="200dp">
+                android:layout_width="135dp"
+                android:layout_height="202dp">
                 <ImageView
                     android:id="@+id/image_item_movie"
                     android:layout_width="match_parent"

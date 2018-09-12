@@ -7,4 +7,4 @@ class ListTV (var code : Int = 0,
               var totalPages: Int = 0,
               var page: Int = 0,
               @SerializedName("results")
-              var movieList: List<TvShow>? = null)
+              var tvList: List<TvShow>? = null)

@@ -15,6 +15,7 @@ import com.bumptech.glide.load.engine.GlideException
 import com.bumptech.glide.request.RequestListener
 import com.torres.valmir.kotlinMvpDagger2.R
 import com.torres.valmir.kotlinMvpDagger2.model.Movie
+import com.torres.valmir.kotlinMvpDagger2.model.TvShow
 import com.torres.valmir.kotlinMvpDagger2.util.Constants.Companion.BASE_URL_IMAGE_W185
 import java.math.RoundingMode
 import java.text.DecimalFormat
@@ -91,5 +92,68 @@ class MovieViewHolder (noteView: View): RecyclerView.ViewHolder(noteView) {
         } catch (e: Exception){}
         popularity.text = df2.format(movie.popularity)
         voteAverage.text = df.format(movie.voteAverage)
+    }
+
+    fun fillDataTv(tv: TvShow, context: Context) {
+        val df = DecimalFormat("#.##")
+        val df2 = DecimalFormat("#.#")
+        var bitmap: Bitmap
+
+        imageItem.setImageDrawable(ContextCompat.getDrawable(context, R.drawable.ic_image_default_poster))
+        title.text = ""
+        title.setTextColor(ContextCompat.getColor(context, R.color.colorText))
+        originalTitle.text = ""
+        originalTitle.setTextColor(ContextCompat.getColor(context, R.color.colorText))
+        date.text = ""
+        date.setTextColor(ContextCompat.getColor(context, R.color.colorText))
+        popularity.text = ""
+        popularity.setTextColor(ContextCompat.getColor(context, R.color.colorText))
+        voteAverage.text = ""
+        voteAverage.setTextColor(ContextCompat.getColor(context, R.color.colorText))
+        card.setCardBackgroundColor(ContextCompat.getColor(context, R.color.defaultCardView))
+        headerPopularity.setTextColor(ContextCompat.getColor(context, R.color.colorText))
+        headerVoteAverage.setTextColor(ContextCompat.getColor(context, R.color.colorText))
+
+        df.roundingMode = RoundingMode.CEILING
+
+        tv.posterUrl?.let { poster->
+            Glide.with(imageItem.context)
+                    .asBitmap()
+                    .load(BASE_URL_IMAGE_W185+poster)
+                    .listener(object: RequestListener<Bitmap>{
+                        override fun onLoadFailed(e: GlideException?, model: Any?, target: com.bumptech.glide.request.target.Target<Bitmap>?, isFirstResource: Boolean): Boolean {
+                            return false
+                        }
+
+                        override fun onResourceReady(resource: Bitmap?, model: Any?, target: com.bumptech.glide.request.target.Target<Bitmap>?, dataSource: DataSource?, isFirstResource: Boolean): Boolean {
+                            resource?.let { bp ->
+                                bitmap = bp
+                                imageItem.setImageBitmap(bitmap)
+                                val palette = Palette.from(bitmap).generate()
+                                val vibrant = palette.vibrantSwatch
+                                vibrant?.let {
+                                    card.setCardBackgroundColor(it.rgb)
+                                    originalTitle.setTextColor(it.titleTextColor)
+                                    title.setTextColor(it.titleTextColor)
+                                    date.setTextColor(it.titleTextColor)
+                                    popularity.setTextColor(it.titleTextColor)
+                                    voteAverage.setTextColor(it.titleTextColor)
+                                    headerPopularity.setTextColor(it.titleTextColor)
+                                    headerVoteAverage.setTextColor(it.titleTextColor)
+                                }
+                            }
+                            return true
+                        }
+                    })
+                    .submit()
+        }
+
+        originalTitle.text = tv.originalName
+        title.text = tv.name
+        try{
+            date.text = tv.firstAirDate.subSequence(0, 4)
+        } catch (e: Exception){}
+        popularity.text = df2.format(tv.popularity)
+        voteAverage.text = df.format(tv.voteAverage)
     }
 }

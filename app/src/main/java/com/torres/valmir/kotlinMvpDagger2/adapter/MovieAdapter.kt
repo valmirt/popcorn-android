@@ -21,9 +21,8 @@ class MovieAdapter (private var movies: ArrayList<Movie>,
 
     override fun getItemCount(): Int = movies.size
 
-    override fun onBindViewHolder(generalHolder: MovieViewHolder, position: Int) {
+    override fun onBindViewHolder(holder: MovieViewHolder, position: Int) {
         val movie = movies[position]
-        val holder = generalHolder as MovieViewHolder
 
         holder.fillData(movie, context)
         holder.itemView.setOnClickListener {

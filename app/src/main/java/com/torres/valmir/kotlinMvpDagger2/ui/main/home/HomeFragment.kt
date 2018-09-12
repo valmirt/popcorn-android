@@ -39,21 +39,21 @@ class HomeFragment: Fragment(), HomeContract.View {
 
     private val itemListenerMovie = object : ItemListener<Movie>{
         override fun onClick(item: Movie) {
-            mPresenter.getDetails(item.id, language)
+            mPresenter.getDetailsMovie(item.id, language)
         }
     }
 
     private val itemListenerTv = object : ItemListener<TvShow> {
         override fun onClick(item: TvShow) {
-
+            //mPresenter.getDetailsTvShow(item.id, language)
         }
     }
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
 
-        if (typeList < 4) mListAdapter = MovieAdapter(ArrayList(0), itemListenerMovie, context!!)
-        else mListAdapterTv = TvShowAdapter(ArrayList(0), itemListenerTv, context!!)
+        mListAdapter = MovieAdapter(ArrayList(0), itemListenerMovie, context!!)
+        mListAdapterTv = TvShowAdapter(ArrayList(0), itemListenerTv, context!!)
 
         TMDBApplication.graph.inject(this)
         mPresenter.attach(this)
@@ -90,14 +90,14 @@ class HomeFragment: Fragment(), HomeContract.View {
                         1 -> mPresenter.getPopularMovie(pagelist, language)
                         2 -> mPresenter.getTopRatedMovie(pagelist, language)
                         3 -> mPresenter.getNowPlayingMovie(pagelist, language)
-//                        4 -> mPresenter.getNowPlayingMovie(pagelist, language)
-//                        5 -> mPresenter.getNowPlayingMovie(pagelist, language)
-//                        6 -> mPresenter.getNowPlayingMovie(pagelist, language)
+                        4 -> mPresenter.getPopularTvShow(pagelist, language)
+                        5 -> mPresenter.getTopRatedTvShow(pagelist, language)
+                        6 -> mPresenter.getTodaysTvShow(pagelist, language)
                     }
                 } else {
                     pagelistQuery++
                     if (typeList < 4) mPresenter.getMovie(query, pagelistQuery, language)
-//                    else
+                    else mPresenter.getTvShow(query, pagelistQuery, language)
                 }
             }
         })
@@ -132,7 +132,9 @@ class HomeFragment: Fragment(), HomeContract.View {
     }
 
     override fun successResponseTvShow(tvList: List<TvShow>?) {
-        TODO("not implemented") //To change body of created functions use File | Settings | File Templates.
+        tvList?.let { list ->
+            mListAdapterTv.replaceData(list)
+        }
     }
 
     override fun successResponseMorePagesMovie(movieList: List<Movie>?) {
@@ -142,7 +144,9 @@ class HomeFragment: Fragment(), HomeContract.View {
     }
 
     override fun successResponseMorePagesTvShow(tvList: List<TvShow>?) {
-        TODO("not implemented") //To change body of created functions use File | Settings | File Templates.
+        tvList?.let { list ->
+            mListAdapterTv.addMoreItem(list)
+        }
     }
 
     override fun errorResponse(error: String) {
@@ -150,7 +154,7 @@ class HomeFragment: Fragment(), HomeContract.View {
     }
 
     override fun successResponseDetailTvShow(tv: TvShow) {
-        TODO("not implemented") //To change body of created functions use File | Settings | File Templates.
+        mPresenter.swapActivity(activity, DetailActivity(), null, tv)
     }
 
     override fun successResponseDetailMovie(movie: Movie) {
@@ -166,7 +170,7 @@ class HomeFragment: Fragment(), HomeContract.View {
                 query?.let {
                     this@HomeFragment.query = it
                     if (typeList < 4) mPresenter.getMovie(it, 1, language)
-//                    else
+                    else mPresenter.getTvShow(it, 1, language)
                 }
                 return false
             }
@@ -193,16 +197,16 @@ class HomeFragment: Fragment(), HomeContract.View {
     private fun updateList(){
         if (query.isEmpty()) {
             when (typeList) {
-                1 -> mPresenter.getPopularMovie(1, language)
-                2 -> mPresenter.getTopRatedMovie(1, language)
-                3 -> mPresenter.getNowPlayingMovie(1, language)
-//                4 -> mPresenter.getNowPlayingMovie(1, language)
-//                5 -> mPresenter.getNowPlayingMovie(1, language)
-//                6 -> mPresenter.getNowPlayingMovie(1, language)
+                1 -> mPresenter.getPopularMovie(pagelist, language)
+                2 -> mPresenter.getTopRatedMovie(pagelist, language)
+                3 -> mPresenter.getNowPlayingMovie(pagelist, language)
+                4 -> mPresenter.getPopularTvShow(pagelist, language)
+                5 -> mPresenter.getTopRatedTvShow(pagelist, language)
+                6 -> mPresenter.getTodaysTvShow(pagelist, language)
             }
         } else {
             if (typeList < 4) mPresenter.getMovie(query, 1, language)
-//            else
+            else mPresenter.getTvShow(query, 1, language)
         }
     }
 }
