@@ -61,4 +61,10 @@
 
     <string name="general_settings">Geral</string>
     <string name="language_settings">Idioma</string>
+
+    <string name="about_text_1">No PopCorn está disponível informações sobre filmes e séries de TV, como o ano de lançamento, tempo de filme, resumo geral sobre o filme, filmes relacionados, elenco, etc. Os filmes e séries são divididos em três categorias: \"Populares\" , \"Melhores avaliados\" e \"Lançamentos/Novos episódios\".</string>
+    <string name="about_text_2">Toda a base de dados usada nesta aplicação é fornecida pela API The Movie Database (TMDb). Para mais informações: \n<a href="https://www.themoviedb.org/documentation/api">https://www.themoviedb.org/documentation/api</a></string>
+    <string name="about_text_3">Desenvolvido por Valmir Torres de Jesus Júnior</string>
+    <string name="about_text_4">Este projeto está disponível no github: \n<a href = "https://github.com/valmirt/kotlin-mvp-dagger2">https://github.com/valmirt/kotlin-mvp-dagger2</a></string>
+    <string name="about_text_5">Para entrar em contato envie um email para valmirt.dev@gmail.com</string>
 </resources>
