@@ -11,6 +11,8 @@ interface CastingContract {
     }
 
     interface Presenter: BaseContract.Presenter<CastingContract.View>{
-        fun getCastCrew(id: Int)
+        fun getCastCrewMovie(id: Int)
+
+        fun getCastCrewTv(id: Int)
     }
 }

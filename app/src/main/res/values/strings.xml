@@ -10,7 +10,16 @@
     <string name="popular">Popular</string>
     <string name="top_rated">Top Rated</string>
     <string name="now_playing">Now Playing</string>
+    <string name="today">Today\'s Show</string>
 
+    <string name="season">seasons -</string>
+    <string name="episodes">episodes</string>
+
+    <string name="season_number">Season</string>
+    <string name="colse">Close</string>
+
+    <string name="in_production">In production</string>
+    <string name="finished">Ended</string>
 
     <string name="title_example">The Avengers</string>
     <string name="date_example">2017</string>
@@ -33,6 +42,7 @@
     <string name="title_activity_detail">DetailActivity</string>
     <string name="title_tab_one">Info</string>
     <string name="title_tab_two">Casting</string>
+    <string name="title_tab_three">Seasons</string>
     <string name="time_example">139</string>
     <string name="minutes_example">minutes</string>
     <string name="production">Production:</string>

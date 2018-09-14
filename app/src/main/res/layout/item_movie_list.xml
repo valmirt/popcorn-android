@@ -87,7 +87,7 @@
                         android:layout_height="wrap_content"
                         android:textColor="@color/colorText"
                         android:text="@string/vote_average_example"
-                        android:textSize="14sp" />
+                        android:textSize="16sp" />
                 </LinearLayout>
 
                 <LinearLayout
@@ -118,8 +118,8 @@
                 </LinearLayout>
             </LinearLayout>
             <RelativeLayout
-                android:layout_width="133dp"
-                android:layout_height="200dp">
+                android:layout_width="135dp"
+                android:layout_height="202dp">
                 <ImageView
                     android:id="@+id/image_item_movie"
                     android:layout_width="match_parent"

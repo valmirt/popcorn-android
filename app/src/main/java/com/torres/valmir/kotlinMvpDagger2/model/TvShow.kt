@@ -18,4 +18,4 @@ class TvShow (var name: String = "",
               var numberEpisodes: Int = 0,
               @SerializedName("number_of_seasons")
               var numberSeasons: Int = 0,
-              var seasons: Season? = null): Entity()
+              var seasons: List<Season>? = null): Entity()

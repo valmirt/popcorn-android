@@ -1,6 +1,7 @@
 package com.torres.valmir.kotlinMvpDagger2.remote.tvShow
 
 import com.torres.valmir.kotlinMvpDagger2.model.ListCastCrew
+import com.torres.valmir.kotlinMvpDagger2.model.ListMovies
 import com.torres.valmir.kotlinMvpDagger2.model.ListTV
 import com.torres.valmir.kotlinMvpDagger2.model.TvShow
 import com.torres.valmir.kotlinMvpDagger2.remote.movie.MovieServiceApi
@@ -18,9 +19,7 @@ interface TvServiceApi {
 
     fun getTvShowId(callback: ServiceCallback<TvShow>, id: Int, language: String)
 
-    fun getSimilarTV(callback: ServiceCallback<ListTV>, id: Int, page: Int, language: String)
-
     fun getCastCrewTV(callback: ServiceCallback<ListCastCrew>, id: Int)
 
-    fun getSimilarTV(callback: MovieServiceApi.ServiceCallback<ListTV>, id: Int, page: Int, language: String)
+    fun getTvShow(callback: TvServiceApi.ServiceCallback<ListTV>, query: String, page: Int, language: String)
 }

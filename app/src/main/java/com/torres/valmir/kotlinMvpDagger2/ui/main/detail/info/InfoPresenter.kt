@@ -6,8 +6,12 @@ import android.support.v7.app.AppCompatActivity
 import com.torres.valmir.kotlinMvpDagger2.R
 import com.torres.valmir.kotlinMvpDagger2.TMDBApplication
 import com.torres.valmir.kotlinMvpDagger2.model.ListMovies
+import com.torres.valmir.kotlinMvpDagger2.model.ListTV
 import com.torres.valmir.kotlinMvpDagger2.model.Movie
+import com.torres.valmir.kotlinMvpDagger2.model.TvShow
 import com.torres.valmir.kotlinMvpDagger2.remote.movie.MovieServiceApi
+import com.torres.valmir.kotlinMvpDagger2.remote.tvShow.TvServiceApi
+import com.torres.valmir.kotlinMvpDagger2.util.Constants
 import com.torres.valmir.kotlinMvpDagger2.util.Constants.Companion.MOVIE_OBJECT
 import javax.inject.Inject
 
@@ -33,8 +37,8 @@ class InfoPresenter: InfoContract.Presenter {
             override fun onLoaded(response: ListMovies) {
                 when(response.code){
                     200 -> {
-                        if (page == 1) view.successResponse(response.movieList)
-                        else view.successResponseMorePages(response.movieList)
+                        if (page == 1) view.successResponseMovie(response.movieList)
+                        else view.successResponseMorePagesMovie(response.movieList)
                     }
                     404 -> view.errorResponse(context.getString(R.string.error_404))
                     500 -> view.errorResponse(context.getString(R.string.error_500))
@@ -50,7 +54,7 @@ class InfoPresenter: InfoContract.Presenter {
         apiMovie.getMovieId(object : MovieServiceApi.ServiceCallback<Movie>{
             override fun onLoaded(response: Movie) {
                 when(response.code){
-                    200 -> view.responseDetail(response)
+                    200 -> view.responseDetailMovie(response)
                     404 -> view.errorResponse(context.getString(R.string.error_404))
                     500 -> view.errorResponse(context.getString(R.string.error_500))
                     503 -> view.errorResponse(context.getString(R.string.error_503))
@@ -61,9 +65,10 @@ class InfoPresenter: InfoContract.Presenter {
         }, id, language)
     }
 
-    override fun swapActivity(activity: AppCompatActivity, movie: Movie) {
+    override fun swapActivity(activity: AppCompatActivity, movie: Movie?, tv: TvShow?) {
         val intent = Intent(context, activity::class.java)
-        intent.putExtra(MOVIE_OBJECT, movie)
+        movie?.let { intent.putExtra(MOVIE_OBJECT, it) }
+        tv?.let { intent.putExtra(Constants.TVSHOW_OBJECT, it) }
         context.startActivity(intent)
     }
 }

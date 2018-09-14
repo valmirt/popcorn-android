@@ -11,6 +11,17 @@
     <string name="popular">Populares</string>
     <string name="top_rated">Melhores avaliados</string>
     <string name="now_playing">Lançamentos</string>
+    <string name="today">Novos episódios</string>
+
+    <string name="season">temporadas -</string>
+    <string name="episodes">episódios</string>
+
+    <string name="season_number">Temporada</string>
+    <string name="colse">Fechar</string>
+
+    <string name="in_production">Em produção</string>
+    <string name="finished">Encerrada</string>
+
     <string name="popularity">Popularidade:</string>
     <string name="genres">Gênero:</string>
     <string name="vote_average">Avaliação média:</string>
@@ -33,6 +44,7 @@
     <string name="title_activity_detail">DetailActivity</string>
     <string name="title_tab_one">Info</string>
     <string name="title_tab_two">Elenco</string>
+    <string name="title_tab_three">Seasons</string>
     <string name="time_example">139</string>
     <string name="minutes_example">minutos</string>
     <string name="production">Produção:</string>
