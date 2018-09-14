@@ -87,7 +87,7 @@
                         android:layout_height="wrap_content"
                         android:textColor="@color/colorText"
                         android:text="@string/vote_average_example"
-                        android:textSize="14sp" />
+                        android:textSize="16sp" />
                 </LinearLayout>
 
                 <LinearLayout

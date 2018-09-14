@@ -3,6 +3,11 @@
   <component name="issues">
     <option name="index">
       <map>
+        <entry key="$PROJECT_DIR$/app/src/main/java/com/torres/valmir/kotlinMvpDagger2/adapter/CastingAdapter.kt">
+          <value>
+            <set />
+          </value>
+        </entry>
         <entry key="$PROJECT_DIR$/app/src/main/java/com/torres/valmir/kotlinMvpDagger2/adapter/EntityAdapter.kt">
           <value>
             <set />
@@ -14,6 +19,16 @@
           </value>
         </entry>
         <entry key="$PROJECT_DIR$/app/src/main/java/com/torres/valmir/kotlinMvpDagger2/adapter/MovieViewHolder.kt">
+          <value>
+            <set />
+          </value>
+        </entry>
+        <entry key="$PROJECT_DIR$/app/src/main/java/com/torres/valmir/kotlinMvpDagger2/adapter/SeasonAdapter.kt">
+          <value>
+            <set />
+          </value>
+        </entry>
+        <entry key="$PROJECT_DIR$/app/src/main/java/com/torres/valmir/kotlinMvpDagger2/adapter/SeasonViewHolder.kt">
           <value>
             <set />
           </value>
@@ -98,6 +113,11 @@
             <set />
           </value>
         </entry>
+        <entry key="$PROJECT_DIR$/app/src/main/java/com/torres/valmir/kotlinMvpDagger2/ui/main/detail/season/SeasonFragment.kt">
+          <value>
+            <set />
+          </value>
+        </entry>
         <entry key="$PROJECT_DIR$/app/src/main/java/com/torres/valmir/kotlinMvpDagger2/ui/main/home/HomeActivity.kt">
           <value>
             <set />
@@ -128,7 +148,17 @@
             <set />
           </value>
         </entry>
+        <entry key="$PROJECT_DIR$/app/src/main/res/layout/fragment_season_detail.xml">
+          <value>
+            <set />
+          </value>
+        </entry>
         <entry key="$PROJECT_DIR$/app/src/main/res/layout/item_movie_list.xml">
+          <value>
+            <set />
+          </value>
+        </entry>
+        <entry key="$PROJECT_DIR$/app/src/main/res/layout/item_season.xml">
           <value>
             <set />
           </value>

@@ -58,7 +58,6 @@ class InfoFragment: Fragment(), InfoContract.View {
         }
 
         args?.let {
-
             movie = it.getSerializable(MOVIE_OBJECT) as? Movie
             tv = it.getSerializable(TVSHOW_OBJECT) as? TvShow
             movie?.let { mv -> mPresenter.getSimilarMovies(mv.id, 1, language) }
@@ -72,19 +71,20 @@ class InfoFragment: Fragment(), InfoContract.View {
     override fun onActivityCreated(savedInstanceState: Bundle?) {
         super.onActivityCreated(savedInstanceState)
         fillView()
-
-        list_similar_movies.layoutManager = LinearLayoutManager(context, LinearLayoutManager.HORIZONTAL, false)
-        list_similar_movies.setHasFixedSize(true)
-        list_similar_movies.isNestedScrollingEnabled = false
-        list_similar_movies.adapter = mListAdapter
-        list_similar_movies.addOnScrollListener(object : EndlessRecyclerViewScrollListener(list_similar_movies.layoutManager as LinearLayoutManager){
-            override fun onLoadMore(page: Int, totalItemsCount: Int, view: RecyclerView?) {
-                movie?.let {
-                    pagelist++
-                    mPresenter.getSimilarMovies(it.id, pagelist, language)
+        movie?.let {
+            list_similar_movies.layoutManager = LinearLayoutManager(context, LinearLayoutManager.HORIZONTAL, false)
+            list_similar_movies.setHasFixedSize(true)
+            list_similar_movies.isNestedScrollingEnabled = false
+            list_similar_movies.adapter = mListAdapter
+            list_similar_movies.addOnScrollListener(object : EndlessRecyclerViewScrollListener(list_similar_movies.layoutManager as LinearLayoutManager){
+                override fun onLoadMore(page: Int, totalItemsCount: Int, view: RecyclerView?) {
+                    movie?.let { mv->
+                        pagelist++
+                        mPresenter.getSimilarMovies(mv.id, pagelist, language)
+                    }
                 }
-            }
-        })
+            })
+        }
     }
 
     override fun onResume() {
@@ -187,13 +187,4 @@ class InfoFragment: Fragment(), InfoContract.View {
     override fun responseDetailMovie(movie: Movie) {
         mPresenter.swapActivity(DetailActivity(), movie, null)
     }
-
-    fun refactorDate(n: String): String {
-        val date = n.replace("-".toRegex(), "/")
-        val s = date.split("/".toRegex()).dropLastWhile { it.isEmpty() }.toTypedArray()
-        val newDate = s[2] + "/" + s[1] + "/" + s[0]
-
-        return newDate
-    }
-
 }

@@ -16,6 +16,9 @@
     <string name="season">temporadas -</string>
     <string name="episodes">episódios</string>
 
+    <string name="season_number">Temporada</string>
+    <string name="colse">Fechar</string>
+
     <string name="in_production">Em produção</string>
     <string name="finished">Encerrada</string>
 
