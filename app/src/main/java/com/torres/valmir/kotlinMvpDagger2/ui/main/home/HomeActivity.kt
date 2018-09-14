@@ -10,6 +10,7 @@ import android.view.Menu
 import android.view.MenuItem
 import com.torres.valmir.kotlinMvpDagger2.R
 import com.torres.valmir.kotlinMvpDagger2.ui.base.BaseActivity
+import com.torres.valmir.kotlinMvpDagger2.ui.main.about.AboutActivity
 import com.torres.valmir.kotlinMvpDagger2.ui.main.settings.SettingsActivity
 import com.torres.valmir.kotlinMvpDagger2.util.Constants.Companion.NOW_PLAYING
 import com.torres.valmir.kotlinMvpDagger2.util.Constants.Companion.POPULAR
@@ -83,7 +84,7 @@ class HomeActivity : BaseActivity(), NavigationView.OnNavigationItemSelectedList
                 startActivity(Intent(this, SettingsActivity::class.java))
             }
             R.id.nav_about -> {
-                Snackbar.make(coordinator_home, getString(R.string.alert_1), Snackbar.LENGTH_LONG).show()
+                startActivity(Intent(this, AboutActivity::class.java))
             }
         }
 

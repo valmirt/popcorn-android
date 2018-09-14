@@ -58,4 +58,10 @@
     <string name="action_search">Search</string>
     <string name="general_settings">General</string>
     <string name="language_settings">Language</string>
+
+    <string name="about_text_1">Information on movies and TV series is available at PopCorn, such as the year of release, movie time, general movie summary, related movies, cast, etc. The films and tv shows are divided into three categories: \"Popular\", \"Top rated\" and \"Now playing/Today\'s Show\".</string>
+    <string name="about_text_2">The entire database used in this documentation is provided by The Movie Database API (TMDb). For more information: \n<a href="https://www.themoviedb.org/documentation/api">https://www.themoviedb.org/documentation/api</a></string>
+    <string name="about_text_3">Developed by Valmir Torres de Jesus Junior</string>To contact, please send an email to valmirt.dev@gmail.com
+    <string name="about_text_4">This project is available on github: \n<a href = "https://github.com/valmirt/kotlin-mvp-dagger2">https://github.com/valmirt/kotlin-mvp-dagger2</a></string>
+    <string name="about_text_5">To contact, please send an email to valmirt.dev@gmail.com</string>
 </resources>
