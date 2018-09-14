@@ -12,13 +12,17 @@ import com.torres.valmir.kotlinMvpDagger2.TMDBApplication
 import com.torres.valmir.kotlinMvpDagger2.adapter.CastingAdapter
 import com.torres.valmir.kotlinMvpDagger2.model.Cast
 import com.torres.valmir.kotlinMvpDagger2.model.Movie
+import com.torres.valmir.kotlinMvpDagger2.model.TvShow
 import com.torres.valmir.kotlinMvpDagger2.util.Constants
+import com.torres.valmir.kotlinMvpDagger2.util.Constants.Companion.MOVIE_OBJECT
+import com.torres.valmir.kotlinMvpDagger2.util.Constants.Companion.TVSHOW_OBJECT
 import kotlinx.android.synthetic.main.fragment_casting_detail.*
 import javax.inject.Inject
 
 class CastingFragment: Fragment(), CastingContract.View {
     private lateinit var mListAdapter: CastingAdapter
     private var movie: Movie? = null
+    private var tv: TvShow? = null
 
     @Inject
     lateinit var mPresenter: CastingContract.Presenter
@@ -31,14 +35,19 @@ class CastingFragment: Fragment(), CastingContract.View {
         mListAdapter = CastingAdapter(ArrayList(0), context!!)
 
         args?.let {
-            movie = it.getSerializable(Constants.MOVIE_OBJECT) as Movie
+            movie = it.getSerializable(MOVIE_OBJECT) as? Movie
+            tv = it.getSerializable(TVSHOW_OBJECT) as? TvShow
         }
     }
 
     override fun onResume() {
         super.onResume()
         movie?.let {
-            mPresenter.getCastCrew(it.id)
+            mPresenter.getCastCrewMovie(it.id)
+        }
+
+        tv?.let {
+            mPresenter.getCastCrewTv(it.id)
         }
     }
 

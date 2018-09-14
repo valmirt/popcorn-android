@@ -5,12 +5,11 @@ import android.support.v7.widget.RecyclerView
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import com.torres.valmir.kotlinMvpDagger2.R
-import com.torres.valmir.kotlinMvpDagger2.model.Movie
+import com.torres.valmir.kotlinMvpDagger2.model.TvShow
 
-class MovieAdapter (private var movies: ArrayList<Movie>,
-                    private var itemListener: ItemListener<Movie>,
-                    private var context: Context)
-    : RecyclerView.Adapter<MovieViewHolder>() {
+class TvShowAdapter (private var tvShows: ArrayList<TvShow>,
+                     private var itemListener: ItemListener<TvShow>,
+                     private var context: Context) : RecyclerView.Adapter<MovieViewHolder>(){
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): MovieViewHolder {
         val context = parent.context
@@ -19,33 +18,33 @@ class MovieAdapter (private var movies: ArrayList<Movie>,
         return MovieViewHolder(noteView)
     }
 
-    override fun getItemCount(): Int = movies.size
+    override fun getItemCount(): Int = tvShows.size
 
     override fun onBindViewHolder(holder: MovieViewHolder, position: Int) {
-        val movie = movies[position]
+        val tv = tvShows[position]
 
-        holder.fillData(movie, context)
+        holder.fillDataTv(tv, context)
         holder.itemView.setOnClickListener {
-            itemListener.onClick(movie)
+            itemListener.onClick(tv)
         }
     }
 
     private fun clear(){
-        this.movies.clear()
+        this.tvShows.clear()
         notifyDataSetChanged()
     }
 
-    fun replaceData(data: List<Movie>) {
+    fun replaceData(data: List<TvShow>) {
         clear()
-        this.movies.addAll(data)
+        this.tvShows.addAll(data)
         notifyDataSetChanged()
     }
 
-    fun addMoreItem(data: List<Movie>) {
-        var temp = this.movies.toList()
+    fun addMoreItem(data: List<TvShow>) {
+        var temp = this.tvShows.toList()
         clear()
         temp += data
-        this.movies.addAll(temp)
+        this.tvShows.addAll(temp)
         notifyDataSetChanged()
     }
 }

@@ -32,9 +32,9 @@
                     android:icon="@drawable/ic_top_rated"
                     android:title="@string/top_rated" />
                 <item
-                    android:id="@+id/nav_now_playing_tv"
-                    android:icon="@drawable/ic_now_playing"
-                    android:title="@string/now_playing" />
+                    android:id="@+id/nav_todays_show"
+                    android:icon="@drawable/ic_today"
+                    android:title="@string/today" />
             </menu>
         </item>
 
