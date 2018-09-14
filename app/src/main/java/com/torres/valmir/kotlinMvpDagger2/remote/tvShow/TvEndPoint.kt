@@ -36,12 +36,7 @@ interface TvEndPoint {
                  @Query("language") language: String,
                  @Query("page") page: Int) : Call<ListTV>
 
-    @GET("/tv/{tv_id}/similar")
-    fun getSimilarTvShows(@Path("tv_id") id: Int,
-                          @Query("api_key") key: String = "ebf3f29bcec9455240223a565fb2a81d",
-                          @Query("language") language: String) : Call<ListTV>
-
     @GET("tv/{tv_id}/credits")
-    fun getCastandCrewTV(@Path("movie_id") id: Int,
+    fun getCastandCrewTV(@Path("tv_id") id: Int,
                          @Query("api_key") key: String = "ebf3f29bcec9455240223a565fb2a81d") : Call<ListCastCrew>
 }

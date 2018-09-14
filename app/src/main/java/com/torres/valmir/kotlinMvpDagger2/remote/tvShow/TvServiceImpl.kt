@@ -52,11 +52,11 @@ class TvServiceImpl: TvServiceApi {
     }
 
     override fun getTvShowId(callback: TvServiceApi.ServiceCallback<TvShow>, id: Int, language: String) {
-        val callMovie = retrofit
+        val call = retrofit
                 .create(TvEndPoint::class.java)
                 .detailTV(id = id, language = language)
 
-        callMovie.enqueue(object: Callback<TvShow>{
+        call.enqueue(object: Callback<TvShow>{
             override fun onFailure(call: Call<TvShow>?, t: Throwable?) {
                 callback.onLoaded(TvShow())
             }
@@ -72,14 +72,6 @@ class TvServiceImpl: TvServiceApi {
                 callback.onLoaded(result)
             }
         })
-    }
-
-    override fun getSimilarTV(callback: TvServiceApi.ServiceCallback<ListTV>, id: Int, page: Int, language: String) {
-        val call = retrofit
-                .create(TvEndPoint::class.java)
-                .getSimilarTvShows(id = id, language = language)
-
-        returningCall(call, callback)
     }
 
     override fun getCastCrewTV(callback: TvServiceApi.ServiceCallback<ListCastCrew>, id: Int) {

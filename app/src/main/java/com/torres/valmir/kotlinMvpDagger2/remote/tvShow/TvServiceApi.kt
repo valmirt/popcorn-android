@@ -19,8 +19,6 @@ interface TvServiceApi {
 
     fun getTvShowId(callback: ServiceCallback<TvShow>, id: Int, language: String)
 
-    fun getSimilarTV(callback: ServiceCallback<ListTV>, id: Int, page: Int, language: String)
-
     fun getCastCrewTV(callback: ServiceCallback<ListCastCrew>, id: Int)
 
     fun getTvShow(callback: TvServiceApi.ServiceCallback<ListTV>, query: String, page: Int, language: String)

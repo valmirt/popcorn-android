@@ -12,6 +12,11 @@
     <string name="now_playing">Now Playing</string>
     <string name="today">Today\'s Show</string>
 
+    <string name="season">seasons -</string>
+    <string name="episodes">episodes</string>
+
+    <string name="in_production">In production</string>
+    <string name="finished">Ended</string>
 
     <string name="title_example">The Avengers</string>
     <string name="date_example">2017</string>

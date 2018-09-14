@@ -12,6 +12,7 @@ import com.bumptech.glide.load.engine.GlideException
 import com.bumptech.glide.request.RequestListener
 import com.torres.valmir.kotlinMvpDagger2.R
 import com.torres.valmir.kotlinMvpDagger2.model.Movie
+import com.torres.valmir.kotlinMvpDagger2.model.TvShow
 import com.torres.valmir.kotlinMvpDagger2.util.Constants.Companion.BASE_URL_IMAGE_W185
 
 class SimilarMoviesViewHolder(noteView: View): RecyclerView.ViewHolder(noteView) {
@@ -23,6 +24,32 @@ class SimilarMoviesViewHolder(noteView: View): RecyclerView.ViewHolder(noteView)
         imageView.setImageDrawable(ContextCompat.getDrawable(context, R.drawable.ic_image_default_poster))
 
         movie.posterUrl?.let {poster ->
+            Glide.with(imageView.context)
+                    .asBitmap()
+                    .load(BASE_URL_IMAGE_W185+poster)
+                    .listener(object: RequestListener<Bitmap> {
+                        override fun onLoadFailed(e: GlideException?, model: Any?, target: com.bumptech.glide.request.target.Target<Bitmap>?, isFirstResource: Boolean): Boolean {
+                            return false
+                        }
+
+                        override fun onResourceReady(resource: Bitmap?, model: Any?, target: com.bumptech.glide.request.target.Target<Bitmap>?, dataSource: DataSource?, isFirstResource: Boolean): Boolean {
+                            resource?.let {
+                                bitmap = it
+                                imageView.setImageBitmap(bitmap)
+                            }
+                            return true
+                        }
+                    })
+                    .submit()
+        }
+    }
+
+    fun fillDataTvShow(tv: TvShow, context: Context) {
+        var bitmap: Bitmap
+
+        imageView.setImageDrawable(ContextCompat.getDrawable(context, R.drawable.ic_image_default_poster))
+
+        tv.posterUrl?.let {poster ->
             Glide.with(imageView.context)
                     .asBitmap()
                     .load(BASE_URL_IMAGE_W185+poster)

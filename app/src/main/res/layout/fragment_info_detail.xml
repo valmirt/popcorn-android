@@ -40,6 +40,36 @@
                         android:layout_marginBottom="4dp"
                         android:textColor="@color/colorTitle"
                         android:id="@+id/original_title_movie_detail"/>
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:textSize="14sp"
+                        android:textColor="@color/colorText"
+                        android:id="@+id/date_movie_detail"/>
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:textSize="14sp"
+                        android:textColor="@color/colorText"
+                        android:id="@+id/in_production"/>
+                    <LinearLayout
+                        android:id="@+id/layout_tv"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:orientation="horizontal">
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:textSize="14sp"
+                            android:textColor="@color/colorText"
+                            android:id="@+id/number_seasons"/>
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:textSize="14sp"
+                            android:textColor="@color/colorText"
+                            android:id="@+id/number_episodes"/>
+                    </LinearLayout>
                     <LinearLayout
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
@@ -49,15 +79,7 @@
                             android:layout_height="wrap_content"
                             android:textSize="14sp"
                             android:textColor="@color/colorText"
-                            android:id="@+id/date_movie_detail"/>
-                        <TextView
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:textSize="14sp"
-                            android:layout_marginLeft="8dp"
-                            android:textColor="@color/colorText"
-                            android:id="@+id/time_movie_detail"
-                            android:layout_marginStart="8dp" />
+                            android:id="@+id/time_movie_detail"/>
                         <TextView
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
@@ -66,7 +88,6 @@
                             android:textColor="@color/colorText"
                             android:text="@string/minutes_example"
                             android:layout_marginStart="2dp" />
-
                     </LinearLayout>
                 </LinearLayout>
                 <LinearLayout
@@ -210,6 +231,7 @@
                 android:layout_height="1dp"
                 android:background="@color/colorTag"/>
             <LinearLayout
+                android:id="@+id/layout_similar_movies"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginBottom="8dp"

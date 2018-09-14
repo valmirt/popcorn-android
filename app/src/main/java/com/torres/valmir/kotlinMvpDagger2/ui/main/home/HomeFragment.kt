@@ -45,7 +45,7 @@ class HomeFragment: Fragment(), HomeContract.View {
 
     private val itemListenerTv = object : ItemListener<TvShow> {
         override fun onClick(item: TvShow) {
-            //mPresenter.getDetailsTvShow(item.id, language)
+            mPresenter.getDetailsTvShow(item.id, language)
         }
     }
 

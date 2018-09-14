@@ -16,9 +16,11 @@ import com.torres.valmir.kotlinMvpDagger2.TMDBApplication
 import com.torres.valmir.kotlinMvpDagger2.adapter.ItemListener
 import com.torres.valmir.kotlinMvpDagger2.adapter.SimilarMoviesAdapter
 import com.torres.valmir.kotlinMvpDagger2.model.Movie
+import com.torres.valmir.kotlinMvpDagger2.model.TvShow
 import com.torres.valmir.kotlinMvpDagger2.ui.main.detail.DetailActivity
 import com.torres.valmir.kotlinMvpDagger2.util.Constants
 import com.torres.valmir.kotlinMvpDagger2.util.Constants.Companion.MOVIE_OBJECT
+import com.torres.valmir.kotlinMvpDagger2.util.Constants.Companion.TVSHOW_OBJECT
 import com.torres.valmir.kotlinMvpDagger2.util.EndlessRecyclerViewScrollListener
 import kotlinx.android.synthetic.main.fragment_info_detail.*
 import java.math.RoundingMode
@@ -27,6 +29,7 @@ import javax.inject.Inject
 
 class InfoFragment: Fragment(), InfoContract.View {
     private var movie: Movie? = null
+    private var tv: TvShow? = null
     private lateinit var mListAdapter: SimilarMoviesAdapter
     private var pagelist = 1
     private var language = ""
@@ -55,8 +58,10 @@ class InfoFragment: Fragment(), InfoContract.View {
         }
 
         args?.let {
-            movie = it.getSerializable(MOVIE_OBJECT) as Movie
-            mPresenter.getSimilarMovies(movie!!.id, 1, language)
+
+            movie = it.getSerializable(MOVIE_OBJECT) as? Movie
+            tv = it.getSerializable(TVSHOW_OBJECT) as? TvShow
+            movie?.let { mv -> mPresenter.getSimilarMovies(mv.id, 1, language) }
         }
     }
 
@@ -101,9 +106,11 @@ class InfoFragment: Fragment(), InfoContract.View {
         movie?.let { movie ->
             title_movie_detail.text = movie.title
             original_title_movie_detail.text = movie.originalTitle
+            layout_tv.visibility = View.GONE
+            in_production.visibility = View.GONE
 
             try {
-                date_movie_detail.text = "("+movie.releaseDate.subSequence(0, 4)+")"
+                date_movie_detail.text = "("+movie.releaseDate.subSequence(0, 4)+")\n"
             } catch (e: Exception){}
 
             time_movie_detail.text = movie.runtime.toString()
@@ -123,15 +130,53 @@ class InfoFragment: Fragment(), InfoContract.View {
                 }
             }
         }
+        tv?.let { tv ->
+            layout_similar_movies.visibility = View.GONE
+            title_movie_detail.text = tv.name
+            original_title_movie_detail.text = tv.originalName
+
+            try {
+                date_movie_detail.text = "("+tv.firstAirDate.subSequence(0, 4)+")"
+            } catch (e: Exception){}
+
+            number_seasons.text = tv.numberSeasons.toString()+" "+getString(R.string.season)
+            number_episodes.text = " "+tv.numberEpisodes.toString()+" "+getString(R.string.episodes)
+
+            tv.runtime?.let { runtime ->
+                for (time in runtime){
+                    time_movie_detail.text = time_movie_detail.text.toString()+time.toString()+"~"
+                }
+                time_movie_detail.text = time_movie_detail.text.toString().removeSuffix("~")
+            }
+
+            if (tv.inProduction) in_production.text = getString(R.string.in_production)+"\n"
+            else in_production.text = getString(R.string.finished)+"\n"
+
+            vote_average_detail.text = df.format(tv.voteAverage)
+            popularity_detail.text = df.format(tv.popularity)
+            overview_detail.text = tv.overview
+            tv.genres?.let { genres ->
+                for (genre in genres){
+                    val temp = genre_movie_detail.text.toString()
+                    genre_movie_detail.text = temp+genre.name+"\n"
+                }
+            }
+            tv.production?.let { productions ->
+                for (production in productions){
+                    val temp = production_movie_detail.text.toString()
+                    production_movie_detail.text = temp+production.name+"\n"
+                }
+            }
+        }
     }
 
-    override fun successResponse(similarMovies: List<Movie>?) {
+    override fun successResponseMovie(similarMovies: List<Movie>?) {
         similarMovies?.let { list ->
             mListAdapter.replaceData(list)
         }
     }
 
-    override fun successResponseMorePages(similarMovies: List<Movie>?) {
+    override fun successResponseMorePagesMovie(similarMovies: List<Movie>?) {
         similarMovies?.let { list ->
             mListAdapter.addMoreItem(list)
         }
@@ -139,8 +184,16 @@ class InfoFragment: Fragment(), InfoContract.View {
 
     override fun errorResponse(error: String) = Snackbar.make(view!!, error, Snackbar.LENGTH_LONG).show()
 
-    override fun responseDetail(movie: Movie) {
-        mPresenter.swapActivity(DetailActivity(), movie)
+    override fun responseDetailMovie(movie: Movie) {
+        mPresenter.swapActivity(DetailActivity(), movie, null)
+    }
+
+    fun refactorDate(n: String): String {
+        val date = n.replace("-".toRegex(), "/")
+        val s = date.split("/".toRegex()).dropLastWhile { it.isEmpty() }.toTypedArray()
+        val newDate = s[2] + "/" + s[1] + "/" + s[0]
+
+        return newDate
     }
 
 }

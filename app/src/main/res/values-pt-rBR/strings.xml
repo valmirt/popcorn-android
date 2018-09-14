@@ -13,6 +13,12 @@
     <string name="now_playing">Lançamentos</string>
     <string name="today">Today\'s Show</string>
 
+    <string name="season">temporadas -</string>
+    <string name="episodes">episódios</string>
+
+    <string name="in_production">Em produção</string>
+    <string name="finished">Encerrada</string>
+
     <string name="popularity">Popularidade:</string>
     <string name="genres">Gênero:</string>
     <string name="vote_average">Avaliação média:</string>
