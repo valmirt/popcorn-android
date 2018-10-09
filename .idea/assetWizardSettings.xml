@@ -23,7 +23,7 @@
                                           <PersistentState>
                                             <option name="values">
                                               <map>
-                                                <entry key="paddingPercent" value="20" />
+                                                <entry key="paddingPercent" value="30" />
                                               </map>
                                             </option>
                                           </PersistentState>
@@ -37,7 +37,7 @@
                                       <entry key="backgroundColor" value="4d99ff" />
                                       <entry key="cropped" value="true" />
                                       <entry key="iconShape" value="CIRCLE" />
-                                      <entry key="imageAsset" value="$PROJECT_DIR$/app/src/main/res/drawable/icon.png" />
+                                      <entry key="imageAsset" value="$USER_HOME$/Downloads/foto.jpg" />
                                       <entry key="outputName" value="ic_launcher_round" />
                                     </map>
                                   </option>
