@@ -23,7 +23,7 @@ android {
 
 dependencies {
     def retrofit_version = '2.3.0'
-    def dagger2_version = '2.15'
+    def dagger2_version = '2.16'
     def support_version = '27.1.1'
     def glide_version = '4.8.0'
 
@@ -37,6 +37,7 @@ dependencies {
     implementation "com.squareup.retrofit2:retrofit:$retrofit_version"
     implementation "com.squareup.retrofit2:adapter-rxjava2:$retrofit_version"
     implementation "com.squareup.retrofit2:converter-gson:$retrofit_version"
+    implementation "com.squareup.okhttp3:logging-interceptor:3.7.0"
 
     // dependency injection
     implementation "com.google.dagger:dagger:$dagger2_version"
