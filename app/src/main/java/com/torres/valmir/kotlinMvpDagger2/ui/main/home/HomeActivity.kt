@@ -12,6 +12,7 @@ import com.torres.valmir.kotlinMvpDagger2.R
 import com.torres.valmir.kotlinMvpDagger2.ui.base.BaseActivity
 import com.torres.valmir.kotlinMvpDagger2.ui.main.about.AboutActivity
 import com.torres.valmir.kotlinMvpDagger2.ui.main.settings.SettingsActivity
+import com.torres.valmir.kotlinMvpDagger2.util.AppRater
 import com.torres.valmir.kotlinMvpDagger2.util.Constants.Companion.NOW_PLAYING
 import com.torres.valmir.kotlinMvpDagger2.util.Constants.Companion.POPULAR
 import com.torres.valmir.kotlinMvpDagger2.util.Constants.Companion.POPULAR_TV
@@ -27,6 +28,7 @@ class HomeActivity : BaseActivity(), NavigationView.OnNavigationItemSelectedList
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_home)
         setSupportActionBar(toolbar)
+        AppRater(this)
 
         val toggle = ActionBarDrawerToggle(
                 this, drawer_layout, toolbar, R.string.navigation_drawer_open, R.string.navigation_drawer_close)
