@@ -67,4 +67,11 @@
     <string name="about_text_3">Desenvolvido por Valmir Torres de Jesus Júnior</string>
     <string name="about_text_4">Este projeto está disponível no github: \n<a href = "https://github.com/valmirt/kotlin-mvp-dagger2">https://github.com/valmirt/kotlin-mvp-dagger2</a></string>
     <string name="about_text_5">Para entrar em contato envie um email para valmirt.dev@gmail.com</string>
+
+    <string name="remind_me">Mais tarde</string>
+    <string name="no_thanks">Não</string>
+    <string name="rate_it">Avaliar</string>
+    <string name="rate_it_now">Avaliar</string>
+    <string name="text_rate_1">Se você está gostando do</string>
+    <string name="text_rate_2">, por favor tire um momento para avaliá-lo. Obrigado pela ajuda!</string>
 </resources>
