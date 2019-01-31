@@ -5,7 +5,7 @@
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
     android:layout_margin="8dp"
-    tools:context="com.torres.valmir.kotlinMvpDagger2.ui.main.about.AboutActivity">
+    tools:context="com.torres.valmir.kotlin_mvp_dagger2.ui.main.about.AboutActivity">
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
