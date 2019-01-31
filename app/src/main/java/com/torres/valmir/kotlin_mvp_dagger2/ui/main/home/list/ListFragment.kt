@@ -186,6 +186,7 @@ class ListFragment: BaseFragment(), ListContract.View {
             override fun onMenuItemActionCollapse(p0: MenuItem?): Boolean {
                 this@ListFragment.query = ""
                 this@ListFragment.pagelistQuery = 1
+                updateList()
                 return true
             }
         })

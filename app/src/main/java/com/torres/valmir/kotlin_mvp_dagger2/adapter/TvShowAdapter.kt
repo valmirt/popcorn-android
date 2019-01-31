@@ -9,18 +9,18 @@ import com.torres.valmir.kotlin_mvp_dagger2.model.TvShow
 
 class TvShowAdapter (private var tvShows: ArrayList<TvShow>,
                      private var itemListener: ItemListener<TvShow>,
-                     private var context: Context) : RecyclerView.Adapter<MovieViewHolder>(){
+                     private var context: Context) : RecyclerView.Adapter<MovieAdapter.MovieViewHolder>(){
 
-    override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): MovieViewHolder {
+    override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): MovieAdapter.MovieViewHolder {
         val context = parent.context
         val inflater = LayoutInflater.from(context)
         val noteView = inflater.inflate(R.layout.item_movie_list, parent, false)
-        return MovieViewHolder(noteView)
+        return MovieAdapter.MovieViewHolder(noteView)
     }
 
     override fun getItemCount(): Int = tvShows.size
 
-    override fun onBindViewHolder(holder: MovieViewHolder, position: Int) {
+    override fun onBindViewHolder(holder: MovieAdapter.MovieViewHolder, position: Int) {
         val tv = tvShows[position]
 
         holder.fillDataTv(tv, context)
@@ -41,7 +41,7 @@ class TvShowAdapter (private var tvShows: ArrayList<TvShow>,
     }
 
     fun addMoreItem(data: List<TvShow>) {
-        var temp = this.tvShows.toList()
+        val temp = this.tvShows.toMutableList()
         clear()
         temp += data
         this.tvShows.addAll(temp)
