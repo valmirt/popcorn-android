@@ -20,5 +20,6 @@ class Constants{
         const val LANGUAGE_TYPES = "lt"
         const val LANGUAGE = "language"
         const val VISIBLE_LANGUAGE = "vl"
+        const val INFO = "info"
     }
 }

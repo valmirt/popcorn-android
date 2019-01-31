@@ -6,7 +6,7 @@ import com.torres.valmir.kotlin_mvp_dagger2.ui.base.BaseContract
 
 interface HomeContract {
     interface View: BaseContract.View {
-
+        fun showWelcomeMessage(isVisible: Boolean)
     }
 
     interface Presenter: BaseContract.Presenter<HomeContract.View>{
@@ -15,5 +15,9 @@ interface HomeContract {
         fun setActivitySettings(context: Context)
 
         fun setActivityAbout(context: Context)
+
+        fun getPreference(activity: BaseActivity)
+
+        fun setPreference(activity: BaseActivity)
     }
 }

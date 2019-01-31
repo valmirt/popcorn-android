@@ -1,9 +1,13 @@
 package com.torres.valmir.kotlin_mvp_dagger2.ui.main.home
 
+import android.os.Build
 import android.os.Bundle
+import android.support.annotation.RequiresApi
 import android.support.design.widget.NavigationView
 import android.support.v4.view.GravityCompat
 import android.support.v7.app.ActionBarDrawerToggle
+import android.support.v7.app.AlertDialog
+import android.text.Html
 import android.view.Menu
 import android.view.MenuItem
 import com.torres.valmir.kotlin_mvp_dagger2.R
@@ -30,6 +34,7 @@ class HomeActivity : BaseActivity(), NavigationView.OnNavigationItemSelectedList
         setSupportActionBar(toolbar)
         AppRater(this)
         mPresenter.attach(this)
+        mPresenter.getPreference(this)
 
         val toggle = ActionBarDrawerToggle(
                 this, drawer_layout, toolbar, R.string.navigation_drawer_open, R.string.navigation_drawer_close)
@@ -94,6 +99,20 @@ class HomeActivity : BaseActivity(), NavigationView.OnNavigationItemSelectedList
 
         drawer_layout.closeDrawer(GravityCompat.START)
         return true
+    }
+
+    override fun showWelcomeMessage(isVisible: Boolean) {
+        if (isVisible) {
+            val builder = AlertDialog.Builder(this)
+            builder.setTitle(getString(R.string.welcome_title))
+            builder.setMessage(getString(R.string.welcome_description))
+            builder.setPositiveButton(getString(R.string.colse)) { _, _ ->
+                mPresenter.setPreference(this)
+            }
+            builder.create()
+            builder.show()
+
+        }
     }
 
     override fun onBackPressed() {

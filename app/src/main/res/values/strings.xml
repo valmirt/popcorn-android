@@ -70,4 +70,7 @@
     <string name="rate_it_now">Rate now</string>
     <string name="text_rate_1">If you enjoy using</string>
     <string name="text_rate_2">, please take a moment to rate it. Thanks for your support!</string>
+
+    <string name="welcome_title">Welcome to PopCorn</string>
+    <string name="welcome_description">Thanks for downloading the PopCorn app. This application aims to provide information about movies and TV series, such as the year of release, movie time, general summary about the film, related films, cast, etc.\n\nThere is no option to watch any movie or TV series in this application.\n\nAny available means of consuming movies and TV series without the proper acquisition is piracy and piracy is a crime.\n\nEnjoy PopCorn and, once again, thank you very much for the download.</string>
 </resources>
