@@ -20,6 +20,7 @@ import android.view.*
 import com.torres.valmir.kotlin_mvp_dagger2.adapter.*
 import com.torres.valmir.kotlin_mvp_dagger2.model.TvShow
 import com.torres.valmir.kotlin_mvp_dagger2.ui.base.BaseFragment
+import com.torres.valmir.kotlin_mvp_dagger2.utils.MarginItemDecoration
 
 
 class ListFragment: BaseFragment(), ListContract.View {
@@ -76,6 +77,7 @@ class ListFragment: BaseFragment(), ListContract.View {
     override fun onActivityCreated(savedInstanceState: Bundle?) {
         super.onActivityCreated(savedInstanceState)
         list_movie.setHasFixedSize(true)
+        list_movie.addItemDecoration(MarginItemDecoration(resources.getDimension(R.dimen.default_padding).toInt()))
         list_movie.layoutManager = LinearLayoutManager(context)
         if (typeList < 4) list_movie.adapter = mListAdapter
         else list_movie.adapter = mListAdapterTv
