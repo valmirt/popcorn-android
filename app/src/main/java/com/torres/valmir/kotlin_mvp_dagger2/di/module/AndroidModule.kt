@@ -5,8 +5,8 @@ import android.content.Context
 import com.torres.valmir.kotlin_mvp_dagger2.di.ForApplication
 import com.torres.valmir.kotlin_mvp_dagger2.remote.movie.MovieServiceApi
 import com.torres.valmir.kotlin_mvp_dagger2.remote.movie.MovieServiceImpl
-import com.torres.valmir.kotlin_mvp_dagger2.remote.tvShow.TvServiceApi
-import com.torres.valmir.kotlin_mvp_dagger2.remote.tvShow.TvServiceImpl
+import com.torres.valmir.kotlin_mvp_dagger2.remote.tv_show.TvServiceApi
+import com.torres.valmir.kotlin_mvp_dagger2.remote.tv_show.TvServiceImpl
 import dagger.Module
 import dagger.Provides
 import javax.inject.Singleton

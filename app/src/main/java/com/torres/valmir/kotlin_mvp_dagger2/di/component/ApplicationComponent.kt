@@ -6,9 +6,10 @@ import com.torres.valmir.kotlin_mvp_dagger2.di.module.AndroidModule
 import com.torres.valmir.kotlin_mvp_dagger2.di.module.FragmentModule
 import com.torres.valmir.kotlin_mvp_dagger2.di.module.NetModule
 import com.torres.valmir.kotlin_mvp_dagger2.remote.movie.MovieServiceImpl
-import com.torres.valmir.kotlin_mvp_dagger2.remote.tvShow.TvServiceImpl
+import com.torres.valmir.kotlin_mvp_dagger2.remote.tv_show.TvServiceImpl
 import com.torres.valmir.kotlin_mvp_dagger2.ui.main.about.AboutActivity
 import com.torres.valmir.kotlin_mvp_dagger2.ui.main.detail.DetailActivity
+import com.torres.valmir.kotlin_mvp_dagger2.ui.main.detail.DetailPresenter
 import com.torres.valmir.kotlin_mvp_dagger2.ui.main.detail.casting.CastingFragment
 import com.torres.valmir.kotlin_mvp_dagger2.ui.main.detail.casting.CastingPresenter
 import com.torres.valmir.kotlin_mvp_dagger2.ui.main.detail.info.InfoFragment
@@ -55,4 +56,6 @@ interface ApplicationComponent {
     fun inject (settingsActivity: SettingsActivity)
 
     fun inject (splashActivity: SplashActivity)
+
+    fun inject (detailPresenter: DetailPresenter)
 }

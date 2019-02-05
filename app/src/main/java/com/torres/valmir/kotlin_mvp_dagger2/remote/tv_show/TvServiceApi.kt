@@ -1,4 +1,4 @@
-package com.torres.valmir.kotlin_mvp_dagger2.remote.tvShow
+package com.torres.valmir.kotlin_mvp_dagger2.remote.tv_show
 
 import com.torres.valmir.kotlin_mvp_dagger2.model.ListCastCrew
 import com.torres.valmir.kotlin_mvp_dagger2.model.ListTV

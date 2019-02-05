@@ -73,4 +73,6 @@
 
     <string name="welcome_title">Welcome to PopCorn</string>
     <string name="welcome_description">Thanks for downloading the PopCorn app. This application aims to provide information about movies and TV shows, such as the year of release, movie time, general summary about the film, related films, cast, etc.\n\nThere is no option to watch any movie or TV shows in this application.\n\nAny available means of consuming movies and TV shows without the proper acquisition is piracy and piracy is a crime.\n\nEnjoy PopCorn and, once again, thank you very much for the download.</string>
+    <string name="trailers">Trailers</string>
+    <string name="share">Share</string>
 </resources>

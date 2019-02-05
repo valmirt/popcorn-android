@@ -3,8 +3,9 @@ package com.torres.valmir.kotlin_mvp_dagger2.utils
 class Constants{
     companion object {
         const val BASE_URL = "https://api.themoviedb.org/3/"
+        const val YOUTUBE_URL = "https://www.youtube.com/watch?=v"
         const val BASE_URL_IMAGE_W185 = "http://image.tmdb.org/t/p/w185/"
-        const val BASE_URL_IMAGE_W500 = "http://image.tmdb.org/t/p/w500/"
+        const val BASE_URL_IMAGE_W780 = "http://image.tmdb.org/t/p/w780/"
         const val TYPE_LIST = "type_list"
         const val POPULAR = 1
         const val TOP_RATED = 2

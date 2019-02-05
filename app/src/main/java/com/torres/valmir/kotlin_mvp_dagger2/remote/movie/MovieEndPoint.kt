@@ -44,4 +44,8 @@ interface MovieEndPoint {
     fun getCastandCrewMovie(@Path("movie_id") id: Int,
                             @Query("api_key") key: String = "ebf3f29bcec9455240223a565fb2a81d") : Call<ListCastCrew>
 
+    @GET("movie/{movie_id}/videos")
+    fun getTrailerMovie(@Path("movie_id") id: Int,
+                        @Query("api_key") key: String = "ebf3f29bcec9455240223a565fb2a81d",
+                        @Query("language") language: String) : Call<ListTrailers>
 }

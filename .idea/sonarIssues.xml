@@ -278,6 +278,11 @@
             <set />
           </value>
         </entry>
+        <entry key="$PROJECT_DIR$/app/src/main/java/com/torres/valmir/kotlin_mvp_dagger2/di/component/ApplicationComponent.kt">
+          <value>
+            <set />
+          </value>
+        </entry>
         <entry key="$PROJECT_DIR$/app/src/main/java/com/torres/valmir/kotlin_mvp_dagger2/di/module/ActivityModule.kt">
           <value>
             <set />
@@ -288,7 +293,52 @@
             <set />
           </value>
         </entry>
+        <entry key="$PROJECT_DIR$/app/src/main/java/com/torres/valmir/kotlin_mvp_dagger2/model/ListTrailers.kt">
+          <value>
+            <set />
+          </value>
+        </entry>
+        <entry key="$PROJECT_DIR$/app/src/main/java/com/torres/valmir/kotlin_mvp_dagger2/model/Trailer.kt">
+          <value>
+            <set />
+          </value>
+        </entry>
+        <entry key="$PROJECT_DIR$/app/src/main/java/com/torres/valmir/kotlin_mvp_dagger2/remote/movie/MovieEndPoint.kt">
+          <value>
+            <set />
+          </value>
+        </entry>
+        <entry key="$PROJECT_DIR$/app/src/main/java/com/torres/valmir/kotlin_mvp_dagger2/remote/movie/MovieServiceApi.kt">
+          <value>
+            <set />
+          </value>
+        </entry>
+        <entry key="$PROJECT_DIR$/app/src/main/java/com/torres/valmir/kotlin_mvp_dagger2/remote/movie/MovieServiceImpl.kt">
+          <value>
+            <set />
+          </value>
+        </entry>
+        <entry key="$PROJECT_DIR$/app/src/main/java/com/torres/valmir/kotlin_mvp_dagger2/remote/tvShow/TvEndPoint.kt">
+          <value>
+            <set />
+          </value>
+        </entry>
+        <entry key="$PROJECT_DIR$/app/src/main/java/com/torres/valmir/kotlin_mvp_dagger2/remote/tv_show/TvEndPoint.kt">
+          <value>
+            <set />
+          </value>
+        </entry>
+        <entry key="$PROJECT_DIR$/app/src/main/java/com/torres/valmir/kotlin_mvp_dagger2/remote/tv_show/TvServiceApi.kt">
+          <value>
+            <set />
+          </value>
+        </entry>
         <entry key="$PROJECT_DIR$/app/src/main/java/com/torres/valmir/kotlin_mvp_dagger2/ui/base/BaseActivity.kt">
+          <value>
+            <set />
+          </value>
+        </entry>
+        <entry key="$PROJECT_DIR$/app/src/main/java/com/torres/valmir/kotlin_mvp_dagger2/ui/base/BaseContract.kt">
           <value>
             <set />
           </value>
@@ -304,6 +354,16 @@
           </value>
         </entry>
         <entry key="$PROJECT_DIR$/app/src/main/java/com/torres/valmir/kotlin_mvp_dagger2/ui/main/detail/DetailActivity.kt">
+          <value>
+            <set />
+          </value>
+        </entry>
+        <entry key="$PROJECT_DIR$/app/src/main/java/com/torres/valmir/kotlin_mvp_dagger2/ui/main/detail/DetailContract.kt">
+          <value>
+            <set />
+          </value>
+        </entry>
+        <entry key="$PROJECT_DIR$/app/src/main/java/com/torres/valmir/kotlin_mvp_dagger2/ui/main/detail/DetailPresenter.kt">
           <value>
             <set />
           </value>
@@ -399,6 +459,11 @@
           </value>
         </entry>
         <entry key="$PROJECT_DIR$/app/src/main/res/layout/item_tvshow_list.xml">
+          <value>
+            <set />
+          </value>
+        </entry>
+        <entry key="$PROJECT_DIR$/app/src/main/res/menu/detail_menu.xml">
           <value>
             <set />
           </value>

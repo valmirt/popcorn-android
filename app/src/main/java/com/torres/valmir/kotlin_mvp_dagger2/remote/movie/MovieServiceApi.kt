@@ -2,6 +2,7 @@ package com.torres.valmir.kotlin_mvp_dagger2.remote.movie
 
 import com.torres.valmir.kotlin_mvp_dagger2.model.ListCastCrew
 import com.torres.valmir.kotlin_mvp_dagger2.model.ListMovies
+import com.torres.valmir.kotlin_mvp_dagger2.model.ListTrailers
 import com.torres.valmir.kotlin_mvp_dagger2.model.Movie
 
 
@@ -23,4 +24,6 @@ interface MovieServiceApi {
     fun getSimilarMovies(callback: ServiceCallback<ListMovies>, id: Int, page: Int, language: String)
 
     fun getCastCrew(callback: ServiceCallback<ListCastCrew>, id: Int)
+
+    fun getTrailer(callback: ServiceCallback<ListTrailers>, id: Int, language: String)
 }

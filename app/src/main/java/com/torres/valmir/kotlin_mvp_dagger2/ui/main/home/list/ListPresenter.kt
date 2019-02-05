@@ -11,7 +11,7 @@ import com.torres.valmir.kotlin_mvp_dagger2.model.ListTV
 import com.torres.valmir.kotlin_mvp_dagger2.model.Movie
 import com.torres.valmir.kotlin_mvp_dagger2.model.TvShow
 import com.torres.valmir.kotlin_mvp_dagger2.remote.movie.MovieServiceApi
-import com.torres.valmir.kotlin_mvp_dagger2.remote.tvShow.TvServiceApi
+import com.torres.valmir.kotlin_mvp_dagger2.remote.tv_show.TvServiceApi
 import com.torres.valmir.kotlin_mvp_dagger2.utils.Constants.Companion.MOVIE_OBJECT
 import com.torres.valmir.kotlin_mvp_dagger2.utils.Constants.Companion.TVSHOW_OBJECT
 import javax.inject.Inject

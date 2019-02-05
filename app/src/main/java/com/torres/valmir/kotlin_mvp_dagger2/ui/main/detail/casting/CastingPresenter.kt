@@ -5,7 +5,7 @@ import com.torres.valmir.kotlin_mvp_dagger2.R
 import com.torres.valmir.kotlin_mvp_dagger2.TMDBApplication
 import com.torres.valmir.kotlin_mvp_dagger2.model.ListCastCrew
 import com.torres.valmir.kotlin_mvp_dagger2.remote.movie.MovieServiceApi
-import com.torres.valmir.kotlin_mvp_dagger2.remote.tvShow.TvServiceApi
+import com.torres.valmir.kotlin_mvp_dagger2.remote.tv_show.TvServiceApi
 import javax.inject.Inject
 
 class CastingPresenter: CastingContract.Presenter {

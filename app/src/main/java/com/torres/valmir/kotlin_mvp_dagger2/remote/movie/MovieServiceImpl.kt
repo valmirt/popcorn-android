@@ -3,6 +3,7 @@ package com.torres.valmir.kotlin_mvp_dagger2.remote.movie
 import com.torres.valmir.kotlin_mvp_dagger2.TMDBApplication
 import com.torres.valmir.kotlin_mvp_dagger2.model.ListCastCrew
 import com.torres.valmir.kotlin_mvp_dagger2.model.ListMovies
+import com.torres.valmir.kotlin_mvp_dagger2.model.ListTrailers
 import com.torres.valmir.kotlin_mvp_dagger2.model.Movie
 import retrofit2.Call
 import retrofit2.Callback
@@ -100,6 +101,29 @@ class MovieServiceImpl: MovieServiceApi {
                 response?.code()?.let {
                     result.code = it
                 }
+                callback.onLoaded(result)
+            }
+        })
+    }
+
+    override fun getTrailer(callback: MovieServiceApi.ServiceCallback<ListTrailers>, id: Int, language: String) {
+        val call = retrofit
+                .create(MovieEndPoint::class.java)
+                .getTrailerMovie(id = id, language = language)
+
+        call.enqueue(object : Callback<ListTrailers>{
+            override fun onFailure(call: Call<ListTrailers>, t: Throwable) {
+                callback.onLoaded(ListTrailers())
+            }
+
+            override fun onResponse(call: Call<ListTrailers>, response: Response<ListTrailers>) {
+                var result = ListTrailers()
+
+                response.body()?.let {
+                    result = it
+                }
+                result.code = response.code()
+
                 callback.onLoaded(result)
             }
         })

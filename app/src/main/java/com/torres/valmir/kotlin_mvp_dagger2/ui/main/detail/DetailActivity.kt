@@ -1,9 +1,12 @@
 package com.torres.valmir.kotlin_mvp_dagger2.ui.main.detail
 
+import android.content.Context
+import android.content.SharedPreferences
 import android.graphics.Bitmap
 import android.os.Bundle
 import android.support.design.widget.TabLayout
 import android.support.v4.app.Fragment
+import android.view.Menu
 import android.view.MenuItem
 import com.bumptech.glide.Glide
 import com.bumptech.glide.load.DataSource
@@ -12,6 +15,7 @@ import com.bumptech.glide.request.RequestListener
 import com.torres.valmir.kotlin_mvp_dagger2.R
 import com.torres.valmir.kotlin_mvp_dagger2.adapter.SectionsPagerAdapter
 import com.torres.valmir.kotlin_mvp_dagger2.model.Movie
+import com.torres.valmir.kotlin_mvp_dagger2.model.Trailer
 import com.torres.valmir.kotlin_mvp_dagger2.model.TvShow
 import com.torres.valmir.kotlin_mvp_dagger2.ui.base.BaseActivity
 import com.torres.valmir.kotlin_mvp_dagger2.ui.main.detail.casting.CastingFragment
@@ -31,6 +35,8 @@ class DetailActivity : BaseActivity(), DetailContract.View {
     private lateinit var mSectionPagesAdapter : SectionsPagerAdapter
     private var movie: Movie? = null
     private var tvShow: TvShow? = null
+    private lateinit var preferences: SharedPreferences
+    private var language = ""
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -40,6 +46,9 @@ class DetailActivity : BaseActivity(), DetailContract.View {
 
         supportActionBar?.title = ""
         supportActionBar?.setDisplayHomeAsUpEnabled(true)
+
+        preferences = getSharedPreferences(Constants.LANGUAGE_TYPES, Context.MODE_PRIVATE)
+        language = preferences.getString(Constants.LANGUAGE, Constants.ENGLISH_LANGUAGE)
 
         val bundle = intent.extras
         bundle?.let {
@@ -101,7 +110,7 @@ class DetailActivity : BaseActivity(), DetailContract.View {
         backdropImage?.let {poster->
             Glide.with(backdrop_image_detail.context)
                     .asBitmap()
-                    .load(Constants.BASE_URL_IMAGE_W500 + poster)
+                    .load(Constants.BASE_URL_IMAGE_W780 + poster)
                     .listener(object: RequestListener<Bitmap> {
                         override fun onLoadFailed(e: GlideException?, model: Any?, target: com.bumptech.glide.request.target.Target<Bitmap>?, isFirstResource: Boolean): Boolean {
                             return false
@@ -119,9 +128,33 @@ class DetailActivity : BaseActivity(), DetailContract.View {
         }
     }
 
+    override fun setupTrailers(trailers: List<Trailer>?) {
+
+    }
+
+    override fun errorResponse(error: String) {
+
+    }
+
+    override fun onCreateOptionsMenu(menu: Menu): Boolean {
+        menuInflater.inflate(R.menu.detail_menu, menu)
+        return true
+    }
+
     override fun onOptionsItemSelected(item: MenuItem?): Boolean {
         when(item?.itemId){
             android.R.id.home -> onBackPressed()
+            R.id.trailer_button -> {
+//                movie?.id?.let {
+//                    mPresenter.getTrailersMovie(it, language)
+//                }
+//                tvShow?.id?.let {
+//                    mPresenter.getTrailersTV(it, language)
+//                }
+            }
+            R.id.share_button -> {
+                //Share a movie or tvShow
+            }
         }
         return true
     }
