@@ -14,5 +14,7 @@ interface DetailContract {
         fun getTrailersMovie(id: Int, language: String)
 
         fun getTrailersTV(id: Int, language: String)
+
+        fun sendToYoutube(key: String)
     }
 }

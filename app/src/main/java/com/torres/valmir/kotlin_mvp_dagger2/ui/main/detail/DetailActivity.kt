@@ -4,10 +4,13 @@ import android.content.Context
 import android.content.SharedPreferences
 import android.graphics.Bitmap
 import android.os.Bundle
+import android.support.design.widget.Snackbar
 import android.support.design.widget.TabLayout
 import android.support.v4.app.Fragment
+import android.support.v7.app.AlertDialog
 import android.view.Menu
 import android.view.MenuItem
+import android.widget.ArrayAdapter
 import com.bumptech.glide.Glide
 import com.bumptech.glide.load.DataSource
 import com.bumptech.glide.load.engine.GlideException
@@ -48,7 +51,9 @@ class DetailActivity : BaseActivity(), DetailContract.View {
         supportActionBar?.setDisplayHomeAsUpEnabled(true)
 
         preferences = getSharedPreferences(Constants.LANGUAGE_TYPES, Context.MODE_PRIVATE)
-        language = preferences.getString(Constants.LANGUAGE, Constants.ENGLISH_LANGUAGE)
+        preferences.getString(Constants.LANGUAGE, Constants.ENGLISH_LANGUAGE)?.let {
+            language = it
+        }
 
         val bundle = intent.extras
         bundle?.let {
@@ -129,11 +134,40 @@ class DetailActivity : BaseActivity(), DetailContract.View {
     }
 
     override fun setupTrailers(trailers: List<Trailer>?) {
+        if (trailers!= null) {
+            if (trailers.size > 1) {
+                val arrayAdapter = ArrayAdapter<String>(this, android.R.layout.select_dialog_item)
+                for (trailer in trailers) {
+                    if (trailer.site == "YouTube") {
+                        arrayAdapter.add(trailer.name)
+                    }
+                }
+                val builder = AlertDialog.Builder(this)
+                builder.setTitle(R.string.trailers)
+                builder.setAdapter(arrayAdapter) { dialog, which ->
+                    for (trailer in trailers) {
+                        if (trailer.name == arrayAdapter.getItem(which)) {
+                            mPresenter.sendToYoutube(trailer.key)
+                            dialog.dismiss()
+                        }
+                    }
 
+                }
+                builder.setNegativeButton(R.string.colse) { dialog, _ ->
+                    dialog.dismiss()
+                }
+                builder.create()
+                builder.show()
+            } else {
+                if (trailers[0].site == "YouTube") {
+                    mPresenter.sendToYoutube(trailers[0].key)
+                } else errorResponse(getString(R.string.error_trailer))
+            }
+        } else errorResponse(getString(R.string.error_trailer))
     }
 
     override fun errorResponse(error: String) {
-
+        Snackbar.make(coordinator_detail, error, Snackbar.LENGTH_LONG).show()
     }
 
     override fun onCreateOptionsMenu(menu: Menu): Boolean {
@@ -145,12 +179,12 @@ class DetailActivity : BaseActivity(), DetailContract.View {
         when(item?.itemId){
             android.R.id.home -> onBackPressed()
             R.id.trailer_button -> {
-//                movie?.id?.let {
-//                    mPresenter.getTrailersMovie(it, language)
-//                }
-//                tvShow?.id?.let {
-//                    mPresenter.getTrailersTV(it, language)
-//                }
+                movie?.id?.let {
+                    mPresenter.getTrailersMovie(it, language)
+                }
+                tvShow?.id?.let {
+                    mPresenter.getTrailersTV(it, language)
+                }
             }
             R.id.share_button -> {
                 //Share a movie or tvShow

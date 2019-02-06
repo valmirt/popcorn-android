@@ -9,8 +9,8 @@ interface AboutContract {
     }
 
     interface Presenter: BaseContract.Presenter<AboutContract.View>{
-        fun sendToFirstLink(context: Context)
+        fun sendToFirstLink()
 
-        fun sendToSecondLink(context: Context)
+        fun sendToSecondLink()
     }
 }

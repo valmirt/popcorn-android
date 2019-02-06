@@ -1,10 +1,13 @@
 package com.torres.valmir.kotlin_mvp_dagger2.ui.main.detail
 
 import android.content.Context
+import android.content.Intent
+import android.net.Uri
 import com.torres.valmir.kotlin_mvp_dagger2.R
 import com.torres.valmir.kotlin_mvp_dagger2.TMDBApplication
 import com.torres.valmir.kotlin_mvp_dagger2.model.ListTrailers
 import com.torres.valmir.kotlin_mvp_dagger2.remote.movie.MovieServiceApi
+import com.torres.valmir.kotlin_mvp_dagger2.utils.Constants.Companion.YOUTUBE_URL
 import javax.inject.Inject
 
 class DetailPresenter: DetailContract.Presenter {
@@ -43,5 +46,11 @@ class DetailPresenter: DetailContract.Presenter {
 
     override fun getTrailersTV(id: Int, language: String) {
 
+    }
+
+    override fun sendToYoutube(key: String) {
+        val uri = Uri.parse(YOUTUBE_URL+key)
+        val intent = Intent(Intent.ACTION_VIEW, uri)
+        context.startActivity(intent)
     }
 }

@@ -8,6 +8,7 @@ import com.torres.valmir.kotlin_mvp_dagger2.di.module.NetModule
 import com.torres.valmir.kotlin_mvp_dagger2.remote.movie.MovieServiceImpl
 import com.torres.valmir.kotlin_mvp_dagger2.remote.tv_show.TvServiceImpl
 import com.torres.valmir.kotlin_mvp_dagger2.ui.main.about.AboutActivity
+import com.torres.valmir.kotlin_mvp_dagger2.ui.main.about.AboutPresenter
 import com.torres.valmir.kotlin_mvp_dagger2.ui.main.detail.DetailActivity
 import com.torres.valmir.kotlin_mvp_dagger2.ui.main.detail.DetailPresenter
 import com.torres.valmir.kotlin_mvp_dagger2.ui.main.detail.casting.CastingFragment
@@ -16,6 +17,7 @@ import com.torres.valmir.kotlin_mvp_dagger2.ui.main.detail.info.InfoFragment
 import com.torres.valmir.kotlin_mvp_dagger2.ui.main.detail.info.InfoPresenter
 import com.torres.valmir.kotlin_mvp_dagger2.ui.main.detail.season.SeasonFragment
 import com.torres.valmir.kotlin_mvp_dagger2.ui.main.home.HomeActivity
+import com.torres.valmir.kotlin_mvp_dagger2.ui.main.home.HomePresenter
 import com.torres.valmir.kotlin_mvp_dagger2.ui.main.home.list.ListPresenter
 import com.torres.valmir.kotlin_mvp_dagger2.ui.main.home.list.ListFragment
 import com.torres.valmir.kotlin_mvp_dagger2.ui.main.settings.SettingsActivity
@@ -49,9 +51,13 @@ interface ApplicationComponent {
 
     fun inject(aboutActivity: AboutActivity)
 
+    fun inject (aboutPresenter: AboutPresenter)
+
     fun inject (detailActivity: DetailActivity)
 
     fun inject (homeActivity: HomeActivity)
+
+    fun inject (homePresenter: HomePresenter)
 
     fun inject (settingsActivity: SettingsActivity)
 

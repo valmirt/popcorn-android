@@ -5,17 +5,26 @@ import android.content.Intent
 import android.content.SharedPreferences
 import android.os.Bundle
 import com.torres.valmir.kotlin_mvp_dagger2.R
+import com.torres.valmir.kotlin_mvp_dagger2.TMDBApplication
 import com.torres.valmir.kotlin_mvp_dagger2.ui.base.BaseActivity
 import com.torres.valmir.kotlin_mvp_dagger2.ui.main.about.AboutActivity
 import com.torres.valmir.kotlin_mvp_dagger2.ui.main.home.list.ListFragment
 import com.torres.valmir.kotlin_mvp_dagger2.ui.main.settings.SettingsActivity
 import com.torres.valmir.kotlin_mvp_dagger2.utils.Constants
 import com.torres.valmir.kotlin_mvp_dagger2.utils.Constants.Companion.INFO
+import javax.inject.Inject
 
 class HomePresenter: HomeContract.Presenter {
 
     private lateinit var view: HomeContract.View
     private lateinit var preferences: SharedPreferences
+
+    @Inject
+    lateinit var context: Context
+
+    init {
+        TMDBApplication.graph.inject(this)
+    }
 
     override fun attach(view: HomeContract.View) {
         this.view = view
@@ -33,11 +42,11 @@ class HomePresenter: HomeContract.Presenter {
                 .commit()
     }
 
-    override fun setActivitySettings(context: Context) {
+    override fun setActivitySettings() {
         context.startActivity(Intent(context, SettingsActivity::class.java))
     }
 
-    override fun setActivityAbout(context: Context) {
+    override fun setActivityAbout() {
         context.startActivity(Intent(context, AboutActivity::class.java))
     }
 

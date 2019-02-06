@@ -59,7 +59,9 @@ class ListFragment: BaseFragment(), ListContract.View {
 
         activity?.let {
             preferences = it.getSharedPreferences(Constants.LANGUAGE_TYPES, Context.MODE_PRIVATE)
-            language = preferences.getString(Constants.LANGUAGE, Constants.ENGLISH_LANGUAGE)
+            preferences.getString(Constants.LANGUAGE, Constants.ENGLISH_LANGUAGE)?.let { language->
+                this.language = language
+            }
         }
 
         val args = arguments
@@ -116,7 +118,9 @@ class ListFragment: BaseFragment(), ListContract.View {
         super.onResume()
         activity?.let {
             preferences = it.getSharedPreferences(Constants.LANGUAGE_TYPES, Context.MODE_PRIVATE)
-            language = preferences.getString(Constants.LANGUAGE, Constants.ENGLISH_LANGUAGE)
+            preferences.getString(Constants.LANGUAGE, Constants.ENGLISH_LANGUAGE)?.let { language->
+                this.language = language
+            }
         }
         updateList()
     }

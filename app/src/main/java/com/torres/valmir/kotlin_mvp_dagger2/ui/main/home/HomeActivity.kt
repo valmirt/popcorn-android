@@ -89,11 +89,11 @@ class HomeActivity : BaseActivity(), NavigationView.OnNavigationItemSelectedList
             }
             //Others
             R.id.nav_settings -> {
-                mPresenter.setActivitySettings(this)
+                mPresenter.setActivitySettings()
 
             }
             R.id.nav_about -> {
-                mPresenter.setActivityAbout(this)
+                mPresenter.setActivityAbout()
             }
         }
 
@@ -106,8 +106,9 @@ class HomeActivity : BaseActivity(), NavigationView.OnNavigationItemSelectedList
             val builder = AlertDialog.Builder(this)
             builder.setTitle(getString(R.string.welcome_title))
             builder.setMessage(getString(R.string.welcome_description))
-            builder.setPositiveButton(getString(R.string.colse)) { _, _ ->
+            builder.setPositiveButton(getString(R.string.colse)) { dialog, _ ->
                 mPresenter.setPreference(this)
+                dialog.dismiss()
             }
             builder.create()
             builder.show()
