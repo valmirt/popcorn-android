@@ -3,6 +3,7 @@ package com.torres.valmir.kotlin_mvp_dagger2.remote.tv_show
 import com.torres.valmir.kotlin_mvp_dagger2.TMDBApplication
 import com.torres.valmir.kotlin_mvp_dagger2.model.ListCastCrew
 import com.torres.valmir.kotlin_mvp_dagger2.model.ListTV
+import com.torres.valmir.kotlin_mvp_dagger2.model.ListTrailers
 import com.torres.valmir.kotlin_mvp_dagger2.model.TvShow
 import retrofit2.Call
 import retrofit2.Callback
@@ -49,6 +50,29 @@ class TvServiceImpl: TvServiceApi {
                 .todaysTV(page = page, language = language)
 
         returningCall(call, callback)
+    }
+
+    override fun getTrailer(callback: TvServiceApi.ServiceCallback<ListTrailers>, id: Int, language: String) {
+        val call = retrofit
+                .create(TvEndPoint::class.java)
+                .getTrailerTV(id = id, language = language)
+
+        call.enqueue(object : Callback<ListTrailers>{
+            override fun onFailure(call: Call<ListTrailers>, t: Throwable) {
+                callback.onLoaded(ListTrailers())
+            }
+
+            override fun onResponse(call: Call<ListTrailers>, response: Response<ListTrailers>) {
+                var result = ListTrailers()
+
+                response.body()?.let {
+                    result = it
+                }
+                result.code = response.code()
+
+                callback.onLoaded(result)
+            }
+        })
     }
 
     override fun getTvShowId(callback: TvServiceApi.ServiceCallback<TvShow>, id: Int, language: String) {

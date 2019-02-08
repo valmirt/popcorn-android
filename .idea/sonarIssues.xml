@@ -333,6 +333,11 @@
             <set />
           </value>
         </entry>
+        <entry key="$PROJECT_DIR$/app/src/main/java/com/torres/valmir/kotlin_mvp_dagger2/remote/tv_show/TvServiceImpl.kt">
+          <value>
+            <set />
+          </value>
+        </entry>
         <entry key="$PROJECT_DIR$/app/src/main/java/com/torres/valmir/kotlin_mvp_dagger2/ui/base/BaseActivity.kt">
           <value>
             <set />
@@ -399,6 +404,21 @@
           </value>
         </entry>
         <entry key="$PROJECT_DIR$/app/src/main/java/com/torres/valmir/kotlin_mvp_dagger2/ui/main/home/list/ListFragment.kt">
+          <value>
+            <set />
+          </value>
+        </entry>
+        <entry key="$PROJECT_DIR$/app/src/main/java/com/torres/valmir/kotlin_mvp_dagger2/ui/main/receiver/ReceiverActivity.kt">
+          <value>
+            <set />
+          </value>
+        </entry>
+        <entry key="$PROJECT_DIR$/app/src/main/java/com/torres/valmir/kotlin_mvp_dagger2/ui/main/receiver/ReceiverContract.kt">
+          <value>
+            <set />
+          </value>
+        </entry>
+        <entry key="$PROJECT_DIR$/app/src/main/java/com/torres/valmir/kotlin_mvp_dagger2/ui/main/receiver/ReceiverPresenter.kt">
           <value>
             <set />
           </value>

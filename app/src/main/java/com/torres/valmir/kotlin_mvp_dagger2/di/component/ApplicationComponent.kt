@@ -20,6 +20,8 @@ import com.torres.valmir.kotlin_mvp_dagger2.ui.main.home.HomeActivity
 import com.torres.valmir.kotlin_mvp_dagger2.ui.main.home.HomePresenter
 import com.torres.valmir.kotlin_mvp_dagger2.ui.main.home.list.ListPresenter
 import com.torres.valmir.kotlin_mvp_dagger2.ui.main.home.list.ListFragment
+import com.torres.valmir.kotlin_mvp_dagger2.ui.main.receiver.ReceiverActivity
+import com.torres.valmir.kotlin_mvp_dagger2.ui.main.receiver.ReceiverPresenter
 import com.torres.valmir.kotlin_mvp_dagger2.ui.main.settings.SettingsActivity
 import com.torres.valmir.kotlin_mvp_dagger2.ui.main.splash.SplashActivity
 import dagger.Component
@@ -64,4 +66,8 @@ interface ApplicationComponent {
     fun inject (splashActivity: SplashActivity)
 
     fun inject (detailPresenter: DetailPresenter)
+
+    fun inject (receiverActivity: ReceiverActivity)
+
+    fun inject (receiverPresenter: ReceiverPresenter)
 }

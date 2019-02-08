@@ -6,6 +6,8 @@ import com.torres.valmir.kotlin_mvp_dagger2.ui.main.detail.DetailContract
 import com.torres.valmir.kotlin_mvp_dagger2.ui.main.detail.DetailPresenter
 import com.torres.valmir.kotlin_mvp_dagger2.ui.main.home.HomeContract
 import com.torres.valmir.kotlin_mvp_dagger2.ui.main.home.HomePresenter
+import com.torres.valmir.kotlin_mvp_dagger2.ui.main.receiver.ReceiverContract
+import com.torres.valmir.kotlin_mvp_dagger2.ui.main.receiver.ReceiverPresenter
 import com.torres.valmir.kotlin_mvp_dagger2.ui.main.settings.SettingsContract
 import com.torres.valmir.kotlin_mvp_dagger2.ui.main.settings.SettingsPresenter
 import com.torres.valmir.kotlin_mvp_dagger2.ui.main.splash.SplashContract
@@ -29,4 +31,7 @@ class ActivityModule {
 
     @Provides
     fun provideSplashPresenter(): SplashContract.Presenter = SplashPresenter()
+
+    @Provides
+    fun provideReceiverPresenter(): ReceiverContract.Presenter = ReceiverPresenter()
 }

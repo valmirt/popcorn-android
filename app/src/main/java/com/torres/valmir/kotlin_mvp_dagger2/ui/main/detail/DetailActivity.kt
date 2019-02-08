@@ -134,24 +134,23 @@ class DetailActivity : BaseActivity(), DetailContract.View {
     }
 
     override fun setupTrailers(trailers: List<Trailer>?) {
-        if (trailers!= null) {
+        if (trailers!= null && !trailers.isEmpty()) {
             if (trailers.size > 1) {
-                val arrayAdapter = ArrayAdapter<String>(this, android.R.layout.select_dialog_item)
+                val nameTrailers = ArrayList<String>()
                 for (trailer in trailers) {
                     if (trailer.site == "YouTube") {
-                        arrayAdapter.add(trailer.name)
+                        nameTrailers.add(trailer.name)
                     }
                 }
                 val builder = AlertDialog.Builder(this)
                 builder.setTitle(R.string.trailers)
-                builder.setAdapter(arrayAdapter) { dialog, which ->
+                builder.setItems(nameTrailers.toTypedArray()) { dialog, position ->
                     for (trailer in trailers) {
-                        if (trailer.name == arrayAdapter.getItem(which)) {
+                        if (trailer.name == nameTrailers[position]) {
                             mPresenter.sendToYoutube(trailer.key)
                             dialog.dismiss()
                         }
                     }
-
                 }
                 builder.setNegativeButton(R.string.colse) { dialog, _ ->
                     dialog.dismiss()
@@ -187,7 +186,12 @@ class DetailActivity : BaseActivity(), DetailContract.View {
                 }
             }
             R.id.share_button -> {
-                //Share a movie or tvShow
+                movie?.id?.let {
+                    mPresenter.shareMovieOrTvShow(it, "movie")
+                }
+                tvShow?.id?.let {
+                    mPresenter.shareMovieOrTvShow(it, "tv")
+                }
             }
         }
         return true
