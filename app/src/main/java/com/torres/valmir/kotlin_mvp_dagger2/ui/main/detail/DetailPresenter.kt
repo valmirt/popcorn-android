@@ -4,11 +4,14 @@ import android.content.Context
 import android.content.Intent
 import android.net.Uri
 import android.support.v4.content.ContextCompat.startActivity
+import android.support.v7.app.AppCompatActivity
 import com.torres.valmir.kotlin_mvp_dagger2.R
 import com.torres.valmir.kotlin_mvp_dagger2.TMDBApplication
 import com.torres.valmir.kotlin_mvp_dagger2.model.ListTrailers
 import com.torres.valmir.kotlin_mvp_dagger2.remote.movie.MovieServiceApi
 import com.torres.valmir.kotlin_mvp_dagger2.remote.tv_show.TvServiceApi
+import com.torres.valmir.kotlin_mvp_dagger2.ui.main.home.HomeActivity
+import com.torres.valmir.kotlin_mvp_dagger2.utils.Constants
 import com.torres.valmir.kotlin_mvp_dagger2.utils.Constants.Companion.SHARE_URL
 import com.torres.valmir.kotlin_mvp_dagger2.utils.Constants.Companion.YOUTUBE_URL
 import javax.inject.Inject
@@ -80,6 +83,12 @@ class DetailPresenter: DetailContract.Presenter {
         intent.type = "text/plain"
 
         context.startActivity(Intent.createChooser(intent, context.getString(R.string.share)+ " " + type))
+    }
+
+    override fun sendToHomeActivity(activity: AppCompatActivity) {
+        val intent = Intent(activity, HomeActivity::class.java)
+        activity.startActivity(intent)
+        activity.finish()
     }
 
     override fun sendToYoutube(key: String) {

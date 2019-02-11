@@ -1,5 +1,6 @@
 package com.torres.valmir.kotlin_mvp_dagger2.ui.main.detail
 
+import android.support.v7.app.AppCompatActivity
 import com.torres.valmir.kotlin_mvp_dagger2.model.Trailer
 import com.torres.valmir.kotlin_mvp_dagger2.ui.base.BaseContract
 
@@ -18,5 +19,7 @@ interface DetailContract {
         fun sendToYoutube(key: String)
 
         fun shareMovieOrTvShow(id: Int, type: String)
+
+        fun sendToHomeActivity(activity: AppCompatActivity)
     }
 }

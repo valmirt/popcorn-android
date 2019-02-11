@@ -1,18 +1,17 @@
 package com.torres.valmir.kotlin_mvp_dagger2.ui.main.home
 
-import android.os.Build
 import android.os.Bundle
-import android.support.annotation.RequiresApi
 import android.support.design.widget.NavigationView
+import android.support.design.widget.Snackbar
 import android.support.v4.view.GravityCompat
 import android.support.v7.app.ActionBarDrawerToggle
 import android.support.v7.app.AlertDialog
-import android.text.Html
 import android.view.Menu
 import android.view.MenuItem
 import com.torres.valmir.kotlin_mvp_dagger2.R
 import com.torres.valmir.kotlin_mvp_dagger2.ui.base.BaseActivity
 import com.torres.valmir.kotlin_mvp_dagger2.utils.AppRater
+import com.torres.valmir.kotlin_mvp_dagger2.utils.Constants.Companion.ERROR_RC
 import com.torres.valmir.kotlin_mvp_dagger2.utils.Constants.Companion.NOW_PLAYING
 import com.torres.valmir.kotlin_mvp_dagger2.utils.Constants.Companion.POPULAR
 import com.torres.valmir.kotlin_mvp_dagger2.utils.Constants.Companion.POPULAR_TV
@@ -35,6 +34,14 @@ class HomeActivity : BaseActivity(), NavigationView.OnNavigationItemSelectedList
         AppRater(this)
         mPresenter.attach(this)
         mPresenter.getPreference(this)
+
+        val bundle = intent.extras
+
+        bundle?.let { bd ->
+            if (bd.containsKey(ERROR_RC)) {
+                Snackbar.make(coordinator_home, bd.getString(ERROR_RC)!!, Snackbar.LENGTH_LONG).show()
+            }
+        }
 
         val toggle = ActionBarDrawerToggle(
                 this, drawer_layout, toolbar, R.string.navigation_drawer_open, R.string.navigation_drawer_close)

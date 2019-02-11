@@ -176,7 +176,11 @@ class DetailActivity : BaseActivity(), DetailContract.View {
 
     override fun onOptionsItemSelected(item: MenuItem?): Boolean {
         when(item?.itemId){
-            android.R.id.home -> onBackPressed()
+            android.R.id.home -> {
+                if (isTaskRoot) {
+                    mPresenter.sendToHomeActivity(this)
+                } else onBackPressed()
+            }
             R.id.trailer_button -> {
                 movie?.id?.let {
                     mPresenter.getTrailersMovie(it, language)

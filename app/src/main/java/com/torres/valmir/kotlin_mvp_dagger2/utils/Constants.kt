@@ -25,5 +25,6 @@ class Constants{
         const val LANGUAGE = "language"
         const val VISIBLE_LANGUAGE = "vl"
         const val INFO = "info"
+        const val ERROR_RC = "error"
     }
 }
