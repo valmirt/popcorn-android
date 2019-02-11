@@ -187,6 +187,6 @@ class InfoFragment: BaseFragment(), InfoContract.View {
     override fun errorResponse(error: String) = Snackbar.make(view!!, error, Snackbar.LENGTH_LONG).show()
 
     override fun responseDetailMovie(movie: Movie) {
-        mPresenter.swapActivity(DetailActivity(), movie, null)
+        mPresenter.sendToDetailActivity(this, movie, null)
     }
 }

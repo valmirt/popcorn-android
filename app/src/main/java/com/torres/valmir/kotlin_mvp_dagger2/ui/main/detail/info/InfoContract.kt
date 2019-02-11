@@ -1,5 +1,6 @@
 package com.torres.valmir.kotlin_mvp_dagger2.ui.main.detail.info
 
+import android.support.v4.app.Fragment
 import android.support.v7.app.AppCompatActivity
 import com.torres.valmir.kotlin_mvp_dagger2.model.Movie
 import com.torres.valmir.kotlin_mvp_dagger2.model.TvShow
@@ -21,6 +22,6 @@ interface InfoContract {
 
         fun getDetails (id: Int, language: String)
 
-        fun swapActivity(activity: AppCompatActivity, movie: Movie?, tv: TvShow?)
+        fun sendToDetailActivity(fragment: Fragment, movie: Movie?, tv: TvShow?)
     }
 }
