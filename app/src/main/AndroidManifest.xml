@@ -27,7 +27,7 @@
             android:theme="@style/AppTheme.NoActionBar" />
         <activity
             android:name="com.torres.valmir.kotlin_mvp_dagger2.ui.main.detail.DetailActivity"
-            android:label="@string/title_activity_detail"
+            android:label="@string/app_name"
             android:parentActivityName="com.torres.valmir.kotlin_mvp_dagger2.ui.main.home.HomeActivity"
             android:theme="@style/AppTheme.NoActionBar" />
         <activity
