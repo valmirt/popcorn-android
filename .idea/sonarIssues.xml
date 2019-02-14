@@ -463,6 +463,11 @@
             <set />
           </value>
         </entry>
+        <entry key="$PROJECT_DIR$/app/src/main/java/com/torres/valmir/kotlin_mvp_dagger2/ui/main/detail/season/SeasonFragment.kt">
+          <value>
+            <set />
+          </value>
+        </entry>
         <entry key="$PROJECT_DIR$/app/src/main/java/com/torres/valmir/kotlin_mvp_dagger2/ui/main/detail_person/DetailPersonActivity.kt">
           <value>
             <set />
@@ -563,7 +568,22 @@
             <set />
           </value>
         </entry>
+        <entry key="$PROJECT_DIR$/app/src/main/java/com/torres/valmir/kotlin_mvp_dagger2/utils/AppBarStateChangeListener.java">
+          <value>
+            <set />
+          </value>
+        </entry>
         <entry key="$PROJECT_DIR$/app/src/main/java/com/torres/valmir/kotlin_mvp_dagger2/utils/Constants.kt">
+          <value>
+            <set />
+          </value>
+        </entry>
+        <entry key="$PROJECT_DIR$/app/src/main/java/com/torres/valmir/kotlin_mvp_dagger2/utils/FlingBehavior.java">
+          <value>
+            <set />
+          </value>
+        </entry>
+        <entry key="$PROJECT_DIR$/app/src/main/java/com/torres/valmir/kotlin_mvp_dagger2/utils/FlingBehaviour.java">
           <value>
             <set />
           </value>
@@ -573,12 +593,32 @@
             <set />
           </value>
         </entry>
+        <entry key="$PROJECT_DIR$/app/src/main/java/com/torres/valmir/kotlin_mvp_dagger2/utils/Utils.kt">
+          <value>
+            <set />
+          </value>
+        </entry>
         <entry key="$PROJECT_DIR$/app/src/main/res/layout/activity_about.xml">
           <value>
             <set />
           </value>
         </entry>
+        <entry key="$PROJECT_DIR$/app/src/main/res/layout/activity_person.xml">
+          <value>
+            <set />
+          </value>
+        </entry>
+        <entry key="$PROJECT_DIR$/app/src/main/res/layout/fragment_casting_detail.xml">
+          <value>
+            <set />
+          </value>
+        </entry>
         <entry key="$PROJECT_DIR$/app/src/main/res/layout/fragment_info_detail.xml">
+          <value>
+            <set />
+          </value>
+        </entry>
+        <entry key="$PROJECT_DIR$/app/src/main/res/layout/fragment_info_person.xml">
           <value>
             <set />
           </value>
