@@ -2,14 +2,16 @@ package com.torres.valmir.kotlin_mvp_dagger2.adapter
 
 import android.content.Context
 import android.support.v7.widget.RecyclerView
+import android.text.method.TextKeyListener.clear
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import com.torres.valmir.kotlin_mvp_dagger2.R
 import com.torres.valmir.kotlin_mvp_dagger2.model.TvShow
 
-class TvShowAdapter (private var tvShows: ArrayList<TvShow>,
-                     private var itemListener: ItemListener<TvShow>,
-                     private var context: Context) : RecyclerView.Adapter<MovieAdapter.MovieViewHolder>(){
+class TvShowAdapter (private val itemListener: ItemListener<TvShow>,
+                     private val context: Context) : RecyclerView.Adapter<MovieAdapter.MovieViewHolder>(){
+
+    private var tvShows = ArrayList<TvShow>(0)
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): MovieAdapter.MovieViewHolder {
         val context = parent.context
@@ -29,22 +31,14 @@ class TvShowAdapter (private var tvShows: ArrayList<TvShow>,
         }
     }
 
-    private fun clear(){
-        this.tvShows.clear()
-        notifyDataSetChanged()
-    }
-
     fun replaceData(data: List<TvShow>) {
-        clear()
+        this.tvShows.clear()
         this.tvShows.addAll(data)
         notifyDataSetChanged()
     }
 
     fun addMoreItem(data: List<TvShow>) {
-        val temp = this.tvShows.toMutableList()
-        clear()
-        temp += data
-        this.tvShows.addAll(temp)
+        this.tvShows.addAll(data)
         notifyDataSetChanged()
     }
 }

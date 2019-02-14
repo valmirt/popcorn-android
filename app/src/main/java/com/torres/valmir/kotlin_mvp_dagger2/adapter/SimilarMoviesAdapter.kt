@@ -4,6 +4,7 @@ import android.content.Context
 import android.graphics.Bitmap
 import android.support.v4.content.ContextCompat
 import android.support.v7.widget.RecyclerView
+import android.text.method.TextKeyListener.clear
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -17,10 +18,11 @@ import com.torres.valmir.kotlin_mvp_dagger2.model.Movie
 import com.torres.valmir.kotlin_mvp_dagger2.model.TvShow
 import com.torres.valmir.kotlin_mvp_dagger2.utils.Constants
 
-class SimilarMoviesAdapter (private var movies: ArrayList<Movie>,
-                            private var itemListener: ItemListener<Movie>,
-                            private var context: Context)
+class SimilarMoviesAdapter (private val itemListener: ItemListener<Movie>,
+                            private val context: Context)
     : RecyclerView.Adapter<SimilarMoviesAdapter.SimilarMoviesViewHolder>() {
+
+    private var movies = ArrayList<Movie>(0)
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): SimilarMoviesViewHolder {
         val context = parent.context
@@ -40,21 +42,14 @@ class SimilarMoviesAdapter (private var movies: ArrayList<Movie>,
         }
     }
 
-    fun clear(){
-        this.movies.clear()
-    }
-
     fun replaceData(data: List<Movie>) {
-        clear()
+        this.movies.clear()
         this.movies.addAll(data)
         notifyDataSetChanged()
     }
 
     fun addMoreItem(data: List<Movie>) {
-        val temp = this.movies.toMutableList()
-        clear()
-        temp += data
-        this.movies.addAll(temp)
+        this.movies.addAll(data)
         notifyDataSetChanged()
     }
 

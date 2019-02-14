@@ -4,6 +4,7 @@ import android.support.v7.app.AppCompatActivity
 import com.torres.valmir.kotlin_mvp_dagger2.TMDBApplication
 import com.torres.valmir.kotlin_mvp_dagger2.ui.main.about.AboutActivity
 import com.torres.valmir.kotlin_mvp_dagger2.ui.main.detail.DetailActivity
+import com.torres.valmir.kotlin_mvp_dagger2.ui.main.detail_person.DetailPersonActivity
 import com.torres.valmir.kotlin_mvp_dagger2.ui.main.home.HomeActivity
 import com.torres.valmir.kotlin_mvp_dagger2.ui.main.receiver.ReceiverActivity
 import com.torres.valmir.kotlin_mvp_dagger2.ui.main.settings.SettingsActivity
@@ -23,6 +24,7 @@ abstract class BaseActivity: AppCompatActivity() {
             is SettingsActivity -> TMDBApplication.graph.inject(this)
             is SplashActivity -> TMDBApplication.graph.inject(this)
             is ReceiverActivity -> TMDBApplication.graph.inject(this)
+            is DetailPersonActivity -> TMDBApplication.graph.inject(this)
         }
     }
 }

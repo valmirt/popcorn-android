@@ -50,6 +50,10 @@
                     android:host="www.themoviedb.org"/>
             </intent-filter>
         </activity>
+        <activity
+            android:name=".ui.main.detail_person.DetailPersonActivity"
+            android:label="@string/app_name"
+            android:theme="@style/AppTheme.NoActionBar"/>
     </application>
 
 </manifest>

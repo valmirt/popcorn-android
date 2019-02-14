@@ -6,6 +6,7 @@ import android.support.v4.content.ContextCompat
 import android.support.v7.graphics.Palette
 import android.support.v7.widget.CardView
 import android.support.v7.widget.RecyclerView
+import android.text.method.TextKeyListener.clear
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -22,10 +23,11 @@ import com.torres.valmir.kotlin_mvp_dagger2.utils.Constants
 import java.math.RoundingMode
 import java.text.DecimalFormat
 
-class MovieAdapter (private var movies: ArrayList<Movie>,
-                    private var itemListener: ItemListener<Movie>,
-                    private var context: Context)
+class MovieAdapter (private val itemListener: ItemListener<Movie>,
+                    private val context: Context)
     : RecyclerView.Adapter<MovieAdapter.MovieViewHolder>() {
+
+    private var movies = ArrayList<Movie>(0)
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): MovieViewHolder {
         val context = parent.context
@@ -45,22 +47,14 @@ class MovieAdapter (private var movies: ArrayList<Movie>,
         }
     }
 
-    private fun clear(){
-        this.movies.clear()
-        notifyDataSetChanged()
-    }
-
     fun replaceData(data: List<Movie>) {
-        clear()
+        this.movies.clear()
         this.movies.addAll(data)
         notifyDataSetChanged()
     }
 
     fun addMoreItem(data: List<Movie>) {
-        val temp = this.movies.toMutableList()
-        clear()
-        temp += data
-        this.movies.addAll(temp)
+        this.movies.addAll(data)
         notifyDataSetChanged()
     }
 

@@ -6,6 +6,7 @@ import com.torres.valmir.kotlin_mvp_dagger2.di.module.AndroidModule
 import com.torres.valmir.kotlin_mvp_dagger2.di.module.FragmentModule
 import com.torres.valmir.kotlin_mvp_dagger2.di.module.NetModule
 import com.torres.valmir.kotlin_mvp_dagger2.remote.movie.MovieServiceImpl
+import com.torres.valmir.kotlin_mvp_dagger2.remote.person.PersonImpl
 import com.torres.valmir.kotlin_mvp_dagger2.remote.tv_show.TvServiceImpl
 import com.torres.valmir.kotlin_mvp_dagger2.ui.main.about.AboutActivity
 import com.torres.valmir.kotlin_mvp_dagger2.ui.main.about.AboutPresenter
@@ -16,6 +17,8 @@ import com.torres.valmir.kotlin_mvp_dagger2.ui.main.detail.casting.CastingPresen
 import com.torres.valmir.kotlin_mvp_dagger2.ui.main.detail.info.InfoFragment
 import com.torres.valmir.kotlin_mvp_dagger2.ui.main.detail.info.InfoPresenter
 import com.torres.valmir.kotlin_mvp_dagger2.ui.main.detail.season.SeasonFragment
+import com.torres.valmir.kotlin_mvp_dagger2.ui.main.detail_person.DetailPersonActivity
+import com.torres.valmir.kotlin_mvp_dagger2.ui.main.detail_person.DetailPersonPresenter
 import com.torres.valmir.kotlin_mvp_dagger2.ui.main.home.HomeActivity
 import com.torres.valmir.kotlin_mvp_dagger2.ui.main.home.HomePresenter
 import com.torres.valmir.kotlin_mvp_dagger2.ui.main.home.list.ListPresenter
@@ -70,4 +73,10 @@ interface ApplicationComponent {
     fun inject (receiverActivity: ReceiverActivity)
 
     fun inject (receiverPresenter: ReceiverPresenter)
+
+    fun inject (personImpl: PersonImpl)
+
+    fun inject (detailPersonActivity: DetailPersonActivity)
+
+    fun inject (detailPersonPresenter: DetailPersonPresenter)
 }

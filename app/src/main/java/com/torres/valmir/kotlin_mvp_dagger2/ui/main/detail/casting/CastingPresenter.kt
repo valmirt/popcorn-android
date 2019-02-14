@@ -1,11 +1,15 @@
 package com.torres.valmir.kotlin_mvp_dagger2.ui.main.detail.casting
 
 import android.content.Context
+import android.content.Intent
+import android.support.v4.app.Fragment
 import com.torres.valmir.kotlin_mvp_dagger2.R
 import com.torres.valmir.kotlin_mvp_dagger2.TMDBApplication
 import com.torres.valmir.kotlin_mvp_dagger2.model.ListCastCrew
 import com.torres.valmir.kotlin_mvp_dagger2.remote.movie.MovieServiceApi
 import com.torres.valmir.kotlin_mvp_dagger2.remote.tv_show.TvServiceApi
+import com.torres.valmir.kotlin_mvp_dagger2.ui.main.detail_person.DetailPersonActivity
+import com.torres.valmir.kotlin_mvp_dagger2.utils.Constants.Companion.PERSON
 import javax.inject.Inject
 
 class CastingPresenter: CastingContract.Presenter {
@@ -56,5 +60,11 @@ class CastingPresenter: CastingContract.Presenter {
                 }
             }
         }, id)
+    }
+
+    override fun sendToDetailPerson(fragment: Fragment, id: Int) {
+        val intent = Intent(fragment.activity, DetailPersonActivity::class.java)
+        intent.putExtra(PERSON, id)
+        fragment.activity?.startActivity(intent)
     }
 }

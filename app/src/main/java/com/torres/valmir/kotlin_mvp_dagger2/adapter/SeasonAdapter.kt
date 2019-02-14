@@ -18,8 +18,8 @@ import com.torres.valmir.kotlin_mvp_dagger2.R
 import com.torres.valmir.kotlin_mvp_dagger2.model.Season
 import com.torres.valmir.kotlin_mvp_dagger2.utils.Constants
 
-class SeasonAdapter (private var seasons: List<Season>,
-                     private var context: Context): RecyclerView.Adapter<SeasonAdapter.SeasonViewHolder>() {
+class SeasonAdapter (private val seasons: List<Season>,
+                     private val context: Context): RecyclerView.Adapter<SeasonAdapter.SeasonViewHolder>() {
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): SeasonViewHolder {
         val context = parent.context

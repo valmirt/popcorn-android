@@ -9,7 +9,7 @@ import retrofit2.http.GET
 import retrofit2.http.Path
 import retrofit2.http.Query
 
-interface TvEndPoint {
+interface TvEndpoint {
 
     @GET("search/tv")
     fun searchTvShow(@Query("api_key") key: String = "ebf3f29bcec9455240223a565fb2a81d",
