@@ -12,6 +12,7 @@ import android.support.v4.view.ViewPager;
 import android.support.v7.widget.Toolbar;
 import android.text.TextUtils;
 import android.util.TypedValue;
+import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.view.Window;
@@ -239,9 +240,22 @@ public class DetailPersonActivity extends BaseActivity implements DetailPersonCo
     }
 
     @Override
+    public boolean onCreateOptionsMenu(Menu menu) {
+        getMenuInflater().inflate(R.menu.person_menu, menu);
+        return super.onCreateOptionsMenu(menu);
+    }
+
+    @Override
     public boolean onOptionsItemSelected(MenuItem item) {
         if (item.getItemId() == android.R.id.home) {
-            onBackPressed();
+            if (isTaskRoot()) {
+                mPresenter.sendToHomeActivity(this);
+            } else onBackPressed();
+        }
+        if (item.getItemId() == R.id.share_button_person) {
+            if (person != null) {
+                mPresenter.sharePerson(person.getId(), "person");
+            }
         }
         return super.onOptionsItemSelected(item);
     }
