@@ -44,7 +44,8 @@
     <string name="title_activity_detail">DetailActivity</string>
     <string name="title_tab_one">Info</string>
     <string name="title_tab_two">Elenco</string>
-    <string name="title_tab_three">Seasons</string>
+    <string name="title_tab_three">Temporadas</string>
+    <string name="title_tab_four">Filmografia</string>
     <string name="time_example">139</string>
     <string name="minutes_example">minutos</string>
     <string name="production">Produção:</string>

@@ -16,6 +16,6 @@ interface CastingContract {
 
         fun getCastCrewTv(id: Int)
 
-        fun sendToDetailPerson(fragment: Fragment, id: Int)
+        fun getPerson(fragment: Fragment, id: Int, language: String)
     }
 }

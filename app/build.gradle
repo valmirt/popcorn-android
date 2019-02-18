@@ -64,4 +64,7 @@ dependencies {
     //Circle ImageView
     implementation 'de.hdodenhof:circleimageview:2.2.0'
 
+    //Collapsing avatar
+    implementation 'com.sloydev:collapsingavatartoolbar:1.0.0'
+
 }
