@@ -18,4 +18,13 @@ open class Entity (var code: Int = 0,
                    @SerializedName("production_companies")
                    var production: List<Production>? = null,
                    @SerializedName("original_language")
-                   var originalLanguage: String = ""): Serializable
+                   var originalLanguage: String = "",
+                   var title: String = "",
+                   @SerializedName("original_title")
+                   var originalTitle: String = "",
+                   var name: String = "",
+                   @SerializedName("original_name")
+                   var originalName: String = "",
+                   var character: String = "",
+                   @SerializedName("media_type")
+                   var mediaType: String = ""): Serializable

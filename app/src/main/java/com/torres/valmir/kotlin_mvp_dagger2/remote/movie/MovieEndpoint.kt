@@ -6,7 +6,7 @@ import retrofit2.http.GET
 import retrofit2.http.Path
 import retrofit2.http.Query
 
-interface MovieEndPoint {
+interface MovieEndpoint {
 
     @GET("search/movie")
     fun searchMovie (@Query("api_key") key: String = "ebf3f29bcec9455240223a565fb2a81d",

@@ -96,11 +96,11 @@ class HomeActivity : BaseActivity(), NavigationView.OnNavigationItemSelectedList
             }
             //Others
             R.id.nav_settings -> {
-                mPresenter.setActivitySettings()
+                mPresenter.setActivitySettings(this)
 
             }
             R.id.nav_about -> {
-                mPresenter.setActivityAbout()
+                mPresenter.setActivityAbout(this)
             }
         }
 

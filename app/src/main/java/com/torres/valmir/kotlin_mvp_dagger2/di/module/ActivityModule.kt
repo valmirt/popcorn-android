@@ -4,6 +4,8 @@ import com.torres.valmir.kotlin_mvp_dagger2.ui.main.about.AboutContract
 import com.torres.valmir.kotlin_mvp_dagger2.ui.main.about.AboutPresenter
 import com.torres.valmir.kotlin_mvp_dagger2.ui.main.detail.DetailContract
 import com.torres.valmir.kotlin_mvp_dagger2.ui.main.detail.DetailPresenter
+import com.torres.valmir.kotlin_mvp_dagger2.ui.main.person.DetailPersonContract
+import com.torres.valmir.kotlin_mvp_dagger2.ui.main.person.DetailPersonPresenter
 import com.torres.valmir.kotlin_mvp_dagger2.ui.main.home.HomeContract
 import com.torres.valmir.kotlin_mvp_dagger2.ui.main.home.HomePresenter
 import com.torres.valmir.kotlin_mvp_dagger2.ui.main.receiver.ReceiverContract
@@ -34,4 +36,7 @@ class ActivityModule {
 
     @Provides
     fun provideReceiverPresenter(): ReceiverContract.Presenter = ReceiverPresenter()
+
+    @Provides
+    fun provideDetailPersonPresenter(): DetailPersonContract.Presenter = DetailPersonPresenter()
 }

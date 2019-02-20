@@ -6,6 +6,7 @@ import com.torres.valmir.kotlin_mvp_dagger2.di.module.AndroidModule
 import com.torres.valmir.kotlin_mvp_dagger2.di.module.FragmentModule
 import com.torres.valmir.kotlin_mvp_dagger2.di.module.NetModule
 import com.torres.valmir.kotlin_mvp_dagger2.remote.movie.MovieServiceImpl
+import com.torres.valmir.kotlin_mvp_dagger2.remote.person.PersonServiceImpl
 import com.torres.valmir.kotlin_mvp_dagger2.remote.tv_show.TvServiceImpl
 import com.torres.valmir.kotlin_mvp_dagger2.ui.main.about.AboutActivity
 import com.torres.valmir.kotlin_mvp_dagger2.ui.main.about.AboutPresenter
@@ -16,10 +17,16 @@ import com.torres.valmir.kotlin_mvp_dagger2.ui.main.detail.casting.CastingPresen
 import com.torres.valmir.kotlin_mvp_dagger2.ui.main.detail.info.InfoFragment
 import com.torres.valmir.kotlin_mvp_dagger2.ui.main.detail.info.InfoPresenter
 import com.torres.valmir.kotlin_mvp_dagger2.ui.main.detail.season.SeasonFragment
+import com.torres.valmir.kotlin_mvp_dagger2.ui.main.person.DetailPersonActivity
+import com.torres.valmir.kotlin_mvp_dagger2.ui.main.person.DetailPersonPresenter
 import com.torres.valmir.kotlin_mvp_dagger2.ui.main.home.HomeActivity
 import com.torres.valmir.kotlin_mvp_dagger2.ui.main.home.HomePresenter
 import com.torres.valmir.kotlin_mvp_dagger2.ui.main.home.list.ListPresenter
 import com.torres.valmir.kotlin_mvp_dagger2.ui.main.home.list.ListFragment
+import com.torres.valmir.kotlin_mvp_dagger2.ui.main.person.biography.InfoPersonFragment
+import com.torres.valmir.kotlin_mvp_dagger2.ui.main.person.biography.InfoPersonPresenter
+import com.torres.valmir.kotlin_mvp_dagger2.ui.main.person.credits.CreditsFragment
+import com.torres.valmir.kotlin_mvp_dagger2.ui.main.person.credits.CreditsPresenter
 import com.torres.valmir.kotlin_mvp_dagger2.ui.main.receiver.ReceiverActivity
 import com.torres.valmir.kotlin_mvp_dagger2.ui.main.receiver.ReceiverPresenter
 import com.torres.valmir.kotlin_mvp_dagger2.ui.main.settings.SettingsActivity
@@ -70,4 +77,18 @@ interface ApplicationComponent {
     fun inject (receiverActivity: ReceiverActivity)
 
     fun inject (receiverPresenter: ReceiverPresenter)
+
+    fun inject (personImpl: PersonServiceImpl)
+
+    fun inject (detailPersonActivity: DetailPersonActivity)
+
+    fun inject (detailPersonPresenter: DetailPersonPresenter)
+
+    fun inject (infoPersonFragment: InfoPersonFragment)
+
+    fun inject (infoPersonPresenter: InfoPersonPresenter)
+
+    fun inject (creditsFragment: CreditsFragment)
+
+    fun inject (creditsPresenter: CreditsPresenter)
 }

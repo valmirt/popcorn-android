@@ -22,7 +22,7 @@ class MovieServiceImpl: MovieServiceApi {
 
     override fun getMovie(callback: MovieServiceApi.ServiceCallback<ListMovies>, query: String, page: Int, language: String) {
         val callMovie = retrofit
-                .create(MovieEndPoint::class.java)
+                .create(MovieEndpoint::class.java)
                 .searchMovie(query = query,page = page, language = language)
 
         returningCall(callMovie, callback)
@@ -30,7 +30,7 @@ class MovieServiceImpl: MovieServiceApi {
 
     override fun getPopular(callback: MovieServiceApi.ServiceCallback<ListMovies>, page: Int, language: String) {
         val callMovie = retrofit
-                .create(MovieEndPoint::class.java)
+                .create(MovieEndpoint::class.java)
                 .popular(page = page, language = language)
 
         returningCall(callMovie, callback)
@@ -38,7 +38,7 @@ class MovieServiceImpl: MovieServiceApi {
 
     override fun getTopRated(callback: MovieServiceApi.ServiceCallback<ListMovies>, page: Int, language: String) {
         val callMovie = retrofit
-                .create(MovieEndPoint::class.java)
+                .create(MovieEndpoint::class.java)
                 .topRated(page = page, language = language)
 
         returningCall(callMovie, callback)
@@ -46,7 +46,7 @@ class MovieServiceImpl: MovieServiceApi {
 
     override fun getNowPlaying(callback: MovieServiceApi.ServiceCallback<ListMovies>, page: Int, language: String) {
         val callMovie = retrofit
-                .create(MovieEndPoint::class.java)
+                .create(MovieEndpoint::class.java)
                 .nowPlaying(page = page, language = language)
 
         returningCall(callMovie, callback)
@@ -54,7 +54,7 @@ class MovieServiceImpl: MovieServiceApi {
 
     override fun getMovieId(callback: MovieServiceApi.ServiceCallback<Movie>, id: Int, language: String) {
         val callMovie = retrofit
-                .create(MovieEndPoint::class.java)
+                .create(MovieEndpoint::class.java)
                 .searchMovieId(id = id, language = language)
 
         callMovie.enqueue(object: Callback<Movie>{
@@ -77,7 +77,7 @@ class MovieServiceImpl: MovieServiceApi {
 
     override fun getSimilarMovies(callback: MovieServiceApi.ServiceCallback<ListMovies>, id: Int, page: Int, language: String) {
         val callMovie = retrofit
-                .create(MovieEndPoint::class.java)
+                .create(MovieEndpoint::class.java)
                 .getSimilarMovies(id = id, page = page, language = language)
 
         returningCall(callMovie, callback)
@@ -85,7 +85,7 @@ class MovieServiceImpl: MovieServiceApi {
 
     override fun getCastCrew(callback: MovieServiceApi.ServiceCallback<ListCastCrew>, id: Int) {
         val call = retrofit
-                .create(MovieEndPoint::class.java)
+                .create(MovieEndpoint::class.java)
                 .getCastandCrewMovie(id = id)
 
         call.enqueue(object : Callback<ListCastCrew>{
@@ -108,7 +108,7 @@ class MovieServiceImpl: MovieServiceApi {
 
     override fun getTrailer(callback: MovieServiceApi.ServiceCallback<ListTrailers>, id: Int, language: String) {
         val call = retrofit
-                .create(MovieEndPoint::class.java)
+                .create(MovieEndpoint::class.java)
                 .getTrailerMovie(id = id, language = language)
 
         call.enqueue(object : Callback<ListTrailers>{

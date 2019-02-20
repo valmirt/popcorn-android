@@ -10,7 +10,7 @@ import com.torres.valmir.kotlin_mvp_dagger2.adapter.SeasonAdapter
 import com.torres.valmir.kotlin_mvp_dagger2.model.TvShow
 import com.torres.valmir.kotlin_mvp_dagger2.ui.base.BaseFragment
 import com.torres.valmir.kotlin_mvp_dagger2.utils.Constants
-import kotlinx.android.synthetic.main.fragment_season_detail.*
+import kotlinx.android.synthetic.main.fragment_casting_detail.*
 import javax.inject.Inject
 
 class SeasonFragment: BaseFragment(), SeasonContract.View {
@@ -36,7 +36,7 @@ class SeasonFragment: BaseFragment(), SeasonContract.View {
     }
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
-        return inflater.inflate(R.layout.fragment_season_detail, container, false)
+        return inflater.inflate(R.layout.fragment_casting_detail, container, false)
     }
 
     override fun onActivityCreated(savedInstanceState: Bundle?) {
@@ -47,8 +47,8 @@ class SeasonFragment: BaseFragment(), SeasonContract.View {
     }
 
     private fun fillView() {
-        list_seasons.layoutManager = LinearLayoutManager(context)
-        list_seasons.setHasFixedSize(true)
-        list_seasons.adapter = mListAdapter
+        list_casting.layoutManager = LinearLayoutManager(context)
+        list_casting.setHasFixedSize(true)
+        list_casting.adapter = mListAdapter
     }
 }

@@ -2,10 +2,7 @@ package com.torres.valmir.kotlin_mvp_dagger2.model
 
 import com.google.gson.annotations.SerializedName
 
-class TvShow (var name: String = "",
-              @SerializedName("original_name")
-              var originalName: String = "",
-              @SerializedName("episode_run_time")
+class TvShow (@SerializedName("episode_run_time")
               var runtime: List<Int>? = null,
               @SerializedName("first_air_date")
               var firstAirDate: String = "",

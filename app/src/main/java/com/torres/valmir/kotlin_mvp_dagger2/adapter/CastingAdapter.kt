@@ -4,6 +4,7 @@ import android.content.Context
 import android.graphics.Bitmap
 import android.support.v4.content.ContextCompat
 import android.support.v7.widget.RecyclerView
+import android.text.method.TextKeyListener.clear
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -17,8 +18,10 @@ import com.torres.valmir.kotlin_mvp_dagger2.model.Cast
 import com.torres.valmir.kotlin_mvp_dagger2.utils.Constants
 import de.hdodenhof.circleimageview.CircleImageView
 
-class CastingAdapter (private var casting: ArrayList<Cast>,
-                      private var context: Context) : RecyclerView.Adapter<CastingAdapter.CastingViewHolder>(){
+class CastingAdapter (private val context: Context,
+                      private val itemListener: ItemListener<Cast>) : RecyclerView.Adapter<CastingAdapter.CastingViewHolder>(){
+
+    private val casting = ArrayList<Cast>(0)
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): CastingViewHolder {
         val context = parent.context
@@ -31,16 +34,15 @@ class CastingAdapter (private var casting: ArrayList<Cast>,
 
     override fun onBindViewHolder(holder: CastingViewHolder, position: Int) {
         val cast = casting[position]
-        holder.fillData(cast, context)
-    }
 
-    fun clear(){
-        this.casting.clear()
-        notifyDataSetChanged()
+        holder.fillData(cast, context)
+        holder.itemView.setOnClickListener {
+            itemListener.onClick(cast)
+        }
     }
 
     fun replaceData(data: List<Cast>){
-        clear()
+        this.casting.clear()
         this.casting.addAll(data)
         notifyDataSetChanged()
     }

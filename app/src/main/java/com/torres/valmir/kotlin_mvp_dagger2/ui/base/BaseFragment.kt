@@ -6,6 +6,8 @@ import com.torres.valmir.kotlin_mvp_dagger2.ui.main.detail.casting.CastingFragme
 import com.torres.valmir.kotlin_mvp_dagger2.ui.main.detail.info.InfoFragment
 import com.torres.valmir.kotlin_mvp_dagger2.ui.main.detail.season.SeasonFragment
 import com.torres.valmir.kotlin_mvp_dagger2.ui.main.home.list.ListFragment
+import com.torres.valmir.kotlin_mvp_dagger2.ui.main.person.biography.InfoPersonFragment
+import com.torres.valmir.kotlin_mvp_dagger2.ui.main.person.credits.CreditsFragment
 
 abstract class BaseFragment: Fragment() {
 
@@ -19,6 +21,8 @@ abstract class BaseFragment: Fragment() {
             is InfoFragment -> TMDBApplication.graph.inject(this)
             is SeasonFragment -> TMDBApplication.graph.inject(this)
             is ListFragment -> TMDBApplication.graph.inject(this)
+            is InfoPersonFragment -> TMDBApplication.graph.inject(this)
+            is CreditsFragment -> TMDBApplication.graph.inject(this)
         }
     }
 }

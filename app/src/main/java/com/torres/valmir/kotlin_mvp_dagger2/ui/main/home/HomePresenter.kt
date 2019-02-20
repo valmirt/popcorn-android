@@ -4,6 +4,7 @@ import android.content.Context
 import android.content.Intent
 import android.content.SharedPreferences
 import android.os.Bundle
+import android.support.v7.app.AppCompatActivity
 import com.torres.valmir.kotlin_mvp_dagger2.R
 import com.torres.valmir.kotlin_mvp_dagger2.TMDBApplication
 import com.torres.valmir.kotlin_mvp_dagger2.ui.base.BaseActivity
@@ -42,12 +43,12 @@ class HomePresenter: HomeContract.Presenter {
                 .commit()
     }
 
-    override fun setActivitySettings() {
-        context.startActivity(Intent(context, SettingsActivity::class.java))
+    override fun setActivitySettings(activity: BaseActivity) {
+        activity.startActivity(Intent(activity, SettingsActivity::class.java))
     }
 
-    override fun setActivityAbout() {
-        context.startActivity(Intent(context, AboutActivity::class.java))
+    override fun setActivityAbout(activity: BaseActivity) {
+        activity.startActivity(Intent(activity, AboutActivity::class.java))
     }
 
     override fun getPreference(activity: BaseActivity) {

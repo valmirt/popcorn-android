@@ -22,7 +22,7 @@ class TvServiceImpl: TvServiceApi {
 
     override fun getTvShow(callback: TvServiceApi.ServiceCallback<ListTV>, query: String, page: Int, language: String) {
         val call = retrofit
-                .create(TvEndPoint::class.java)
+                .create(TvEndpoint::class.java)
                 .searchTvShow(query = query, page = page, language = language)
 
         returningCall(call, callback)
@@ -30,7 +30,7 @@ class TvServiceImpl: TvServiceApi {
 
     override fun getPopularTV(callback: TvServiceApi.ServiceCallback<ListTV>, page: Int, language: String) {
         val call = retrofit
-                .create(TvEndPoint::class.java)
+                .create(TvEndpoint::class.java)
                 .popularTV(page = page, language = language)
 
         returningCall(call, callback)
@@ -38,7 +38,7 @@ class TvServiceImpl: TvServiceApi {
 
     override fun getTopRatedTV(callback: TvServiceApi.ServiceCallback<ListTV>, page: Int, language: String) {
         val call = retrofit
-                .create(TvEndPoint::class.java)
+                .create(TvEndpoint::class.java)
                 .topRatedTV(page = page, language = language)
 
         returningCall(call, callback)
@@ -46,7 +46,7 @@ class TvServiceImpl: TvServiceApi {
 
     override fun getTodaysTV(callback: TvServiceApi.ServiceCallback<ListTV>, page: Int, language: String) {
         val call = retrofit
-                .create(TvEndPoint::class.java)
+                .create(TvEndpoint::class.java)
                 .todaysTV(page = page, language = language)
 
         returningCall(call, callback)
@@ -54,7 +54,7 @@ class TvServiceImpl: TvServiceApi {
 
     override fun getTrailer(callback: TvServiceApi.ServiceCallback<ListTrailers>, id: Int, language: String) {
         val call = retrofit
-                .create(TvEndPoint::class.java)
+                .create(TvEndpoint::class.java)
                 .getTrailerTV(id = id, language = language)
 
         call.enqueue(object : Callback<ListTrailers>{
@@ -77,7 +77,7 @@ class TvServiceImpl: TvServiceApi {
 
     override fun getTvShowId(callback: TvServiceApi.ServiceCallback<TvShow>, id: Int, language: String) {
         val call = retrofit
-                .create(TvEndPoint::class.java)
+                .create(TvEndpoint::class.java)
                 .detailTV(id = id, language = language)
 
         call.enqueue(object: Callback<TvShow>{
@@ -100,7 +100,7 @@ class TvServiceImpl: TvServiceApi {
 
     override fun getCastCrewTV(callback: TvServiceApi.ServiceCallback<ListCastCrew>, id: Int) {
         val call = retrofit
-                .create(TvEndPoint::class.java)
+                .create(TvEndpoint::class.java)
                 .getCastandCrewTV(id = id)
 
         call.enqueue(object : Callback<ListCastCrew>{

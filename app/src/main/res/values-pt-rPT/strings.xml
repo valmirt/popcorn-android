@@ -44,7 +44,8 @@
     <string name="title_activity_detail">DetailActivity</string>
     <string name="title_tab_one">Info</string>
     <string name="title_tab_two">Elenco</string>
-    <string name="title_tab_three">Seasons</string>
+    <string name="title_tab_three">Temporadas</string>
+    <string name="title_tab_four">Filmografia</string>
     <string name="time_example">139</string>
     <string name="minutes_example">minutos</string>
     <string name="production">Produção:</string>
@@ -81,4 +82,8 @@
     <string name="share">Compartilhar</string>
     <string name="error_trailer">Não há trailers.</string>
     <string name="share_message">Veja isso: </string>
+    <string name="birthday_person">Nascimento:</string>
+    <string name="death_day_person">Morte:</string>
+    <string name="place_of_birth_person">Local de nascimento:</string>
+    <string name="biography_person">Biografia:</string>
 </resources>

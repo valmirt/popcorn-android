@@ -52,8 +52,8 @@ class ListFragment: BaseFragment(), ListContract.View {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
 
-        mListAdapter = MovieAdapter(ArrayList(0), itemListenerMovie, context!!)
-        mListAdapterTv = TvShowAdapter(ArrayList(0), itemListenerTv, context!!)
+        mListAdapter = MovieAdapter(itemListenerMovie, context!!)
+        mListAdapterTv = TvShowAdapter(itemListenerTv, context!!)
 
         mPresenter.attach(this)
 

@@ -8,6 +8,10 @@ import com.torres.valmir.kotlin_mvp_dagger2.ui.main.detail.season.SeasonContract
 import com.torres.valmir.kotlin_mvp_dagger2.ui.main.detail.season.SeasonPresenter
 import com.torres.valmir.kotlin_mvp_dagger2.ui.main.home.list.ListContract
 import com.torres.valmir.kotlin_mvp_dagger2.ui.main.home.list.ListPresenter
+import com.torres.valmir.kotlin_mvp_dagger2.ui.main.person.biography.InfoPersonContract
+import com.torres.valmir.kotlin_mvp_dagger2.ui.main.person.biography.InfoPersonPresenter
+import com.torres.valmir.kotlin_mvp_dagger2.ui.main.person.credits.CreditsContract
+import com.torres.valmir.kotlin_mvp_dagger2.ui.main.person.credits.CreditsPresenter
 import dagger.Module
 import dagger.Provides
 
@@ -25,4 +29,10 @@ class FragmentModule {
 
     @Provides
     fun provideSeasonPresenter(): SeasonContract.Presenter = SeasonPresenter()
+
+    @Provides
+    fun provideInfoPersonPresenter(): InfoPersonContract.Presenter = InfoPersonPresenter()
+
+    @Provides
+    fun provideCreditsPresenter(): CreditsContract.Presenter = CreditsPresenter()
 }
