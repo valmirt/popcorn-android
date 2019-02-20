@@ -33,4 +33,7 @@ public class Utils {
 		return paint.measureText(text);
 	}
 
+	public static String refactorDate(String date) {
+		return "";
+	}
 }

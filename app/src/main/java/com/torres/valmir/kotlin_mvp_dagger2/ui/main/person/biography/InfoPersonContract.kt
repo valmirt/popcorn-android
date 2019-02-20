@@ -1,4 +1,4 @@
-package com.torres.valmir.kotlin_mvp_dagger2.ui.main.detail_person.info_person
+package com.torres.valmir.kotlin_mvp_dagger2.ui.main.person.biography
 
 import com.torres.valmir.kotlin_mvp_dagger2.ui.base.BaseContract
 
@@ -7,7 +7,7 @@ interface InfoPersonContract {
 
     }
 
-    interface Presenter: BaseContract.Presenter<BaseContract.View> {
+    interface Presenter: BaseContract.Presenter<InfoPersonContract.View> {
 
     }
 }

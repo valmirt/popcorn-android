@@ -24,4 +24,7 @@ open class Entity (var code: Int = 0,
                    var originalTitle: String = "",
                    var name: String = "",
                    @SerializedName("original_name")
-                   var originalName: String = ""): Serializable
+                   var originalName: String = "",
+                   var character: String = "",
+                   @SerializedName("media_type")
+                   var mediaType: String = ""): Serializable

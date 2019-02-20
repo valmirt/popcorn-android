@@ -1,4 +1,4 @@
-package com.torres.valmir.kotlin_mvp_dagger2.ui.main.detail_person
+package com.torres.valmir.kotlin_mvp_dagger2.ui.main.person
 
 import android.content.Context
 import android.content.Intent
@@ -24,7 +24,7 @@ class DetailPersonPresenter: DetailPersonContract.Presenter {
         this.view = view
     }
 
-    override fun sharePerson(id: Int, type: String) {
+    override fun sharePerson(activity: AppCompatActivity, id: Int, type: String) {
         val message = context.getString(R.string.share_message) +
                 " " +
                 Constants.SHARE_URL +
@@ -36,7 +36,7 @@ class DetailPersonPresenter: DetailPersonContract.Presenter {
         intent.putExtra(Intent.EXTRA_TEXT, message)
         intent.type = "text/plain"
 
-        context.startActivity(Intent.createChooser(intent, context.getString(R.string.share)+ " " + type))
+        activity.startActivity(Intent.createChooser(intent, context.getString(R.string.share)+ " " + type))
     }
 
     override fun sendToHomeActivity(activity: AppCompatActivity) {

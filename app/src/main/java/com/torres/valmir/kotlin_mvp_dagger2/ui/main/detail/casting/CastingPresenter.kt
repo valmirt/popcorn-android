@@ -8,9 +8,9 @@ import com.torres.valmir.kotlin_mvp_dagger2.TMDBApplication
 import com.torres.valmir.kotlin_mvp_dagger2.model.ListCastCrew
 import com.torres.valmir.kotlin_mvp_dagger2.model.Person
 import com.torres.valmir.kotlin_mvp_dagger2.remote.movie.MovieServiceApi
-import com.torres.valmir.kotlin_mvp_dagger2.remote.person.PersonApi
+import com.torres.valmir.kotlin_mvp_dagger2.remote.person.PersonServiceApi
 import com.torres.valmir.kotlin_mvp_dagger2.remote.tv_show.TvServiceApi
-import com.torres.valmir.kotlin_mvp_dagger2.ui.main.detail_person.DetailPersonActivity
+import com.torres.valmir.kotlin_mvp_dagger2.ui.main.person.DetailPersonActivity
 import com.torres.valmir.kotlin_mvp_dagger2.utils.Constants.Companion.PERSON
 import javax.inject.Inject
 
@@ -27,7 +27,7 @@ class CastingPresenter: CastingContract.Presenter {
     lateinit var apiTv: TvServiceApi
 
     @Inject
-    lateinit var apiPerson: PersonApi
+    lateinit var apiPerson: PersonServiceApi
 
     init {
         TMDBApplication.graph.inject(this)
@@ -68,7 +68,7 @@ class CastingPresenter: CastingContract.Presenter {
     }
 
     override fun getPerson(fragment: Fragment, id: Int, language: String) {
-        apiPerson.getDetailPerson(object : PersonApi.ServiceCallback<Person>{
+        apiPerson.getDetailPerson(object : PersonServiceApi.ServiceCallback<Person>{
             override fun onLoaded(response: Person) {
                 when(response.code) {
                     200 -> {

@@ -313,6 +313,11 @@
             <set />
           </value>
         </entry>
+        <entry key="$PROJECT_DIR$/app/src/main/java/com/torres/valmir/kotlin_mvp_dagger2/model/ListEntity.kt">
+          <value>
+            <set />
+          </value>
+        </entry>
         <entry key="$PROJECT_DIR$/app/src/main/java/com/torres/valmir/kotlin_mvp_dagger2/model/ListTrailers.kt">
           <value>
             <set />
@@ -529,6 +534,41 @@
           </value>
         </entry>
         <entry key="$PROJECT_DIR$/app/src/main/java/com/torres/valmir/kotlin_mvp_dagger2/ui/main/home/list/ListFragment.kt">
+          <value>
+            <set />
+          </value>
+        </entry>
+        <entry key="$PROJECT_DIR$/app/src/main/java/com/torres/valmir/kotlin_mvp_dagger2/ui/main/person/DetailPersonActivity.java">
+          <value>
+            <set />
+          </value>
+        </entry>
+        <entry key="$PROJECT_DIR$/app/src/main/java/com/torres/valmir/kotlin_mvp_dagger2/ui/main/person/biography/InfoPersonContract.kt">
+          <value>
+            <set />
+          </value>
+        </entry>
+        <entry key="$PROJECT_DIR$/app/src/main/java/com/torres/valmir/kotlin_mvp_dagger2/ui/main/person/biography/InfoPersonFragment.kt">
+          <value>
+            <set />
+          </value>
+        </entry>
+        <entry key="$PROJECT_DIR$/app/src/main/java/com/torres/valmir/kotlin_mvp_dagger2/ui/main/person/biography/InfoPersonPresenter.kt">
+          <value>
+            <set />
+          </value>
+        </entry>
+        <entry key="$PROJECT_DIR$/app/src/main/java/com/torres/valmir/kotlin_mvp_dagger2/ui/main/person/credits/CreditsContract.kt">
+          <value>
+            <set />
+          </value>
+        </entry>
+        <entry key="$PROJECT_DIR$/app/src/main/java/com/torres/valmir/kotlin_mvp_dagger2/ui/main/person/credits/CreditsFragment.kt">
+          <value>
+            <set />
+          </value>
+        </entry>
+        <entry key="$PROJECT_DIR$/app/src/main/java/com/torres/valmir/kotlin_mvp_dagger2/ui/main/person/credits/CreditsPresenter.kt">
           <value>
             <set />
           </value>

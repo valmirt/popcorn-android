@@ -1,7 +1,7 @@
 package com.torres.valmir.kotlin_mvp_dagger2.remote.person
 
 import com.torres.valmir.kotlin_mvp_dagger2.TMDBApplication
-import com.torres.valmir.kotlin_mvp_dagger2.model.Entity
+import com.torres.valmir.kotlin_mvp_dagger2.model.ListEntity
 import com.torres.valmir.kotlin_mvp_dagger2.model.Person
 import retrofit2.Call
 import retrofit2.Callback
@@ -9,7 +9,7 @@ import retrofit2.Response
 import retrofit2.Retrofit
 import javax.inject.Inject
 
-class PersonImpl: PersonApi {
+class PersonServiceImpl: PersonServiceApi {
 
     @Inject
     lateinit var retrofit: Retrofit
@@ -18,7 +18,7 @@ class PersonImpl: PersonApi {
         TMDBApplication.graph.inject(this)
     }
 
-    override fun getDetailPerson(callback: PersonApi.ServiceCallback<Person>, id: Int, language: String) {
+    override fun getDetailPerson(callback: PersonServiceApi.ServiceCallback<Person>, id: Int, language: String) {
         val call = retrofit
                 .create(PersonEndpoint::class.java)
                 .getDetail(id = id, language = language)
@@ -41,18 +41,18 @@ class PersonImpl: PersonApi {
         })
     }
 
-    override fun getCreditsPerson(callback: PersonApi.ServiceCallback<Entity>, id: Int, language: String) {
+    override fun getCreditsPerson(callback: PersonServiceApi.ServiceCallback<ListEntity>, id: Int, language: String) {
         val call = retrofit
                 .create(PersonEndpoint::class.java)
                 .getCredits(id = id, language = language)
 
-        call.enqueue(object : Callback<Entity>{
-            override fun onFailure(call: Call<Entity>, t: Throwable) {
-                callback.onLoaded(Entity())
+        call.enqueue(object : Callback<ListEntity>{
+            override fun onFailure(call: Call<ListEntity>, t: Throwable) {
+                callback.onLoaded(ListEntity())
             }
 
-            override fun onResponse(call: Call<Entity>, response: Response<Entity>) {
-                var result = Entity()
+            override fun onResponse(call: Call<ListEntity>, response: Response<ListEntity>) {
+                var result = ListEntity()
 
                 response.body()?.let {
                     result = it

@@ -6,6 +6,7 @@ import java.io.Serializable
 class Person (var code: Int = 0,
               var id: Int = 0,
               var birthday: String? = "",
+              var deathday: String? = "",
               @SerializedName("know_for_department")
               var knowDepartment: String? = "",
               var name: String? = "",

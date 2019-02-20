@@ -8,10 +8,10 @@ import com.torres.valmir.kotlin_mvp_dagger2.model.Movie
 import com.torres.valmir.kotlin_mvp_dagger2.model.Person
 import com.torres.valmir.kotlin_mvp_dagger2.model.TvShow
 import com.torres.valmir.kotlin_mvp_dagger2.remote.movie.MovieServiceApi
-import com.torres.valmir.kotlin_mvp_dagger2.remote.person.PersonApi
+import com.torres.valmir.kotlin_mvp_dagger2.remote.person.PersonServiceApi
 import com.torres.valmir.kotlin_mvp_dagger2.remote.tv_show.TvServiceApi
 import com.torres.valmir.kotlin_mvp_dagger2.ui.main.detail.DetailActivity
-import com.torres.valmir.kotlin_mvp_dagger2.ui.main.detail_person.DetailPersonActivity
+import com.torres.valmir.kotlin_mvp_dagger2.ui.main.person.DetailPersonActivity
 import com.torres.valmir.kotlin_mvp_dagger2.utils.Constants.Companion.ERROR_RC
 import com.torres.valmir.kotlin_mvp_dagger2.utils.Constants.Companion.MOVIE_OBJECT
 import com.torres.valmir.kotlin_mvp_dagger2.utils.Constants.Companion.PERSON
@@ -32,7 +32,7 @@ class ReceiverPresenter: ReceiverContract.Presenter {
     lateinit var apiTV: TvServiceApi
 
     @Inject
-    lateinit var apiPerson: PersonApi
+    lateinit var apiPerson: PersonServiceApi
 
     private lateinit var view: ReceiverContract.View
 
@@ -91,7 +91,7 @@ class ReceiverPresenter: ReceiverContract.Presenter {
     }
 
     override fun getDetailPerson(id: String, language: String) {
-        apiPerson.getDetailPerson(object : PersonApi.ServiceCallback<Person>{
+        apiPerson.getDetailPerson(object : PersonServiceApi.ServiceCallback<Person>{
             override fun onLoaded(response: Person) {
                 when(response.code){
                     200 -> view.successResponsePerson(response)

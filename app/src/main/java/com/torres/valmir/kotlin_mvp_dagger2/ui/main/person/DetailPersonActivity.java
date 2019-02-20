@@ -1,4 +1,4 @@
-package com.torres.valmir.kotlin_mvp_dagger2.ui.main.detail_person;
+package com.torres.valmir.kotlin_mvp_dagger2.ui.main.person;
 
 import android.graphics.Paint;
 import android.os.Build;
@@ -24,8 +24,8 @@ import com.torres.valmir.kotlin_mvp_dagger2.R;
 import com.torres.valmir.kotlin_mvp_dagger2.adapter.SectionsPagerAdapter;
 import com.torres.valmir.kotlin_mvp_dagger2.model.Person;
 import com.torres.valmir.kotlin_mvp_dagger2.ui.base.BaseActivity;
-import com.torres.valmir.kotlin_mvp_dagger2.ui.main.detail_person.credits.CreditsFragment;
-import com.torres.valmir.kotlin_mvp_dagger2.ui.main.detail_person.info_person.InfoPersonFragment;
+import com.torres.valmir.kotlin_mvp_dagger2.ui.main.person.credits.CreditsFragment;
+import com.torres.valmir.kotlin_mvp_dagger2.ui.main.person.biography.InfoPersonFragment;
 import com.torres.valmir.kotlin_mvp_dagger2.utils.libs.AppBarStateChangeListener;
 import com.torres.valmir.kotlin_mvp_dagger2.utils.libs.Utils;
 
@@ -140,7 +140,7 @@ public class DetailPersonActivity extends BaseActivity implements DetailPersonCo
     }
 
     private void setUpToolbar() {
-        mAppBarLayout.getLayoutParams().height = Utils.getDisplayMetrics(this).widthPixels * 9 / 16;
+//        mAppBarLayout.getLayoutParams().height = Utils.getDisplayMetrics(this).widthPixels * 13 / 16;
         mAppBarLayout.requestLayout();
 
         setSupportActionBar(mToolBar);
@@ -167,10 +167,10 @@ public class DetailPersonActivity extends BaseActivity implements DetailPersonCo
             public void onOffsetChanged(AppBarStateChangeListener.State state, float offset) {
                 if (state == State.IDLE) {
                     if (offset >= 0.4f) {
-                        background.setVisibility(View.INVISIBLE);
                         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
                             getWindow().setStatusBarColor(ContextCompat.getColor(DetailPersonActivity.this, R.color.colorPrimaryDark));
                         }
+                        background.setVisibility(View.INVISIBLE);
                     } else {
                         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
                             getWindow().setStatusBarColor(finalStatusBarColor);
@@ -277,7 +277,7 @@ public class DetailPersonActivity extends BaseActivity implements DetailPersonCo
         }
         if (item.getItemId() == R.id.share_button_person) {
             if (person != null) {
-                mPresenter.sharePerson(person.getId(), "person");
+                mPresenter.sharePerson(this, person.getId(), "person");
             }
         }
         return super.onOptionsItemSelected(item);

@@ -41,25 +41,31 @@ class CreditsAdapter (val context: Context,
         }
     }
 
+    fun replaceData(data: List<Entity>) {
+        this.data.clear()
+        this.data.addAll(data)
+        notifyDataSetChanged()
+    }
+
     inner class CreditViewHolder(noteView: View): RecyclerView.ViewHolder(noteView) {
         private val image = noteView.findViewById<ImageView>(R.id.credit_poster)
         private val title = noteView.findViewById<TextView>(R.id.credit_title)
-        private val originalTitle = noteView.findViewById<TextView>(R.id.credit_original_title)
+        private val character = noteView.findViewById<TextView>(R.id.credit_original_title)
 
         fun fillData(data: Entity, context: Context) {
             image.setImageDrawable(ContextCompat.getDrawable(context, R.drawable.ic_image_default_poster))
             title.text = ""
-            originalTitle.text = ""
+            character.text = ""
 
             if (!data.title.isEmpty() && !data.originalTitle.isEmpty()) {
                 title.text = data.title
-                originalTitle.text = data.originalTitle
             }
 
             if (!data.name.isEmpty() && !data.originalName.isEmpty()) {
                 title.text = data.name
-                originalTitle.text = data.originalName
             }
+
+            character.text = data.character
 
             var bitmap: Bitmap
             data.posterUrl?.let { poster->

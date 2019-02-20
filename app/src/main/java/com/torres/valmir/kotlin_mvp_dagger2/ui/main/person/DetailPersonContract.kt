@@ -1,4 +1,4 @@
-package com.torres.valmir.kotlin_mvp_dagger2.ui.main.detail_person
+package com.torres.valmir.kotlin_mvp_dagger2.ui.main.person
 
 import android.support.v7.app.AppCompatActivity
 import com.torres.valmir.kotlin_mvp_dagger2.ui.base.BaseContract
@@ -9,7 +9,7 @@ interface DetailPersonContract {
     }
 
     interface Presenter: BaseContract.Presenter<DetailPersonContract.View> {
-        fun sharePerson(id: Int, type: String)
+        fun sharePerson(activity: AppCompatActivity, id: Int, type: String)
 
         fun sendToHomeActivity(activity: AppCompatActivity)
     }

@@ -78,4 +78,8 @@
     <string name="share">Share</string>
     <string name="error_trailer">There are no trailers</string>
     <string name="share_message">Look this:</string>
+    <string name="birthday_person">Birthday:</string>
+    <string name="death_day_person">Death day:</string>
+    <string name="place_of_birth_person">Place of birth:</string>
+    <string name="biography_person">Biography:</string>
 </resources>
