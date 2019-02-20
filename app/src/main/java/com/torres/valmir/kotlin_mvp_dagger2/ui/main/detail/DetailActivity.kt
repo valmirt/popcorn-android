@@ -147,7 +147,7 @@ class DetailActivity : BaseActivity(), DetailContract.View {
                 builder.setItems(nameTrailers.toTypedArray()) { dialog, position ->
                     for (trailer in trailers) {
                         if (trailer.name == nameTrailers[position]) {
-                            mPresenter.sendToYoutube(trailer.key)
+                            mPresenter.sendToYoutube(this, trailer.key)
                             dialog.dismiss()
                         }
                     }
@@ -159,7 +159,7 @@ class DetailActivity : BaseActivity(), DetailContract.View {
                 builder.show()
             } else {
                 if (trailers[0].site == "YouTube") {
-                    mPresenter.sendToYoutube(trailers[0].key)
+                    mPresenter.sendToYoutube(this, trailers[0].key)
                 } else errorResponse(getString(R.string.error_trailer))
             }
         } else errorResponse(getString(R.string.error_trailer))
@@ -191,10 +191,10 @@ class DetailActivity : BaseActivity(), DetailContract.View {
             }
             R.id.share_button -> {
                 movie?.id?.let {
-                    mPresenter.shareMovieOrTvShow(it, "movie")
+                    mPresenter.shareMovieOrTvShow(this, it, "movie")
                 }
                 tvShow?.id?.let {
-                    mPresenter.shareMovieOrTvShow(it, "tv")
+                    mPresenter.shareMovieOrTvShow(this, it, "tv")
                 }
             }
         }
