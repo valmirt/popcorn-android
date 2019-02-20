@@ -70,7 +70,7 @@ class DetailPresenter: DetailContract.Presenter {
         }, id, language)
     }
 
-    override fun shareMovieOrTvShow(id: Int, type: String) {
+    override fun shareMovieOrTvShow(activity: AppCompatActivity, id: Int, type: String) {
         val message = context.getString(R.string.share_message) +
                 " " +
                 SHARE_URL +
@@ -82,7 +82,7 @@ class DetailPresenter: DetailContract.Presenter {
         intent.putExtra(Intent.EXTRA_TEXT, message)
         intent.type = "text/plain"
 
-        context.startActivity(Intent.createChooser(intent, context.getString(R.string.share)+ " " + type))
+        activity.startActivity(Intent.createChooser(intent, context.getString(R.string.share)+ " " + type))
     }
 
     override fun sendToHomeActivity(activity: AppCompatActivity) {
@@ -91,9 +91,9 @@ class DetailPresenter: DetailContract.Presenter {
         activity.finish()
     }
 
-    override fun sendToYoutube(key: String) {
+    override fun sendToYoutube(activity: AppCompatActivity, key: String) {
         val uri = Uri.parse(YOUTUBE_URL+key)
         val intent = Intent(Intent.ACTION_VIEW, uri)
-        context.startActivity(intent)
+        activity.startActivity(intent)
     }
 }
