@@ -17,11 +17,11 @@ class AboutActivity: BaseActivity(), AboutContract.View {
         mPresenter.attach(this)
 
         text_2.setOnClickListener {
-            mPresenter.sendToFirstLink()
+            mPresenter.sendToFirstLink(this)
         }
 
         text_3.setOnClickListener {
-            mPresenter.sendToSecondLink()
+            mPresenter.sendToSecondLink(this)
         }
     }
 }
