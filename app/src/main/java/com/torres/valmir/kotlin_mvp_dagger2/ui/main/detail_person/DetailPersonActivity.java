@@ -15,7 +15,7 @@ import android.util.TypedValue;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
-import android.view.Window;
+import android.widget.ImageView;
 import android.widget.Space;
 import android.widget.TextView;
 
@@ -26,13 +26,17 @@ import com.torres.valmir.kotlin_mvp_dagger2.model.Person;
 import com.torres.valmir.kotlin_mvp_dagger2.ui.base.BaseActivity;
 import com.torres.valmir.kotlin_mvp_dagger2.ui.main.detail_person.credits.CreditsFragment;
 import com.torres.valmir.kotlin_mvp_dagger2.ui.main.detail_person.info_person.InfoPersonFragment;
+import com.torres.valmir.kotlin_mvp_dagger2.utils.libs.AppBarStateChangeListener;
+import com.torres.valmir.kotlin_mvp_dagger2.utils.libs.Utils;
 
 import java.util.Locale;
 
 import javax.inject.Inject;
 
 import de.hdodenhof.circleimageview.CircleImageView;
+import jp.wasabeef.glide.transformations.BlurTransformation;
 
+import static com.bumptech.glide.request.RequestOptions.bitmapTransform;
 import static com.torres.valmir.kotlin_mvp_dagger2.utils.Constants.BASE_URL_IMAGE_W185;
 import static com.torres.valmir.kotlin_mvp_dagger2.utils.Constants.PERSON;
 
@@ -52,11 +56,12 @@ public class DetailPersonActivity extends BaseActivity implements DetailPersonCo
     private Toolbar mToolBar;
     private TabLayout tabLayout;
     private ViewPager viewPager;
+    private ImageView background;
 
     private Person person;
     private SectionsPagerAdapter mSectionPagerAdapter;
 
-    private hearsilent.amazingavatar.libs.AppBarStateChangeListener mAppBarStateChangeListener;
+    private AppBarStateChangeListener mAppBarStateChangeListener;
 
     private float[] mAvatarPoint = new float[2], mSpacePoint = new float[2], mToolbarTextPoint =
             new float[2], mTitleTextViewPoint = new float[2];
@@ -72,11 +77,6 @@ public class DetailPersonActivity extends BaseActivity implements DetailPersonCo
 
         if (bundle != null) {
             person = (Person) bundle.getSerializable(PERSON);
-        }
-
-        Window window = this.getWindow();
-        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
-            window.setStatusBarColor(ContextCompat.getColor(this, R.color.colorPrimaryDark));
         }
 
         if (getSupportActionBar() != null) {
@@ -101,6 +101,10 @@ public class DetailPersonActivity extends BaseActivity implements DetailPersonCo
             Glide.with(this)
                     .load(BASE_URL_IMAGE_W185+person.getProfilePath())
                     .into(mAvatarImageView);
+            Glide.with(this)
+                    .load(BASE_URL_IMAGE_W185+person.getProfilePath())
+                    .apply(bitmapTransform(new BlurTransformation(25, 3)))
+                    .into(background);
 
             mTitleTextView.setText(person.getName());
 
@@ -117,7 +121,7 @@ public class DetailPersonActivity extends BaseActivity implements DetailPersonCo
     }
 
     private void findViews() {
-        mContainerView = findViewById(R.id.view_container);
+        mContainerView = findViewById(R.id.coordinator_person);
         mAppBarLayout = findViewById(R.id.app_bar);
         mAvatarImageView = findViewById(R.id.imageView_avatar);
         mToolbarTextView = findViewById(R.id.toolbar_title);
@@ -126,6 +130,7 @@ public class DetailPersonActivity extends BaseActivity implements DetailPersonCo
         mToolBar = findViewById(R.id.toolbar);
         tabLayout = findViewById(R.id.tab_person);
         viewPager = findViewById(R.id.viewpager_container_person);
+        background = findViewById(R.id.background_person);
     }
 
     private void setUpViews() {
@@ -135,7 +140,7 @@ public class DetailPersonActivity extends BaseActivity implements DetailPersonCo
     }
 
     private void setUpToolbar() {
-        mAppBarLayout.getLayoutParams().height = hearsilent.amazingavatar.libs.Utils.getDisplayMetrics(this).widthPixels * 9 / 16;
+        mAppBarLayout.getLayoutParams().height = Utils.getDisplayMetrics(this).widthPixels * 9 / 16;
         mAppBarLayout.requestLayout();
 
         setSupportActionBar(mToolBar);
@@ -146,16 +151,34 @@ public class DetailPersonActivity extends BaseActivity implements DetailPersonCo
     }
 
     private void setUpAmazingAvatar() {
-        mAppBarStateChangeListener = new hearsilent.amazingavatar.libs.AppBarStateChangeListener() {
-
+        int statusBarColor = 0;
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
+            statusBarColor = getWindow().getStatusBarColor();
+        }
+        final int finalStatusBarColor = statusBarColor;
+        mAppBarStateChangeListener = new AppBarStateChangeListener() {
             @Override
             public void onStateChanged(AppBarLayout appBarLayout,
-                                       hearsilent.amazingavatar.libs.AppBarStateChangeListener.State state) {
+                                       AppBarStateChangeListener.State state) {
             }
 
             @RequiresApi(api = Build.VERSION_CODES.JELLY_BEAN_MR1)
             @Override
-            public void onOffsetChanged(hearsilent.amazingavatar.libs.AppBarStateChangeListener.State state, float offset) {
+            public void onOffsetChanged(AppBarStateChangeListener.State state, float offset) {
+                if (state == State.IDLE) {
+                    if (offset >= 0.4f) {
+                        background.setVisibility(View.INVISIBLE);
+                        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
+                            getWindow().setStatusBarColor(ContextCompat.getColor(DetailPersonActivity.this, R.color.colorPrimaryDark));
+                        }
+                    } else {
+                        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
+                            getWindow().setStatusBarColor(finalStatusBarColor);
+                        }
+                        background.setVisibility(View.VISIBLE);
+                    }
+                }
+
                 translationView(offset);
             }
         };
@@ -164,10 +187,10 @@ public class DetailPersonActivity extends BaseActivity implements DetailPersonCo
 
     @RequiresApi(api = Build.VERSION_CODES.JELLY_BEAN_MR1)
     private void translationView(float offset) {
-        float newAvatarSize = hearsilent.amazingavatar.libs.Utils.convertDpToPixel(
+        float newAvatarSize = Utils.convertDpToPixel(
                 EXPAND_AVATAR_SIZE_DP - (EXPAND_AVATAR_SIZE_DP - COLLAPSED_AVATAR_SIZE_DP) * offset,
                 this);
-        float expandAvatarSize = hearsilent.amazingavatar.libs.Utils.convertDpToPixel(EXPAND_AVATAR_SIZE_DP, this);
+        float expandAvatarSize = Utils.convertDpToPixel(EXPAND_AVATAR_SIZE_DP, this);
         float xAvatarOffset =
                 (mSpacePoint[0] - mAvatarPoint[0] - (expandAvatarSize - newAvatarSize) / 2f) *
                         offset;
@@ -183,9 +206,9 @@ public class DetailPersonActivity extends BaseActivity implements DetailPersonCo
                 mTitleTextSize - (mTitleTextSize - mToolbarTextView.getTextSize()) * offset;
         Paint paint = new Paint(mTitleTextView.getPaint());
         paint.setTextSize(newTextSize);
-        float newTextWidth = hearsilent.amazingavatar.libs.Utils.getTextWidth(paint, mTitleTextView.getText().toString());
+        float newTextWidth = Utils.getTextWidth(paint, mTitleTextView.getText().toString());
         paint.setTextSize(mTitleTextSize);
-        float originTextWidth = hearsilent.amazingavatar.libs.Utils.getTextWidth(paint, mTitleTextView.getText().toString());
+        float originTextWidth = Utils.getTextWidth(paint, mTitleTextView.getText().toString());
         // If rtl should move title view to end of view.
         boolean isRTL = TextUtils.getLayoutDirectionFromLocale(Locale.getDefault()) ==
                 View.LAYOUT_DIRECTION_RTL ||
@@ -203,10 +226,10 @@ public class DetailPersonActivity extends BaseActivity implements DetailPersonCo
     private void resetPoints() {
         final float offset = mAppBarStateChangeListener.getCurrentOffset();
 
-        float newAvatarSize = hearsilent.amazingavatar.libs.Utils.convertDpToPixel(
+        float newAvatarSize = Utils.convertDpToPixel(
                 EXPAND_AVATAR_SIZE_DP - (EXPAND_AVATAR_SIZE_DP - COLLAPSED_AVATAR_SIZE_DP) * offset,
                 this);
-        float expandAvatarSize = hearsilent.amazingavatar.libs.Utils.convertDpToPixel(EXPAND_AVATAR_SIZE_DP, this);
+        float expandAvatarSize = Utils.convertDpToPixel(EXPAND_AVATAR_SIZE_DP, this);
 
         int[] avatarPoint = new int[2];
         mAvatarImageView.getLocationOnScreen(avatarPoint);
@@ -227,9 +250,9 @@ public class DetailPersonActivity extends BaseActivity implements DetailPersonCo
         mToolbarTextPoint[1] = toolbarTextPoint[1];
 
         Paint paint = new Paint(mTitleTextView.getPaint());
-        float newTextWidth = hearsilent.amazingavatar.libs.Utils.getTextWidth(paint, mTitleTextView.getText().toString());
+        float newTextWidth = Utils.getTextWidth(paint, mTitleTextView.getText().toString());
         paint.setTextSize(mTitleTextSize);
-        float originTextWidth = hearsilent.amazingavatar.libs.Utils.getTextWidth(paint, mTitleTextView.getText().toString());
+        float originTextWidth = Utils.getTextWidth(paint, mTitleTextView.getText().toString());
         int[] titleTextViewPoint = new int[2];
         mTitleTextView.getLocationOnScreen(titleTextViewPoint);
         mTitleTextViewPoint[0] = titleTextViewPoint[0] - mTitleTextView.getTranslationX() -

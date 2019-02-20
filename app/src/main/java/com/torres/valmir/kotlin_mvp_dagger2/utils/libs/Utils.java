@@ -1,4 +1,4 @@
-package hearsilent.amazingavatar.libs;
+package com.torres.valmir.kotlin_mvp_dagger2.utils.libs;
 
 import android.content.Context;
 import android.content.res.Resources;

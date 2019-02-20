@@ -12,9 +12,10 @@
     <android.support.design.widget.AppBarLayout
         android:id="@+id/app_bar"
         android:layout_width="match_parent"
-        android:layout_height="224dp"
+        android:layout_height="280dp"
+        android:fitsSystemWindows="true"
         android:theme="@style/ThemeOverlay.AppCompat.Dark.ActionBar"
-        app:layout_behavior="hearsilent.amazingavatar.libs.FlingBehavior"
+        app:layout_behavior="com.torres.valmir.kotlin_mvp_dagger2.utils.libs.FlingBehavior"
         app:elevation="0dp">
 
         <android.support.design.widget.CollapsingToolbarLayout
@@ -25,11 +26,21 @@
             app:statusBarScrim="@android:color/transparent"
             app:titleEnabled="false">
 
+            <ImageView
+                android:fitsSystemWindows="true"
+                android:id="@+id/background_person"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:scaleType="centerCrop"
+                tools:ignore="ContentDescription"
+                app:layout_collapseMode="parallax"/>
+
             <android.support.v7.widget.Toolbar
                 android:id="@+id/toolbar"
                 android:layout_width="match_parent"
                 android:layout_height="?android:attr/actionBarSize"
                 app:layout_collapseMode="pin"
+                android:layout_marginBottom="48dp"
                 app:popupTheme="@style/ThemeOverlay.AppCompat.Light"/>
 
             <LinearLayout
@@ -63,6 +74,7 @@
                 android:layout_height="match_parent"
                 android:clipChildren="false"
                 android:clipToPadding="false"
+                android:layout_marginBottom="48dp"
                 android:paddingEnd="48dp"
                 android:paddingStart="48dp"
                 app:layout_collapseMode="parallax"
@@ -112,9 +124,22 @@
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintStart_toStartOf="parent"/>
             </android.support.constraint.ConstraintLayout>
+
+            <android.support.design.widget.TabLayout
+                android:layout_width="match_parent"
+                android:layout_height='wrap_content'
+                android:layout_gravity="bottom"
+                app:tabContentStart="72dp"
+                app:tabTextColor="#FFF"
+                app:tabSelectedTextColor="#FFF"
+                android:id="@+id/tab_person"/>
         </android.support.design.widget.CollapsingToolbarLayout>
     </android.support.design.widget.AppBarLayout>
 
-    <include layout="@layout/content_person"/>
+    <android.support.v4.view.ViewPager
+        android:id="@+id/viewpager_container_person"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        app:layout_behavior="@string/appbar_scrolling_view_behavior" />
 
 </android.support.design.widget.CoordinatorLayout>
