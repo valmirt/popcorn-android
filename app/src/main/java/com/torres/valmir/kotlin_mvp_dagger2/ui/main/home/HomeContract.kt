@@ -12,9 +12,9 @@ interface HomeContract {
     interface Presenter: BaseContract.Presenter<HomeContract.View>{
         fun swapListFragment(activity: BaseActivity, fragment: Int)
 
-        fun setActivitySettings()
+        fun setActivitySettings(activity: BaseActivity)
 
-        fun setActivityAbout()
+        fun setActivityAbout(activity: BaseActivity)
 
         fun getPreference(activity: BaseActivity)
 

@@ -100,7 +100,7 @@
                     android:maxLines="1"
                     android:textAlignment="viewStart"
                     android:textColor="#FFF"
-                    android:textSize="32sp"
+                    android:textSize="28sp"
                     app:layout_constraintBottom_toBottomOf="@+id/textView_title_shadow"
                     app:layout_constraintEnd_toEndOf="@+id/textView_title_shadow"
                     app:layout_constraintStart_toStartOf="@+id/textView_title_shadow"
