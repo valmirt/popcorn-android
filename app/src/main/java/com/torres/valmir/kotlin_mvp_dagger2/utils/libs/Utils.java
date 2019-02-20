@@ -5,6 +5,8 @@ import android.content.res.Resources;
 import android.graphics.Paint;
 import android.util.DisplayMetrics;
 
+import java.util.List;
+
 public class Utils {
 
 	public static DisplayMetrics getDisplayMetrics(Context context) {
@@ -34,6 +36,11 @@ public class Utils {
 	}
 
 	public static String refactorDate(String date) {
-		return "";
+	    try {
+            String[] temp = date.split("-");
+            return temp[2] + "/" + temp[1] + "/" + temp[0];
+        } catch (Exception e) {
+	        return date;
+        }
 	}
 }
