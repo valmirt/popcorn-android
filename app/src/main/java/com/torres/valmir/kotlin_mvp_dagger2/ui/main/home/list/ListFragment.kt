@@ -126,7 +126,9 @@ class ListFragment: BaseFragment(), ListContract.View {
     }
 
     override fun setLoading(isLoading: Boolean) {
-        refresh_layout.isRefreshing = isLoading
+        view?.let {
+            refresh_layout.isRefreshing = isLoading
+        }
     }
 
     override fun successResponseMovie(movieList: List<Movie>?) {

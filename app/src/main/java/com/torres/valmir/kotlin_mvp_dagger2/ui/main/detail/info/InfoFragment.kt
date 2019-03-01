@@ -184,7 +184,11 @@ class InfoFragment: BaseFragment(), InfoContract.View {
         }
     }
 
-    override fun errorResponse(error: String) = Snackbar.make(view!!, error, Snackbar.LENGTH_LONG).show()
+    override fun errorResponse(error: String){
+        view?.let {
+            Snackbar.make(it, error, Snackbar.LENGTH_LONG).show()
+        }
+    }
 
     override fun responseDetailMovie(movie: Movie) {
         mPresenter.sendToDetailActivity(this, movie, null)
