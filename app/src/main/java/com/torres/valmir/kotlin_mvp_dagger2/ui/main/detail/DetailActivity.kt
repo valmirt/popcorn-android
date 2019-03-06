@@ -13,6 +13,7 @@ import android.support.v7.app.AlertDialog
 import android.view.Menu
 import android.view.MenuItem
 import android.view.View
+import android.view.WindowManager
 import android.widget.ArrayAdapter
 import com.bumptech.glide.Glide
 import com.bumptech.glide.load.DataSource
@@ -178,7 +179,9 @@ class DetailActivity : BaseActivity(), DetailContract.View {
                     dialog.dismiss()
                 }
                 builder.create()
-                builder.show()
+                try{
+                    builder.show()
+                } catch (e: WindowManager.BadTokenException) {}
             } else {
                 if (trailers[0].site == "YouTube") {
                     mPresenter.sendToYoutube(this, trailers[0].key)

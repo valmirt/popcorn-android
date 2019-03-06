@@ -12,6 +12,8 @@ import com.torres.valmir.kotlin_mvp_dagger2.model.Movie
 import com.torres.valmir.kotlin_mvp_dagger2.model.TvShow
 import com.torres.valmir.kotlin_mvp_dagger2.remote.movie.MovieServiceApi
 import com.torres.valmir.kotlin_mvp_dagger2.remote.tv_show.TvServiceApi
+import com.torres.valmir.kotlin_mvp_dagger2.ui.base.BaseFragment
+import com.torres.valmir.kotlin_mvp_dagger2.ui.main.detail.DetailActivity
 import com.torres.valmir.kotlin_mvp_dagger2.utils.Constants.Companion.MOVIE_OBJECT
 import com.torres.valmir.kotlin_mvp_dagger2.utils.Constants.Companion.TVSHOW_OBJECT
 import javax.inject.Inject
@@ -230,14 +232,14 @@ class ListPresenter: ListContract.Presenter {
         }, id, language)
     }
 
-    override fun swapActivity(origin: FragmentActivity?, activity: AppCompatActivity, movie: Movie?, tv: TvShow?) {
-        val intent = Intent(origin, activity::class.java)
+    override fun sendToDetail(fragment: BaseFragment, movie: Movie?, tv: TvShow?) {
+        val intent = Intent(fragment.context, DetailActivity::class.java)
         movie?.let {
             intent.putExtra(MOVIE_OBJECT, it)
         }
         tv?.let {
             intent.putExtra(TVSHOW_OBJECT, it)
         }
-        origin?.startActivity(intent)
+        fragment.startActivity(intent)
     }
 }
