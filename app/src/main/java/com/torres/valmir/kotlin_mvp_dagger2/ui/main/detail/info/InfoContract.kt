@@ -22,6 +22,6 @@ interface InfoContract {
 
         fun getDetails (id: Int, language: String)
 
-        fun sendToDetailActivity(fragment: Fragment, movie: Movie?, tv: TvShow?)
+        fun sendToDetailActivity(fragment: Fragment?, movie: Movie?, tv: TvShow?)
     }
 }

@@ -3,13 +3,17 @@ package com.torres.valmir.kotlin_mvp_dagger2.ui.main.detail
 import android.content.Context
 import android.content.SharedPreferences
 import android.graphics.Bitmap
+import android.os.Build
 import android.os.Bundle
+import android.support.design.widget.AppBarLayout
 import android.support.design.widget.Snackbar
 import android.support.design.widget.TabLayout
 import android.support.v4.app.Fragment
 import android.support.v7.app.AlertDialog
 import android.view.Menu
 import android.view.MenuItem
+import android.view.View
+import android.view.WindowManager
 import android.widget.ArrayAdapter
 import com.bumptech.glide.Glide
 import com.bumptech.glide.load.DataSource
@@ -27,6 +31,7 @@ import com.torres.valmir.kotlin_mvp_dagger2.ui.main.detail.season.SeasonFragment
 import com.torres.valmir.kotlin_mvp_dagger2.utils.Constants
 import com.torres.valmir.kotlin_mvp_dagger2.utils.Constants.Companion.MOVIE_OBJECT
 import com.torres.valmir.kotlin_mvp_dagger2.utils.Constants.Companion.TVSHOW_OBJECT
+import com.torres.valmir.kotlin_mvp_dagger2.utils.libs.AppBarStateChangeListener
 import kotlinx.android.synthetic.main.activity_detail.*
 import javax.inject.Inject
 
@@ -68,6 +73,24 @@ class DetailActivity : BaseActivity(), DetailContract.View {
         tab_detail.setupWithViewPager(viewpager_container)
         viewpager_container.addOnPageChangeListener(TabLayout.TabLayoutOnPageChangeListener(tab_detail))
         tab_detail.addOnTabSelectedListener(TabLayout.ViewPagerOnTabSelectedListener(viewpager_container))
+
+        if (Build.VERSION.SDK_INT < Build.VERSION_CODES.LOLLIPOP) {
+            changeColorToolbar()
+        }
+    }
+
+    private fun changeColorToolbar() {
+        val appBarStateChangeListener = object : AppBarStateChangeListener() {
+            override fun onStateChanged(appBarLayout: AppBarLayout?, state: State?) {}
+
+            override fun onOffsetChanged(state: State?, offset: Float) {
+                if (state == State.IDLE) {
+                    if (offset >= 0.65f) backdrop_image_detail.visibility = View.INVISIBLE
+                    else backdrop_image_detail.visibility = View.VISIBLE
+                }
+            }
+        }
+        app_bar.addOnOffsetChangedListener(appBarStateChangeListener)
     }
 
     private fun fillPages(movie: Movie?, tvShow: TvShow?) {
@@ -156,7 +179,9 @@ class DetailActivity : BaseActivity(), DetailContract.View {
                     dialog.dismiss()
                 }
                 builder.create()
-                builder.show()
+                try{
+                    builder.show()
+                } catch (e: WindowManager.BadTokenException) {}
             } else {
                 if (trailers[0].site == "YouTube") {
                     mPresenter.sendToYoutube(this, trailers[0].key)

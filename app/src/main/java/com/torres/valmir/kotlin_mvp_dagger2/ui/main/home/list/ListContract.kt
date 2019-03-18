@@ -5,6 +5,7 @@ import android.support.v7.app.AppCompatActivity
 import com.torres.valmir.kotlin_mvp_dagger2.model.Movie
 import com.torres.valmir.kotlin_mvp_dagger2.model.TvShow
 import com.torres.valmir.kotlin_mvp_dagger2.ui.base.BaseContract
+import com.torres.valmir.kotlin_mvp_dagger2.ui.base.BaseFragment
 
 interface ListContract {
     interface View: BaseContract.View {
@@ -46,6 +47,6 @@ interface ListContract {
 
         fun getDetailsTvShow(id: Int, language: String)
 
-        fun swapActivity(origin: FragmentActivity?, activity: AppCompatActivity, movie: Movie?, tv: TvShow?)
+        fun sendToDetail(fragment: BaseFragment, movie: Movie?, tv: TvShow?)
     }
 }

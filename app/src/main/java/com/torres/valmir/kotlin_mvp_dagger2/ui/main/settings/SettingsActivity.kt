@@ -54,7 +54,7 @@ class SettingsActivity : BaseActivity(), SettingsContract.View {
         builder.show()
     }
 
-    override fun setLanguage(language: String) {
+    override fun setLanguage(language: String?) {
         language_settings.text = language
     }
 

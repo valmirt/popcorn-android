@@ -14,7 +14,7 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme"
-        tools:targetApi="m">
+        tools:ignore="UnusedAttribute">
         <activity
             android:name="com.torres.valmir.kotlin_mvp_dagger2.ui.main.splash.SplashActivity"
             android:theme="@style/AppTheme.NoActionBar">

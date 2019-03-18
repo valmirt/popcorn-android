@@ -126,7 +126,9 @@ class ListFragment: BaseFragment(), ListContract.View {
     }
 
     override fun setLoading(isLoading: Boolean) {
-        refresh_layout.isRefreshing = isLoading
+        view?.let {
+            refresh_layout.isRefreshing = isLoading
+        }
     }
 
     override fun successResponseMovie(movieList: List<Movie>?) {
@@ -154,15 +156,17 @@ class ListFragment: BaseFragment(), ListContract.View {
     }
 
     override fun errorResponse(error: String) {
-        Snackbar.make(view!!, error, Snackbar.LENGTH_LONG).show()
+        view?.let{
+            Snackbar.make(it, error, Snackbar.LENGTH_LONG).show()
+        }
     }
 
     override fun successResponseDetailTvShow(tv: TvShow) {
-        mPresenter.swapActivity(activity, DetailActivity(), null, tv)
+        mPresenter.sendToDetail(this, null, tv)
     }
 
     override fun successResponseDetailMovie(movie: Movie) {
-        mPresenter.swapActivity(activity, DetailActivity(), movie, null)
+        mPresenter.sendToDetail(this, movie, null)
     }
 
     override fun onPrepareOptionsMenu(menu: Menu?) {
