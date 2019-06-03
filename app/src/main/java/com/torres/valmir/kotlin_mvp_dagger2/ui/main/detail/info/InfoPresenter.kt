@@ -67,9 +67,11 @@ class InfoPresenter: InfoContract.Presenter {
     }
 
     override fun sendToDetailActivity(fragment: Fragment?, movie: Movie?, tv: TvShow?) {
-        val intent = Intent(fragment?.activity, DetailActivity::class.java)
-        movie?.let { intent.putExtra(MOVIE_OBJECT, it) }
-        tv?.let { intent.putExtra(TVSHOW_OBJECT, it) }
-        fragment?.activity?.startActivity(intent)
+        fragment?.let { frag->
+            val intent = Intent(frag.activity, DetailActivity::class.java)
+            movie?.let { intent.putExtra(MOVIE_OBJECT, it) }
+            tv?.let { intent.putExtra(TVSHOW_OBJECT, it) }
+            frag.activity?.startActivity(intent)
+        }
     }
 }
