@@ -47,6 +47,6 @@ interface ListContract {
 
         fun getDetailsTvShow(id: Int, language: String)
 
-        fun sendToDetail(fragment: BaseFragment, movie: Movie?, tv: TvShow?)
+        fun sendToDetail(fragment: BaseFragment?, movie: Movie?, tv: TvShow?)
     }
 }
