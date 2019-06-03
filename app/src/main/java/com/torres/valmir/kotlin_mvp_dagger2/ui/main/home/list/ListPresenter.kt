@@ -232,14 +232,14 @@ class ListPresenter: ListContract.Presenter {
         }, id, language)
     }
 
-    override fun sendToDetail(fragment: BaseFragment, movie: Movie?, tv: TvShow?) {
-        val intent = Intent(fragment.context, DetailActivity::class.java)
+    override fun sendToDetail(fragment: BaseFragment?, movie: Movie?, tv: TvShow?) {
+        val intent = Intent(fragment?.context, DetailActivity::class.java)
         movie?.let {
             intent.putExtra(MOVIE_OBJECT, it)
         }
         tv?.let {
             intent.putExtra(TVSHOW_OBJECT, it)
         }
-        fragment.startActivity(intent)
+        fragment?.startActivity(intent)
     }
 }
